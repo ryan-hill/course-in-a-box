@@ -19,3 +19,5 @@ a = 5
 b = 10
 c = a * b
 {% endhighlight %}
+
+some text with highlight: `ggplot`. 
