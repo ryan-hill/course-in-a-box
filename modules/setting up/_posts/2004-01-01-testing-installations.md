@@ -1,4 +1,4 @@
-## Testing installations
+## Testing Installations
 
 Once everything is installed, follow the instructions below to test your installation.
 
