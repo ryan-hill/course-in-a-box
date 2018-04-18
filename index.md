@@ -1,6 +1,6 @@
 ---
-layout: index
-published: false
+#layout: index
+published: true
 ---
 
 ## Create your own online course (and keep it)
