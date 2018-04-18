@@ -1,1 +1,1 @@
-## Introduction to raster data
+## Introduction to Raster Data
