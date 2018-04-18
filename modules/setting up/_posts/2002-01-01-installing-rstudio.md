@@ -13,3 +13,9 @@ b = 10
 c = a * b
 ```
 
+{% highlight r %}
+library(sf)
+a = 5
+b = 10
+c = a * b
+{% endhighlight %}
