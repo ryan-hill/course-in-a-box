@@ -1,5 +1,5 @@
 # basic configuration
-baseurl: /sfs-r-gis
+baseurl: /sfs-r-gis-2018
 markdown: kramdown
 permalink: /:categories/:title/
 
