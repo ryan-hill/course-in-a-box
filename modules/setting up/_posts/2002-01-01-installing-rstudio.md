@@ -1,23 +1,8 @@
 
-## RStudio
+## Installing RStudio
 
+    - [General Info](http://www.rstudio.com/products/rstudio/download/)
+    - [Windows](https://download1.rstudio.org/RStudio-1.1.442.exe)
+    - [Mac](https://download1.rstudio.org/RStudio-1.1.442.dmg)
+    - [Ubuntu (64 bit)](https://download1.rstudio.org/rstudio-1.1.442-amd64.deb)
 
-<script src="https://gist.github.com/ryan-hill/82f28b640f37be50b801106cf7793b9b.js"></script>
-
-
-```r
-#What does other code look like? 
-library(sf)
-a = 5
-b = 10
-c = a * b
-```
-
-{% highlight r %}
-library(sf)
-a = 5
-b = 10
-c = a * b
-{% endhighlight %}
-
-some text with highlight: `ggplot`. 
