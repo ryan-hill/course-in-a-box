@@ -7,7 +7,7 @@ First we need to install several R packages. R operates on user-contributed pack
 
 ### Install all of the following packages in R:
 
-Install all of the following packages in R - note that for both `sf` and `tidyverse` - and specificallly `ggplot2` in `tidyverse`, I've indicated the alternative install from GitHub rather than CRAN.  This is optional, as is installing devtools, and you will be fine with the CRAN version of packages, except that you will not be able to reproduce one of the example plots in the `sf` section that uses `sf_geom` funtion from the development version of `ggplot2`. Note that `tidyverse` is a 'meta-package' that includes several specific packages such as `ggplot2`, `dplyr`, and `tidyr`.
+The following code will install all of the requiste packages by copying and pasting into the RStudio console window. Note that for both `sf` and `tidyverse` - and specificallly `ggplot2` in `tidyverse`, the alternative install from GitHub rather than CRAN are given.  This is optional, as is installing devtools, and you will be fine with the CRAN version of packages, except that you will not be able to reproduce one of the example plots in the `sf` section that uses `sf_geom` funtion from the development version of `ggplot2`. In addition, `tidyverse` is a 'meta-package' that includes several specific packages such as `ggplot2`, `dplyr`, and `tidyr`, which we will be using today.
 
 ```r
 install.packages("devtools") # optional but needed for using install_github
