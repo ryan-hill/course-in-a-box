@@ -2,7 +2,7 @@
 baseurl: /sfs-r-gis-2018
 markdown: kramdown
 permalink: /:categories/:title/
-highlighter: rouge
+#highlighter: rouge
 
 # Change this tracking code with your own tracking code
 ga_tracking_code: UA-5757664-19
