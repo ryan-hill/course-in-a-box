@@ -2,6 +2,7 @@
 baseurl: /sfs-r-gis-2018
 markdown: kramdown
 permalink: /:categories/:title/
+highlighter: rouge
 
 # Change this tracking code with your own tracking code
 ga_tracking_code: UA-5757664-19
@@ -10,8 +11,6 @@ p2pu_ga_tracking_code: UA-55722824-1
 
 # Some files we need to exclude, so Github can build the site
 exclude: [Gemfile, Gemfile.lock, README.md]
-
-highlighter: rouge
 
 defaults:
   -
