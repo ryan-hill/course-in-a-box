@@ -3,7 +3,8 @@
 Once everything is installed, follow the instructions below to test your installation.
 
 **1. Open RStudio**
-Once installed, RStudio should be accessible from the start menu.  Start up RStudio.  Once running it should look something like:
+
+RStudio should be accessible from the start menu.  Start up RStudio.  Once running, it should look something like:
 
 ![RStudio Window]({{site.baseurl}}/img/rstudio.png)
 
