@@ -1,5 +1,5 @@
 title: SFS GIS R
-description: Build Your Very Own Open Course
+description: Fundamentals of Spatial Data Access and Analysis in R
 modules: [setting up, vector data, rasters, spatial analysis, maps]
 signups:
  - name: Geert Hofman
