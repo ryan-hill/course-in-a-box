@@ -1,5 +1,5 @@
 ---
-layout: course_page
+layout: index
 published: true
 ---
 
