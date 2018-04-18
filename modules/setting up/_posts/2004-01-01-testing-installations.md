@@ -15,6 +15,8 @@ By default the console window will be on the left side of RStudio.  Find that wi
 
 ![RStudio Console]({{site.baseurl}}/img/rstudio_console.png)
 
+<br>
+
 **3. Copy and paste the code**
 
 Click in the window and paste in the code from below:
