@@ -1,15 +1,13 @@
 ## Workshop Data
 
-For convenience, please download the data before the day of the workshop. You can do so by right-clicking on each link below or by running the code chunk in R. 
+For convenience, please download the data before the day of the workshop. You can do so by right-clicking on each link below or by running the code chunk in R. nce downloaded, extract (unzip) the files into the directory you will be using for the workshop.
 
-**Links:**
+**Links**
 
 - [ESDA.zip](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/ESDA.zip?raw=true){:target="_blank"}
 - [HUCs.RData](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/HUCs.RData?raw=true){:target="_blank"}
 - [NLCD_OR_2011.RData](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/NLCD_OR_2011.RData?raw=true){:target="_blank"}
 - [WorkshopData.zip](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/WorkshopData.zip?raw=true){:target="_blank"}
-
-- Once downloaded, extract (unzip) the files.
 
 **R Code**
 
@@ -41,7 +39,7 @@ download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303
               
 ```
 
-Once downloaded, extract the files
+Once downloaded, extract the files with the `unzip` function.
 
 ```r
 unzip("WorkshopData.zip")
