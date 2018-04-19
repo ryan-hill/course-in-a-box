@@ -1,6 +1,6 @@
 title: SFS GIS R
 description: Fundamentals of Spatial Data Access and Analysis in R
-modules: [setting up, vector data, rasters, spatial analysis, maps]
+modules: [setting up, background, vector data, rasters, spatial analysis, maps]
 signups:
  - name: Geert Hofman
    image: https://media.licdn.com/media/p/3/000/1b0/2c9/2daad0c.jpg
