@@ -9,11 +9,11 @@ First we need to install several R packages. R operates on user-contributed pack
 
 ### Install R packages from console
 
-The following code will install all of the requiste packages by copying and pasting into the RStudio console window. Note that for both `sf` and `tidyverse` - and specificallly `ggplot2` in `tidyverse`, the alternative install from GitHub rather than CRAN are given.  This is optional, as is installing devtools, and you will be fine with the CRAN version of packages, except that you will not be able to reproduce one of the example plots in the `sf` section that uses `sf_geom` funtion from the development version of `ggplot2`. In addition, `tidyverse` is a 'meta-package' that includes several specific packages such as `ggplot2`, `dplyr`, and `tidyr`, which we will be using today.
+The following code will install all of the requiste packages by copying and pasting into the RStudio console window. Note that for both `sf` and `tidyverse` - and specificallly `ggplot2` in `tidyverse` - the alternative install from GitHub rather than CRAN are given.  This is optional, as is installing devtools, and you will be fine with the CRAN version of packages, except that you will not be able to reproduce one of the example plots in the `sf` section that uses `sf_geom` funtion from the development version of `ggplot2`. In addition, `tidyverse` is a 'meta-package' that includes several specific packages such as `ggplot2`, `dplyr`, and `tidyr`, which we will be using today.
 
-#### From R CRAN
+**1. From R CRAN**
 
-
+Installing `rgdal` will install the foundation spatial package, `sp`, as a dependency.  
 
 ```r
 install.packages("rgdal")
@@ -39,18 +39,18 @@ install.packages("rbokeh"
 install.packages("ggmap")
 ```
 
-#### From GitHub
+**2. From GitHub**
 
-Newer, development versions of packages can be downloaded directly from GitHub. However, these version may not always be stable.
+Newer, development versions of packages can be downloaded directly from GitHub. These version may not always be stable but they can provide access to new capabilities. You will need to install the `devtools` package first from CRAN. 
+
+If you prefer to use the standard CRAN version of `tidyverse`, simply use `install.packages` instead of the code provided below. 
 
 ```r
- #devtools packages allows installation from GitHub
+#devtools packages allows installation from GitHub
 install.packages(devtools)
 devtools::install_github("edzer/sfr")
 devtools::install_github("hadley/tidyverse")
 ```
-
-Installing `rgdal` will install the foundation spatial package, `sp`, as a dependency.  
 
 For Linux users, to install simple features for R (`sf`), you need GDAL >= 2.0.0, GEOS >= 3.3.0, and Proj.4 >=  4.8.0.  Edzer Pebesma's Simple Features for R GitHub repo has a good explanation:
 
