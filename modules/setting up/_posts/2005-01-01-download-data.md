@@ -8,6 +8,8 @@ For convenience, please download the data before the day of the workshop. You ca
 - [NLCD_OR_2011.RData](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/NLCD_OR_2011.RData?raw=true){:target="_blank"}
 - [WorkshopData.zip](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/WorkshopData.zip?raw=true){:target="_blank"}
 
+- Once downloaded, extract (unzip) the files.
+
 **R Code:**
 In the code below, replace `your-directory-here` with the folder location where you would like to download the files to.
 
@@ -35,8 +37,13 @@ download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303
               method="auto",
               mode="wb")
               
+```
+
+Once downloaded, extract the files
+
+```r
 unzip("WorkshopData.zip")
+unzip("ESDA.zip")
 
 #Or unzip("WorkshopData.zip", exdir = "your-directory-here") 
-
 ```
