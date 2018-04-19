@@ -30,7 +30,7 @@ By the end of the course you should be able to do the following in R:
 
 ## Instructors & Assistants
 * Marcus Beck - bio/links/etc
-* [Ryan Hill](https://ryan-hill.github.io/sfs-r-gis-2018/) - Ryan is an ORISE postdoc with the US EPA's Western Ecology Division. His interests are in large-scale freshwater ecology, modeling, and prediction. 
+* [Ryan Hill](https://ryan-hill.github.io/) - Ryan is an ORISE postdoc with the US EPA's Western Ecology Division. His interests are in large-scale freshwater ecology, modeling, and prediction. 
 * Amalia Handler - bio/links/etc
 * Robert Francis - bio/links/etc
 
