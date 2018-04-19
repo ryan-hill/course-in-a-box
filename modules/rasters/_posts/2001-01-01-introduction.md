@@ -1,32 +1,57 @@
 ## Introduction to Raster Data
 
+---
+
+>! Spoiler !
+
+
+<details> 
+  <summary><a id="spoiler2" href="#spoiler2" title="You are an amazing person.">Lbh ner na nznmvat crefba.</a></summary>
+   <p>You are an amazing person.</p> 
+</details>
+
+---
+
+
+<details><summary>stuff with *mark* **down**</summary><p>
+
+## _formatted_ **heading** with [a](link)
+
+---
+{{standard 3-backtick code block omitted from here due to escaping issues}}
+---
+
+Collapsible until here.
+</p></details>
+
+---
 
 
 <details>
-  <summary>stuff with *mark* **down**</summary>
-  <p>
-<!-- the above p cannot start right at the beginning of the line and is mandatory for everything else to work -->
-##*formatted* **heading** with [a](link)
+ <summary>Summary</summary>
+
 ```r
-code block
+const x = 1
 ```
+</details>
 
-  <details>
-    <summary><small>nested</small> stuff</summary><p>
-<!-- alternative placement of p shown above -->
+---
 
-* list
-* with
 
- 1. nested
- 1. items
+<details/>
+  <summary>List details</summary>
 
-    ```r
-    a = 5
-    b = 5
-    c = a + b
-    ```
- 1. blocks
+1. A
+   > comment on first item
 
-  </p></details>
-</p></details>
+1. B
+   > comment on second item
+
+</details>
+
+
+
+
+
+
+
