@@ -18,9 +18,26 @@ By the end of the course you should be able to:
 * Amalia Handler - bio/links/etc
 * Robert Francis - bio/links/etc
 
-## Course Schedule
+## Schedule
 
-* 9:00 am - stuff
-* 10:00 am - more stuff
+* **8:30 - 9:00** Last minute software installation help.
+* **9:00 - 9:10** Introductions
+* **9:10 - 10:00** Basics of R and RStudio
+* **10:00 - 10:45** Data import, wrangling, and exploration
+* **10:45 - 11:00** Break
+* **1100 - 1200** Spatial objects and libraries in RStudio
+* **12:00 - 1:00** Lunch on your own
+* **1:00 - 2:00** Working with vector data
+* **2:00 - 3:00** Working with raster data
+* **3:00 - 3:15** Break
+* **3:15 - 4:00** Viewing and mapping spatial data
+* **4:15 - 4:45** Accessing open spatial data
+
+## Credits
+
+This course is based on the Jekyll Theme `course-in-a-box` developed by @p2pu and is available [here](https://howto.p2pu.org/).
+
+Content borrowed and modified from @mhweber.
+
 
 
