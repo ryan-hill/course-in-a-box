@@ -13,13 +13,7 @@ By the end of the course you should be able to do the following in R:
 * [Combine several data layers and data types to conduct spatial analyses, including joins, clips, and summaries](https://ryan-hill.github.io/sfs-r-gis-2018/modules/spatial%20analysis/Introduction/)
 * [Map and visualize spatial data as static or interactive features](https://ryan-hill.github.io/sfs-r-gis-2018/modules/mapping/introduction/)
 
-## Instructors & Assistants
-* Marcus Beck - bio/links/etc
-* Ryan Hill - bio/links/etc
-* Amalia Handler - bio/links/etc
-* Robert Francis - bio/links/etc
-
-## Schedule
+## Schedule - May 20, 2018
 
 * **8:30 - 9:00** Last minute software installation help
 * **9:00 - 9:10** Introductions
@@ -33,6 +27,12 @@ By the end of the course you should be able to do the following in R:
 * **3:00 - 3:15** Break
 * **3:15 - 4:00** Viewing and mapping spatial data
 * **4:15 - 4:45** Accessing open spatial data
+
+## Instructors & Assistants
+* Marcus Beck - bio/links/etc
+* Ryan Hill - bio/links/etc
+* Amalia Handler - bio/links/etc
+* Robert Francis - bio/links/etc
 
 ## Credits
 
