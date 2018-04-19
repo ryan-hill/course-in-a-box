@@ -47,7 +47,7 @@ If you prefer to use the standard CRAN version of `tidyverse`, simply use `insta
 
 ```r
 #devtools packages allows installation from GitHub
-install.packages(devtools)
+install.packages("devtools")
 devtools::install_github("edzer/sfr")
 devtools::install_github("hadley/tidyverse")
 ```
