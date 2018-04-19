@@ -7,10 +7,11 @@ published: true
 
 ## Course Objectives
 
-By the end of the course you should be able to:
-* Read/manipulate/write vector (point, line, polygon) data.
-* Read raster data.
-* More stuff.
+By the end of the course you should be able to do the following in R:
+* [Read, manipulate, query, and write vector (point, line, polygon) data](https://ryan-hill.github.io/sfs-r-gis-2018/modules/vector%20data/introduction/)
+* [Read, manipulate, query, and write raster data](https://ryan-hill.github.io/sfs-r-gis-2018/modules/rasters/introduction/)
+* [Combine several data layers and data types to conduct spatial analyses, including joins, clips, and summaries](https://ryan-hill.github.io/sfs-r-gis-2018/modules/spatial%20analysis/Introduction/)
+* [Map and visualize spatial data as static or interactive features](https://ryan-hill.github.io/sfs-r-gis-2018/modules/mapping/introduction/)
 
 ## Instructors & Assistants
 * Marcus Beck - bio/links/etc
@@ -20,7 +21,7 @@ By the end of the course you should be able to:
 
 ## Schedule
 
-* **8:30 - 9:00** Last minute software installation help.
+* **8:30 - 9:00** Last minute software installation help
 * **9:00 - 9:10** Introductions
 * **9:10 - 10:00** Basics of R and RStudio
 * **10:00 - 10:45** Data import, wrangling, and exploration
