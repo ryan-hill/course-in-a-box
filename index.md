@@ -3,8 +3,7 @@ layout: index
 published: true
 ---
 
-This workshop was prepared for the annual meeting of the Society for Freshwater Science
-More stuff
+### 2018 Society for Freshwater Science Annual Meeting Workshop
 
 ## Course Objectives
 
@@ -18,4 +17,10 @@ By the end of the course you should be able to:
 * Ryan Hill - bio/links/etc
 * Amalia Handler - bio/links/etc
 * Robert Francis - bio/links/etc
+
+## Course Schedule
+
+* 9:00 am - stuff
+* 10:00 am - more stuff
+
 
