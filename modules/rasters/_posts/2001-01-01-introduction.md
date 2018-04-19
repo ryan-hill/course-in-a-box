@@ -3,11 +3,11 @@
 
 
 <details>
-  <summary>Click to expand</summary>
+  <summary>Click to expand</summary><p>
   whatever
   ```r
   a = 5
   b = 6
   c = a + b
   ```
-</details>
+</p></details>
