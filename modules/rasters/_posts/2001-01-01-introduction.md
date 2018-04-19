@@ -4,10 +4,14 @@
 
 <details>
   <summary>Click to expand</summary><p>
-  whatever
-  ```r
-  a = 5
-  b = 6
-  c = a + b
-  ```
+  
+  ## _formatted_ **heading** with [a](link)
+  ---
+    ```r
+    a = 5
+    b = 6
+    c = a + b
+    ```
+  ---
+
 </p></details>
