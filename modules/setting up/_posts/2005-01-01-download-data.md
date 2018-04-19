@@ -41,7 +41,7 @@ download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303
               
 ```
 
-Once downloaded, extract the files
+Once downloaded, extract the files with the `unzip` function.
 
 ```r
 unzip("WorkshopData.zip")
