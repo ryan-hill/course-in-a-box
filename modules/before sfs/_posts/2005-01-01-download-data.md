@@ -1,5 +1,7 @@
 ## Workshop Data
 
+---
+
 For convenience, please download the data before the day of the workshop. You can do so by right-clicking on each link below or by running the code chunk in R. nce downloaded, extract (unzip) the files into the directory you will be using for the workshop.
 
 **Links**

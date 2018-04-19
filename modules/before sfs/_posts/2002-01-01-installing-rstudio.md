@@ -1,5 +1,6 @@
-
 ## Installing RStudio
+
+---
 
 - [General Info](http://www.rstudio.com/products/rstudio/download/)
 - [Windows](https://download1.rstudio.org/RStudio-1.1.442.exe)

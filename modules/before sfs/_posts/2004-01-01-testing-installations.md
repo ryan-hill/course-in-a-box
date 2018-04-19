@@ -1,5 +1,7 @@
 ## Testing Installations
 
+---
+
 Once everything is installed, follow the instructions below to test your installation.
 
 **1. Open RStudio**
