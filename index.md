@@ -13,10 +13,9 @@ By the end of the course you should be able to:
 * Read raster data.
 * More stuff.
 
-## Instructors & Helpers
-* Marcus Beck -  bio/links/etc
+## Instructors & Assistants
+* Marcus Beck - bio/links/etc
 * Ryan Hill - bio/links/etc
-* Robert Francis (mailto:francir3@miamioh.edu)
-* Amalia Handler (mailto:amhandle@asu.edu)
-
+* Amalia Handler - bio/links/etc
+* Robert Francis - bio/links/etc
 
