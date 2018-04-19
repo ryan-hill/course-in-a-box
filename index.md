@@ -36,7 +36,7 @@ By the end of the course you should be able to do the following in R:
 
 ## Credits
 
-This course is based on the Jekyll Theme **course-in-a-box** developed by [Peer to Peer University](https://github.com/p2pu) and is available [here](https://howto.p2pu.org/).
+This course is based on the Jekyll theme **[course-in-a-box](https://github.com/p2pu/course-in-a-box)** developed by [Peer to Peer University](https://github.com/p2pu) and is available [here](https://howto.p2pu.org/).
 
 Content borrowed and modified from [Marc Weber](https://github.com/mhweber/AWRA_GIS_R_Workshop) with permission.
 
