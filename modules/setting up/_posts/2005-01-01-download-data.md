@@ -35,6 +35,8 @@ download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303
               method="auto",
               mode="wb")
               
+unzip("WorkshopData.zip")
 
+#Or unzip("WorkshopData.zip", exdir = "your-directory-here") 
 
 ```
