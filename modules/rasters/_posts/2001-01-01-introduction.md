@@ -2,37 +2,11 @@
 
 ---
 
->! Spoiler !
-
 
 <details> 
-  <summary><a id="spoiler2" href="#spoiler2" title="You are an amazing person.">Lbh ner na nznmvat crefba.</a></summary>
-   <p>You are an amazing person.</p> 
-</details>
-
----
-
-
-<details><summary>stuff with *mark* **down**</summary><p>
-
-## _formatted_ **heading** with [a](link)
-
----
-{{standard 3-backtick code block omitted from here due to escaping issues}}
----
-
-Collapsible until here.
-</p></details>
-
----
-
-
-<details>
- <summary>Summary</summary>
-
-```r
-const x = 1
-```
+  <summary>Lbh ner na nznmvat crefba.</summary>
+   <p><script src="https://gist.github.com/ryan-hill/82f28b640f37be50b801106cf7793b9b.js"></script></p> 
+   <script src="https://gist.github.com/ryan-hill/82f28b640f37be50b801106cf7793b9b.js"></script>
 </details>
 
 ---
@@ -43,9 +17,11 @@ const x = 1
 
 1. A
    > comment on first item
+   > const x = 1
 
 1. B
    > comment on second item
+   Does this deal well with line breaks?
 
 </details>
 
