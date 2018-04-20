@@ -5,6 +5,9 @@ published: true
 
 ## A Workshop Prepared for the 2018 Annual Meeting of the [Society for Freshwater Science](https://freshwater-science.org/)
 
+<center> <h2>A Workshop Prepared for the 2018 Annual Meeting of the [Society for Freshwater Science](https://freshwater-science.org/)</h2> </center>
+
+
 ### Course Objectives
 
 By the end of the course you should be able to do the following in R:
