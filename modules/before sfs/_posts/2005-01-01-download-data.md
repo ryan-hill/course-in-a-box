@@ -2,7 +2,9 @@
 
 ---
 
-For convenience, please download the data before the day of the workshop. You can do so by right-clicking on each link below or by running the code chunk in R. nce downloaded, extract (unzip) the files into the directory you will be using for the workshop.
+For convenience, please download the data before the day of the workshop. Once downloaded, extract (unzip) the files into the directory you will be using for the workshop.
+
+There are two options to download the data - right-click each link or run the R code below.
 
 **Links**
 

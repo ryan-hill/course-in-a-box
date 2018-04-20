@@ -1,3 +1,7 @@
+---
+title: "Building Spatial Objects"
+---
+
 ### Building and Manipulating Spatial Data in R
 
 -----

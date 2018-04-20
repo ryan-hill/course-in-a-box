@@ -1,3 +1,7 @@
+---
+title: "Intro to Spatial Objects"
+---
+
 ### Getting to Know Spatial Objects
 
 ----
