@@ -21,7 +21,7 @@ By the end of the course you should be able to do the following in R:
 
 * **8:30 - 9:00** Last minute software installation help
 * **9:00 - 9:10** Introductions
-* **9:10 - 10:00** [Getting Started](/modules/getting started/r-review/)
+* **9:10 - 10:00** [Getting Started](/sfs-r-gis-2018/modules/getting started/r-review/)
 * **10:00 - 10:45** Vector Data - Intro & Building Spatial Objects
 * **10:45 - 11:00** Break
 * **1100 - 1200** Spatial objects and libraries in RStudio
