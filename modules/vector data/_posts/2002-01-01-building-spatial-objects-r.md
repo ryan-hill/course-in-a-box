@@ -1,5 +1,7 @@
 ### Building and Manipulating Spatial Data in R
 
+-----
+
 Let's take a step back now.  Basic data structures in R can represent spatial data - all we need is some vectors with location and attribute information
 
 ```r
