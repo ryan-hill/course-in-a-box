@@ -13,8 +13,8 @@ R Markdown documents can be easily shared with others or submitted with manuscri
 * File > New File > R Markdown
 * Add title
 * Add author
-* Leave as HTML
-    *
+* Select HTML
+
 
 ### Adding content
 
@@ -27,5 +27,7 @@ R Markdown documents can be easily shared with others or submitted with manuscri
 **4. Figures & Tables**
 
 **5. Styles & Other Options**
+
+**6. Rendering HTML**
 
 
