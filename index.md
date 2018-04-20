@@ -3,9 +3,9 @@ layout: index
 published: true
 ---
 
-### A Workshop Prepared for the 2018 Annual Meeting of the [Society for Freshwater Science](https://freshwater-science.org/)
+## A Workshop Prepared for the 2018 Annual Meeting of the [Society for Freshwater Science](https://freshwater-science.org/)
 
-## Course Objectives
+### Course Objectives
 
 By the end of the course you should be able to do the following in R:
 * [Read, manipulate, query, and write vector (point, line, polygon) data](https://ryan-hill.github.io/sfs-r-gis-2018/modules/vector%20data/introduction/)
@@ -13,7 +13,7 @@ By the end of the course you should be able to do the following in R:
 * [Combine several data layers and data types to conduct spatial analyses, including joins, clips, and summaries](https://ryan-hill.github.io/sfs-r-gis-2018/modules/spatial%20analysis/Introduction/)
 * [Map and visualize spatial data as static or interactive features](https://ryan-hill.github.io/sfs-r-gis-2018/modules/mapping/introduction/)
 
-## Schedule - May 20, 2018
+### Schedule - May 20, 2018
 
 * **8:30 - 9:00** Last minute software installation help
 * **9:00 - 9:10** Introductions
@@ -28,13 +28,13 @@ By the end of the course you should be able to do the following in R:
 * **3:15 - 4:00** Viewing and mapping spatial data
 * **4:15 - 4:45** Accessing open spatial data
 
-## Instructors & Assistants
+### Instructors & Assistants
 * Marcus Beck - bio/links/etc
 * [Ryan Hill](https://ryan-hill.github.io/) - Ryan is an ORISE postdoc with the US EPA's Western Ecology Division. His interests are in large-scale freshwater ecology, modeling, and prediction. 
 * Amalia Handler - bio/links/etc
 * Robert Francis - bio/links/etc
 
-## Credits
+### Credits
 
 This course is based on the Jekyll theme **[course-in-a-box](https://github.com/p2pu/course-in-a-box)** developed by [Peer to Peer University](https://github.com/p2pu) and is available [here](https://howto.p2pu.org/).
 
