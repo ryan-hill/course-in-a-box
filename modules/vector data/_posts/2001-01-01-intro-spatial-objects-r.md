@@ -1,4 +1,4 @@
-## Getting to Know of Spatial Objects
+### Getting to Know of Spatial Objects
 
 ----
 
