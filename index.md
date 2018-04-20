@@ -3,7 +3,7 @@ layout: index
 published: true
 ---
 
-### 2018 Society for Freshwater Science Annual Meeting Workshop
+### A Workshop Prepared for the 2018 Annual Meeting of the [Society for Freshwater Science](https://freshwater-science.org/)
 
 ## Course Objectives
 
