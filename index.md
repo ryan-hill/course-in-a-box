@@ -21,13 +21,13 @@ By the end of the course you should be able to do the following in R:
 
 * **8:30 - 9:00** Last minute software installation help
 * **9:00 - 9:10** Introductions
-* **9:10 - 10:00** [Getting Started](/sfs-r-gis-2018/modules/getting started/r-review/)
-* **10:00 - 10:45** Vector Data - Intro & Building Spatial Objects
+* **9:10 - 10:00** [Getting Started](https://ryan-hill.github.io/sfs-r-gis-2018/modules/getting%20started/r-review/)
+* **10:00 - 10:45** [Working with vector data](https://ryan-hill.github.io/sfs-r-gis-2018/modules/vector%20data/intro-spatial-objects-r/)
 * **10:45 - 11:00** Break
-* **1100 - 1200** Spatial objects and libraries in RStudio
+* **1100 - 1200** [Working with vector data](https://ryan-hill.github.io/sfs-r-gis-2018/modules/vector%20data/intro-spatial-objects-r/) (continued)
 * **12:00 - 1:00** Lunch on your own
-* **1:00 - 2:00** Working with vector data
-* **2:00 - 3:00** Working with raster data
+* **1:00 - 2:00** [Working with rasters](https://ryan-hill.github.io/sfs-r-gis-2018/modules/rasters/introduction/)
+* **2:00 - 3:00** [Spatial operations and analysis]()
 * **3:00 - 3:15** Break
 * **3:15 - 4:00** Viewing and mapping spatial data
 * **4:15 - 4:45** Accessing open spatial data
