@@ -29,10 +29,10 @@ By the end of the course you should be able to do the following in R:
 * **4:15 - 4:45** Accessing open spatial data
 
 ## Instructors & Assistants
-* Marcus Beck - bio/links/etc
-* [Ryan Hill](https://ryan-hill.github.io/) - Ryan is an ORISE postdoc with the US EPA's Western Ecology Division. His interests are in large-scale freshwater ecology, modeling, and prediction. 
-* Amalia Handler - bio/links/etc
-* Robert Francis - bio/links/etc
+* [Marcus Beck](https://fawda123.github.io/CV/CV.pdf), [mailto:marcusb@sccwrp.org](marcusb@sccwrp.org) - Marcus is a scientist with the Southern California Coastal Water Research Project.  His interests include time series analysis of water quality data, lake bioassessment, and data visualization.  
+* [Ryan Hill](https://ryan-hill.github.io/), [mailto:hill.ryan@epa.gov](hill.ryan@epa.gov) - Ryan is an ORISE postdoc with the US EPA's Western Ecology Division. His interests are in large-scale freshwater ecology, modeling, and prediction. 
+* [Amalia Handler] - Amalia is a PhD candidate in the Environmental Life Sciences Program at Arizona State University. Her dissertation research explores nitrogen processes in dryland streams and wetlands.
+* Robert Francis - Robert is a PhD student in Ecology, Evolution, and Environmental Biology at Miami University. His dissertation research investigates habitat factors that structure communities of freshwater mussels. 
 
 ## Credits
 
