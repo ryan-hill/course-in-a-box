@@ -1,5 +1,5 @@
 ---
-title: "RStudio projects and RMarkdown"
+title: "RStudio Projects"
 output: 
   html_document:
     keep_md: true
