@@ -1,22 +1,119 @@
-## R Markdown
+---
+title: "R Markdown"
+output: 
+  html_document:
+    keep_md: true
+self_contained: yes
+---
 
------
+### What is R Markdown?
 
-### What is R Mardown?
-
-During the workshop, we will be using R Mardown within RStudio. Mardown is a version of markup language that can be translated into an HTML file. RStudio added the additional feature that you can run R code within the markdown document to integrate your descriptions of the analysis, R code, and R output into a single HTML. You can think of this type of documentation as **adding code to your comment rather than comment to you code.**
+During the workshop, we will be using R Markdown within RStudio. Markdown is an easy way to format text that can be translated into an HTML file (or other format). RStudio added the additional feature that you can run R code within the markdown document to integrate your descriptions of the analysis, R code, and R output into a single HTML. You can think of this type of documentation as **adding code to your comments rather than comments to your code.**
 
 R Markdown documents can be easily shared with others or submitted with manuscripts as an appendix ([example](https://esajournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Feap.1617&attachmentId=2187835387)) to provide open and transparent methods. Here, we'll walk through an example of how to make an R Markdown document. It will become more apparent why we are learning about R Markdown when we make maps.
 
 ### Creating an R Markdown document
+
+RStudio provides a template for creating an R Markdown file: 
 
 * File > New File > R Markdown
 * Add title
 * Add author
 * Select HTML
 
+### R Markdown basics
 
-### Adding content
+Your template should look like this: 
+
+
+````
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+````
+
+There are three basic elements in any R Markdown document:
+
+1. The __YAML header__ at the top that defines the output type
+1. The code chunks that inlude R code
+1. Text content in between the code chunks that be modified with Markdown
+
+The magic happens when you "knit" the document using the knit button at the top (or alternatively using the function `rmarkdown::knit('myfile.Rmd')`).  This commands accomplishes two separate tasks:
+
+1. Execution of R code in R chunks to create a Markdown File
+1. Conversion of the Markdown file to rendered text, such as an HTML file
+
+Effective use of an RMarkdown file generally requires basic understanding of markdown syntax and how the options for the code chunks are changed. 
+
+### Text formatting with markdown
+
+Text that is not included in the __YAML header__ or a code chunk can be stylized with markup.  Using markdown to stylize is not a requirement to create an RMarkdown document but it certainly helps to differentiate parts of the text, such as headers, bold, italic, or lists.  
+
+The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheatsheets) will show you most of these options.  Here are some common examples:
+
+
+```r
+# Header 1
+## Header 2
+### Header 3
+
+*italic*
+**bold**
+  
+* unordered list
+* item 2
+* item 3
+
+1) ordered list
+1) item 2
+1) item 3
+```
+
+### Basics of code chunks
+
+Code chunks in an R Markdown document will include code that is executed when the document is compiled.  It's best to think about all of the individual code chunks in a document as a continuous script.  All code chunks are run in sequence from first to last for everything to work properly when the document is compiled.  You can run the code chunks all at once without compiling the document or individually if you want to inspect the output of an individual chunk.  Just remember that a code chunk may not work properly by itself if it depends on information from another code chunk that hasn't already been run.  
+
+The easiest way to include a new code chunk in your R Markdown file is to use the shortcut keys: `Cmd/Ctrl + Alt + I`.  Alternatively, you can just type the code chunks but the shortcut is much faster.  All R code can then be entered between the delimiters. 
+
+How the code is executed and how the output is formatted can be controlled using the options for each code chunk.  There are several options that are all worth considering (see [http://yihui.name/knitr/](http://yihui.name/knitr/)), but there are only a handful that you will use repeatedly (from the cheatsheet):
+
+<img src="../../../img/cheatsheet_chunkopts.jpg" width="65%" />
+
+The options are included within the braces after the first comma. It will look something like this in your R Markdown document:
+
+<pre>```{r, eval = F, results = 'hide'}
+1 + 1
+```</pre>
+
+You can also include a name for the code chunk after the `r` but before the first comma.  This can help navigate between code chunks. 
+<pre>```{r mychunk, eval = F, results = 'hide'}
+1 + 1
+```</pre>
 
 **1. Headers & Text**
 
@@ -29,5 +126,8 @@ R Markdown documents can be easily shared with others or submitted with manuscri
 **5. Styles & Other Options**
 
 **6. Rendering HTML**
+
+
+
 
 
