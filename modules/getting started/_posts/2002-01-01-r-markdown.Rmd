@@ -73,9 +73,7 @@ The easiest way to include a new code chunk in your R Markdown file is to use th
 
 How the code is executed and how the output is formatted can be controlled using the options for each code chunk.  There are several options that are all worth considering (see [http://yihui.name/knitr/](http://yihui.name/knitr/)), but there are only a handful that you will use repeatedly (from the cheatsheet):
 
-```{r, out.width = '65%', echo = F}
-knitr::include_graphics('../../../img/cheatsheet_chunkopts.jpg')
-```
+![](../../../img/cheatsheet_chunkopts.jpg)
 
 The options are included within the braces after the first comma. It will look something like this in your R Markdown document:
 
