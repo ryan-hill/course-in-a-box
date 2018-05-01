@@ -6,6 +6,10 @@ output:
 self_contained: yes
 ---
 
+```{r echo = F}
+knitr::opts_chunk$set(fig.path = '../../../img')
+```
+
 ### What is R Markdown?
 
 During the workshop, we will be using R Markdown within RStudio. Markdown is an easy way to format text that can be translated into an HTML file (or other format). RStudio added the additional feature that you can run R code within the markdown document to integrate your descriptions of the analysis, R code, and R output into a single HTML. You can think of this type of documentation as **adding code to your comments rather than comments to your code.**

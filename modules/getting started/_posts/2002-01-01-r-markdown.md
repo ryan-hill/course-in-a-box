@@ -6,6 +6,8 @@ output:
 self_contained: yes
 ---
 
+
+
 ### What is R Markdown?
 
 During the workshop, we will be using R Markdown within RStudio. Markdown is an easy way to format text that can be translated into an HTML file (or other format). RStudio added the additional feature that you can run R code within the markdown document to integrate your descriptions of the analysis, R code, and R output into a single HTML. You can think of this type of documentation as **adding code to your comments rather than comments to your code.**
@@ -128,7 +130,7 @@ Figures and tables can be included and formatted within code chunks as well.  Mo
 <pre>```{r plotex, fig.height = 4, fig.width = 7, out.width = '75%'}
 hist(rnorm(100))
 ```</pre>
-![](2002-01-01-r-markdown_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](../../../imgunnamed-chunk-8-1.png)<!-- -->
 
 Tables can also be displayed in R Markdown documents. The `knitr` package that is used to convert R Markdown to Markdown includes the `kable` function to convert data frames or matrices to an HTML format.
 
