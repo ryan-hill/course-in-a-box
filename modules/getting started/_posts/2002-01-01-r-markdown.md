@@ -25,8 +25,7 @@ RStudio provides a template for creating an R Markdown file:
 
 Your template should look like this: 
 
-
-````
+<pre>
 ---
 title: "Untitled"
 output: html_document
@@ -55,7 +54,7 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-````
+</pre>
 
 There are three basic elements in any R Markdown document:
 
@@ -76,8 +75,7 @@ Text that is not included in the __YAML header__ or a __code chunk__ can be styl
 
 The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheatsheets) will show you most of these options.  Here are some common examples:
 
-
-```r
+<pre>
 # Header 1
 ## Header 2
 ### Header 3
@@ -89,10 +87,10 @@ The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheat
 * item 2
 * item 3
 
-1) ordered list
-1) item 2
-1) item 3
-```
+1. ordered list
+1. item 2
+1. item 3
+</pre>
 
 ### Basics of code chunks
 
@@ -130,7 +128,7 @@ Figures and tables can be included and formatted within code chunks as well.  Mo
 <pre>```{r plotex, fig.height = 4, fig.width = 7, out.width = '75%'}
 hist(rnorm(100))
 ```</pre>
-![](2002-01-01-r-markdown_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](2002-01-01-r-markdown_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 Tables can also be displayed in R Markdown documents. The `knitr` package that is used to convert R Markdown to Markdown includes the `kable` function to convert data frames or matrices to an HTML format.
 
@@ -139,31 +137,31 @@ data(iris)
 knitr::kable(iris[1:5,])
 ```</pre>
 
- Sepal.Length   Sepal.Width   Petal.Length   Petal.Width  Species 
--------------  ------------  -------------  ------------  --------
-          5.1           3.5            1.4           0.2  setosa  
-          4.9           3.0            1.4           0.2  setosa  
-          4.7           3.2            1.3           0.2  setosa  
-          4.6           3.1            1.5           0.2  setosa  
-          5.0           3.6            1.4           0.2  setosa  
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species |
+|------------:|-----------:|------------:|-----------:|:-------|
+|          5.1|         3.5|          1.4|         0.2|setosa  |
+|          4.9|         3.0|          1.4|         0.2|setosa  |
+|          4.7|         3.2|          1.3|         0.2|setosa  |
+|          4.6|         3.1|          1.5|         0.2|setosa  |
+|          5.0|         3.6|          1.4|         0.2|setosa  |
 
 ### Exercise 
 
 Now that we have an idea what R Markdown is and how to use it, we're going to create a template that we'll use for rest the workshop. We'll open a template from the file menu, setup some code chunks to import our datasets, run some exploratory code, and compile the document. 
 
-1) In your RStudio project that you created in the last exercise, open a new R Markdown template from the File menu (File > New File > R Markdown).  Give the file a title like "SFS R Spatial workshop", enter your name as the author, and select HTML as the output.
+1. In your RStudio project that you created in the last exercise, open a new R Markdown template from the File menu (File > New File > R Markdown).  Give the file a title like "SFS R Spatial workshop", enter your name as the author, and select HTML as the output.
 
-1) Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learnred."
+1. Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learnred."
 
-1) Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`.
+1. Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`.
 
-1) In the code chunk, enter some code to import the libraries we'll be using for our exercises (e.g., `library(sf)`).  We'll be using the following libraries: `sf`, `raster`, `maptools`, `rgeos`, `rgdal`, and `mapview`.  You'll need to install these libraries if you don't have them already (e.g., `install. packages('sf')`).
+1. In the code chunk, enter some code to import the libraries we'll be using for our exercises (e.g., `library(sf)`).  We'll be using the following libraries: `sf`, `raster`, `maptools`, `rgeos`, `rgdal`, and `mapview`.  You'll need to install these libraries if you don't have them already (e.g., `install. packages('sf')`).
 
-1) In the same code chunk and below the library commands, enter the following code to import our example data. 
+1. In the same code chunk and below the library commands, enter the following code to import our example data. 
 
-1) When you're done, save the new file in the root directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
+1. When you're done, save the new file in the root directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
 
-1) Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
+1. Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
 
 
 

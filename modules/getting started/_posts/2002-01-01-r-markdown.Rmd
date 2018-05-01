@@ -25,9 +25,9 @@ RStudio provides a template for creating an R Markdown file:
 
 Your template should look like this: 
 
-```{r echo = FALSE, comment = ""}
-cat(htmltools::includeText("../../../img/rmarkdown_ex.Rmd"))
-```
+<pre>
+`r htmltools::includeText("../../../img/rmarkdown_ex.Rmd")`
+</pre>
 
 There are three basic elements in any R Markdown document:
 
@@ -48,7 +48,7 @@ Text that is not included in the __YAML header__ or a __code chunk__ can be styl
 
 The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheatsheets) will show you most of these options.  Here are some common examples:
 
-```{r eval = F}
+<pre>
 # Header 1
 ## Header 2
 ### Header 3
@@ -60,10 +60,10 @@ The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheat
 * item 2
 * item 3
 
-1) ordered list
-1) item 2
-1) item 3
-```
+1. ordered list
+1. item 2
+1. item 3
+</pre>
 
 ### Basics of code chunks
 
@@ -114,26 +114,26 @@ cat("<pre>```{r mytable}\ndata(iris)\nknitr::kable(iris[1:5,])\n```</pre>")
 ```
 ```{r, echo = F}
 data(iris)
-knitr::kable(iris[1:5, ])
+knitr::kable(iris[1:5, ], format = 'markdown')
 ```
 
 ### Exercise 
 
 Now that we have an idea what R Markdown is and how to use it, we're going to create a template that we'll use for rest the workshop. We'll open a template from the file menu, setup some code chunks to import our datasets, run some exploratory code, and compile the document. 
 
-1) In your RStudio project that you created in the last exercise, open a new R Markdown template from the File menu (File > New File > R Markdown).  Give the file a title like "SFS R Spatial workshop", enter your name as the author, and select HTML as the output.
+1. In your RStudio project that you created in the last exercise, open a new R Markdown template from the File menu (File > New File > R Markdown).  Give the file a title like "SFS R Spatial workshop", enter your name as the author, and select HTML as the output.
 
-1) Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learnred."
+1. Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learnred."
 
-1) Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`.
+1. Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`.
 
-1) In the code chunk, enter some code to import the libraries we'll be using for our exercises (e.g., `library(sf)`).  We'll be using the following libraries: `sf`, `raster`, `maptools`, `rgeos`, `rgdal`, and `mapview`.  You'll need to install these libraries if you don't have them already (e.g., `install. packages('sf')`).
+1. In the code chunk, enter some code to import the libraries we'll be using for our exercises (e.g., `library(sf)`).  We'll be using the following libraries: `sf`, `raster`, `maptools`, `rgeos`, `rgdal`, and `mapview`.  You'll need to install these libraries if you don't have them already (e.g., `install. packages('sf')`).
 
-1) In the same code chunk and below the library commands, enter the following code to import our example data. 
+1. In the same code chunk and below the library commands, enter the following code to import our example data. 
 
-1) When you're done, save the new file in the root directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
+1. When you're done, save the new file in the root directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
 
-1) Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
+1. Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
 
 
 
