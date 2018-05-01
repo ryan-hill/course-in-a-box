@@ -85,14 +85,9 @@ We'll create an RStudio project in this exercise that we'll continue to use for 
 
 1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
 
-2. Take a few minutes to look around RStudio.  Find the Console Pane. Find Global and Project Options (hint: look in Tools).  Look at the Environment, History Pane.  Look at the Files, Plots, Packages, etc. pane.
+1. Take a few minutes to look around RStudio.  Find the Console Pane. Find Global and Project Options (hint: look in Tools).  Look at the Environment, History Pane.  Look at the Files, Plots, Packages, etc. pane.
 
-3. Create a new project.  Name it "sfs_spatialr_workshop".  We will use this for the rest of the workshop.
+1. Create a new project from the File menu. Select the option for a new directory. Find a suitable location on your computer and name the folder "sfs_spatialr_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "getting_started.R". It'll just be a blank text file at this point.
 
-2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1: Just Getting used to RStudio projects`.
 
-5. Add a single line to this script with the following text: `ls()`.  This is an R function that lists objects in your current environment.  Use the various ways we showed to send this command to the R Console.  Also, try typing this directly into the R Console and hit `Enter` to run it.  
-
-6. Lastly, we need to get this project set up with some example data for our upcoming exercises.  You should have downloaded this already, but if not, the data are available from <https://github.com/SCCWRP/R_training_2018/raw/master/lessons/data/mpg.xlsx>.  Create a folder in your new project named `data` and copy this file into this location.  
