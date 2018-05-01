@@ -1,0 +1,21 @@
+---
+title: "Basic Mapping"
+output: 
+  html_document:
+    keep_md: true
+self_contained: yes
+---
+
+```{r echo = F}
+knitr::opts_chunk$set(fig.path = '../../../img')
+```
+
+### Basic maps
+
+vector, raster
+
+### Mapview
+
+### tmap
+
+### micromap
