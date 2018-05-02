@@ -1,21 +1,22 @@
 ---
-title: "Spatial Objects (`sp`)"
+title: "Spatial Objects"
 ---
 
 ### Getting to Know Spatial Objects
 
 ----
 
-Handling of spatial data in R has been standardized in recent years through the base package `sp`. This package uses what are called [S4](http://adv-r.had.co.nz/S4.html) classes in R that are closer to object-oriented systems than standard S3 classes in R. 
+Handling of spatial data in R has been standardized in recent years through the base package `sp`.  This package provides definitions for basic spatial classes (points, lines, polygons, pixels, and grids).
+`sp` uses what are called [S4](http://adv-r.had.co.nz/S4.html) classes in R that are closer to object-oriented systems than standard S3 classes in R. 
+
+The structure of S4 objects can be intimidating and a bear to work with. Perhaps because of these drawbacks, there has been a big movement towards the `sf` package for working with vector data (next section). However, numerous packages are currently built using sp object structure so we need to learn to navigate current R spatial ecosystem - image below from [Colin Gillespie's Tweet](https://twitter.com/csgillespie/status/854438264538845184):
+
+![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
 
 The best source to learn about `sp` and fundamentals of spatial analysis in R is Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)
 
-Although we'll look at the new simple features object specification this morning as well, numerous packages are currently built using sp object structure so need to learn to navigate current R spatial ecosystem - image below from [Colin Gillespie's Tweet](https://twitter.com/csgillespie/status/854438264538845184):
+<br>
 
-![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
- 
- `sp` provides definitions for basic spatial classes (points, lines, polygons, pixels, and grids).
- 
 To start with, it's good to stop and ask yourself what it takes to define spatial objects.  What would we need to define vector (point, line, polygon) spatial objects?  
 
 - A coordinate reference system
