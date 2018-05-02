@@ -1,12 +1,14 @@
 ---
-title: "Building Spatial Objects"
+title: "Introduction to Vector Data in R"
 ---
 
-### Building and Manipulating Spatial Data in R
+### Points, lines, and polygons!
 
 -----
 
-Let's take a step back now.  Basic data structures in R can represent spatial data - all we need is some vectors with location and attribute information
+In this workshop, we assume you are familiar with basic GIS concepts, including vector data. In short, vector data are a way of representing real-world features on a landscape in a highly simplified way. The simplest of these features is a `point`, which can be used to represent a specific location on the earth, such as a single tree or an entire city. Two points (or vertices) that are connected by a path form a `line` and when many points are connected these form a `polyline`. Finally, when a polyline's path returns to its origin to represent an enclosed space, this forms a `polygon`.
+
+We can represent these features in R without actually using GIS packages in R. 
 
 ```r
 cities <- c('Ashland','Corvallis','Bend','Portland','Newport')
