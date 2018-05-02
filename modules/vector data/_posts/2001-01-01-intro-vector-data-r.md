@@ -31,7 +31,7 @@ legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000,
 
 ![BasicMap](/AWRA_GIS_R_Workshop/figure/BasicMap.png)
 
-Add a polygon to our map...
+Add some more points, some lines, and a polygon to our map...
 ```r
 lon <- c(-123.5, -123.5, -122.5, -122.670, -123)
 lat <- c(43, 45.5, 44, 43, 43)

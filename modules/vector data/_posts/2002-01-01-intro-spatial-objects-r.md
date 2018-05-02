@@ -1,12 +1,12 @@
 ---
-title: "Intro to Spatial Objects"
+title: "Spatial Objects (`sp`)"
 ---
 
 ### Getting to Know Spatial Objects
 
 ----
 
-Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' [S4](http://adv-r.had.co.nz/S4.html) classes in R that use formal class definitions and are closer to object-oriented systems than standard S3 classes in R.  
+Handling of spatial data in R has been standardized in recent years through the base package `sp`. This package uses what are called [S4](http://adv-r.had.co.nz/S4.html) classes in R that are closer to object-oriented systems than standard S3 classes in R. 
 
 The best source to learn about `sp` and fundamentals of spatial analysis in R is Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)
 
