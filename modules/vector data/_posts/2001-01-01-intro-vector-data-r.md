@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Vector Data in R"
+title: "Introduction to Vector Data"
 ---
 
 ### Points, lines, and polygons!
@@ -8,7 +8,7 @@ title: "Introduction to Vector Data in R"
 
 In this workshop, we assume you are familiar with basic GIS concepts, including vector data. In short, vector data are a way of representing real-world features on a landscape in a highly simplified way. The simplest of these features is a `point`, which can be used to represent a specific location on the earth, such as a single tree or an entire city. Two points (or vertices) that are connected by a path form a `line` and when many points are connected these form a `polyline`. Finally, when a polyline's path returns to its origin to represent an enclosed space, this forms a `polygon`.
 
-We can represent these features in R without actually using GIS packages in R. 
+We can represent these features in R without actually using GIS packages. In this example, we'll represent several cities in Oregon with common R data structures.
 
 ```r
 cities <- c('Ashland','Corvallis','Bend','Portland','Newport')
@@ -45,49 +45,4 @@ points(x, cex=2, pch=20)
 
 So, is this sufficient for working with spatial data in R and doing spatial analysis?  What are we missing?
 
-Packages early on in R came at handling spatial data in their own way. The `maps` package is great example - a database of locational information that is quite handy. The `maps` package format was developed in S (R is implementation of S) - lines represented as a sequence of points separated by 'NA' values - think of as drawing with a pen, raising at NA, then lowering at a value.  Bad for associating with data since objects are only distinguished by separation with NA values. Try the following code-
-
-```r
-library(maps)
-map()
-```
-
-![globalmap](/AWRA_GIS_R_Workshop/figure/globalmap.png)
-
-```r
-map.text('county','oregon')
-map.axes()
-title(main="Oregon State")
-```
-
-![OregonCounties](/AWRA_GIS_R_Workshop/figure/OregonCounties.png)
-
-`maps` package draws on a binary database - see Becker references in help(map) for more details. Creates a list of 4 vectors when you create a `maps` object in R.
-
-Explore the structure of map object a bit....
-```r
-p <- map('county','oregon')
-str(p)
-p$names[1:10]
-p$x[1:50]
-```
-
-Spatial classes provided in `sp` package have mostly standardized spatial data in R and provide a solid way to represent and work with spatial data in R. 
-
-
-The `maptools` package provides convenience function for making spatial objects from  map objects.  Try the following code and see if you can follow each step...
-
-```r
-library(maptools)
-counties <- map('county','oregon', plot=F, col='transparent',fill=TRUE)
-counties$names
-#strip out just the county names from items in the names vector of counties
-IDs <- sapply(strsplit(counties$names, ","), function(x) x[2])
-counties_sp <- map2SpatialPolygons(counties, IDs=IDs,
-    proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
-summary(counties_sp)
-plot(counties_sp, col="grey", axes=TRUE)
-```
-
-![OregonCounties2](/AWRA_GIS_R_Workshop/figure/OregonCounties2.png)
-
+In the next section we will introduce the `sp` package that will allow us to take fuller advantage of spatial features in R.
