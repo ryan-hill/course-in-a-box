@@ -40,7 +40,7 @@ There are four panes in RStudio:
 
 ### RStudio projects
 
-I strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task.  It helps with file management and is portable if all the files live in the same file tree.  RStudio projects also remember history - what commands you used and what data objects are in your enviornment.  
+We strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task. It helps with file management and is portable if all the files live in the same file tree.  RStudio projects also remember history - what commands you used and what data objects are in your enviornment.  
 
 Here are the most important reasons to use RStudio projects:
 
@@ -59,7 +59,7 @@ It's ofen hard to determine the scope of a project. When should a new project be
 * Are all these files linked by a common theme (e.g., abundance data, environmental data)
 * If I shared this with someone, would they have all the necessary data?
 
-We'll use one project for this workshop that we'll create in the first exercise.
+We'll use one project for this workshop that we'll create in the first exercise. Note that when you create a project and close RStudio, the next time you open RStudio that project will open automatically. If you are not wanting to continue working in that project you can simply set `Project: (None)` in the dropdown menu in the upper-right corner of RStudio.
 
 ### Scripting
 

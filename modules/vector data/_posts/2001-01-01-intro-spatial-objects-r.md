@@ -19,10 +19,10 @@ Although we'll look at the new simple features object specification this morning
 To start with, it's good to stop and ask yourself what it takes to define spatial objects.  What would we need to define vector (point, line, polygon) spatial objects?  
 
 - A coordinate reference system
-- A bounding box, or extent
-- plot order
-- data
-- ?
+- A bounding box or extent
+- Plot order
+- Data
+- More?
 
 `sp` objects inherit from the basic spatial class, which has two 'slots' in R new-style class lingo.  From the Bivand book above, here's what this looks like (Blue at top of each box is the class name, items in white are the slots, arrows show inheritance between classes):
 
