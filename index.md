@@ -30,7 +30,7 @@ By the end of the course you should be able to do the following in R:
 
 ## Instructors & Assistants
 * [Marcus Beck](https://fawda123.github.io/CV/Beck_CV.pdf) ([marcusb@sccwrp.org](mailto:marcusb@sccwrp.org)) - Marcus is a scientist with the Southern California Coastal Water Research Project.  His interests include time series analysis of water quality data, lake bioassessment, and data visualization.  
-* [Ryan Hill](https://ryan-hill.github.io/) ([hill.ryan@epa.gov](mailto:ryan.ecol@gmail.com)) - Ryan is an ORISE postdoc with the US EPA's Western Ecology Division. His interests are in large-scale freshwater ecology, modeling, and prediction. 
+* [Ryan Hill](https://ryan-hill.github.io/) ([ryan.ecol@gmail.com](mailto:ryan.ecol@gmail.com)) - Ryan is an ORISE postdoc with the US EPA's Western Ecology Division. His interests are in large-scale freshwater ecology, modeling, and prediction. 
 * Amalia Handler - Amalia is a PhD candidate in the Environmental Life Sciences Program at Arizona State University. Her dissertation research explores nitrogen processes in dryland streams and wetlands.
 * Robert Francis - Robert is a PhD student in Ecology, Evolution, and Environmental Biology at Miami University. His dissertation research investigates habitat factors that structure communities of freshwater mussels. 
 
