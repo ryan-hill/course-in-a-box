@@ -8,7 +8,7 @@ published: true
 ## Course Objectives
 
 By the end of the course you should be able to do the following in R:
-* [Read, manipulate, query, and write vector (point, line, polygon) data](/modules/vector data/intro-vector-data-r/)
+* [Read, manipulate, query, and write vector (point, line, polygon) data](/intro-vector-data-r/)
 * [Read, manipulate, query, and write raster data](https://ryan-hill.github.io/sfs-r-gis-2018/modules/rasters/introduction/)
 * [Combine several data layers and data types to conduct spatial analyses, including joins, clips, and summaries](https://ryan-hill.github.io/sfs-r-gis-2018/modules/spatial%20analysis/Introduction/)
 * [Map and visualize spatial data as static or interactive features](https://ryan-hill.github.io/sfs-r-gis-2018/modules/mapping/introduction/)
