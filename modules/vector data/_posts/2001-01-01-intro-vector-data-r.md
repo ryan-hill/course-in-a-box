@@ -21,7 +21,7 @@ These data are a way of representing real-world features on a landscape in a hig
 
 ![https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](/sfs-r-gis-2018/img/pts-lines-polys.png)
 
-*Image from: [https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/)
+*Image from: [https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/)*
 
 ----
 
