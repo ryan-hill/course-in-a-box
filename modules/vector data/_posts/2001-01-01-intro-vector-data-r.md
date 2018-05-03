@@ -21,7 +21,7 @@ These data are a way of representing real-world features on a landscape in a hig
 
 ![https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](/sfs-r-gis-2018/img/pts-lines-polys.png)
 
-*Image from: https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/*
+*Image from: [https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/)
 
 We can represent these features in R without actually using GIS packages. In this example, we'll represent several cities in Oregon with common R data structures that you are probably already familiar with.
 
