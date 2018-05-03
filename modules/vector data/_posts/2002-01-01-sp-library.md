@@ -45,9 +45,11 @@ print(pts)
 ```
 We can see that `pts` has columns for out attributes but also a column called `coordinates` that contains our latitudes and longitudes together - that's already looking a little different from a standard data frame.
 
-Now, type:
+Now, do a summary on `pts`...
 
-```r summary(pts)```
+```r 
+summary(pts)
+```
 
 ```r
 # Object of class SpatialPointsDataFrame
@@ -68,7 +70,7 @@ Now, type:
 #                Max.   :537557  
 ```
 
-We can see
+When we do a summary we can see even more information. In addition to the attributes, we can see the min and max of the coordinates, whether the points are projected (`Is projected: NA`), and more. 
 
 Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial lines and polygons inherit from the base spatial class - again, from the Bivand book:
 
