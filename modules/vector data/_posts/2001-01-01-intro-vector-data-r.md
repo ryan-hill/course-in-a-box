@@ -19,9 +19,13 @@ By the end of this lesson, you should be able to:
 
 These data are a way of representing real-world features on a landscape in a highly simplified way. The simplest of these features is a `point`, which is a 0-dimensional feature that can be used to represent a specific location on the earth, such as a single tree or an entire city. Linear, 1-dimensional features can be represented with points (or vertices) that are connected by a path to form a `line` and when many points are connected these form a `polyline`. Finally, when a polyline's path returns to its origin to represent an enclosed space, such as a forest, watershed boundary, or lake, this forms a `polygon`.
 
+----
+
 ![https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](/sfs-r-gis-2018/img/pts-lines-polys.png)
 
 *Image from: [https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/)
+
+----
 
 We can represent these features in R without actually using GIS packages. In this example, we'll represent several cities in Oregon with common R data structures that you are probably already familiar with.
 
