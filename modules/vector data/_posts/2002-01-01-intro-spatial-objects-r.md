@@ -6,7 +6,7 @@ title: "sp"
 
 ----
 
-Handling of spatial data in R has been standardized in recent years through the base package `sp`.  This package provides definitions for basic spatial classes, including points, lines, polygons as well as rasters (see section [Rasters]()).
+Handling of spatial data in R has been standardized in recent years through the base package `sp`.  This package provides definitions for basic spatial classes, including points, lines, polygons as well as rasters (see section [Rasters](/sfs-r-gis-2018/modules/rasters/introduction/)).
 `sp` uses what are called [S4](http://adv-r.had.co.nz/S4.html) classes in R that are closer to object-oriented systems than standard S3 classes in R. 
 
 The structure of S4 objects can be intimidating and a bear to work with. Perhaps because of these drawbacks, there has been a big movement towards the `sf` package for working with vector data (next section). However, numerous packages are currently built using sp object structure so we need to learn to navigate current R spatial ecosystem - image below from [Colin Gillespie's Tweet](https://twitter.com/csgillespie/status/854438264538845184):
