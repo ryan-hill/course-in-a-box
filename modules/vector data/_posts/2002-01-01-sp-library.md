@@ -33,16 +33,17 @@ latitude <- c(42.189, 44.57, 44.061, 45.523, 44.652)
 coords <- data.frame(longitude, latitude)
 dat <- data.frame(cities, population)
 pts <- SpatialPointsDataFrame(coords, dat)
-pts
+print(pts)
 summary(pts)
 ```
 ```r
-## 'data.frame':	150 obs. of  5 variables:
-## $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-## $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-## $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-## $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-## $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+         coordinates    cities population
+1 (-122.699, 42.189)   Ashland      20062
+2  (-123.275, 44.57) Corvallis      50297
+3 (-121.313, 44.061)      Bend      61362
+4  (-122.67, 45.523)  Portland     537557
+5 (-124.054, 44.652)   Newport       9603
+
 ```
 
 Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial lines and polygons inherit from the base spatial class - again, from the Bivand book:
