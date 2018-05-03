@@ -40,12 +40,12 @@ pts <- SpatialPointsDataFrame(coords, dat)
 print(pts)
 ```
 ```r
-#          coordinates    cities population
-# 1 (-122.699, 42.189)   Ashland      20062
-# 2  (-123.275, 44.57) Corvallis      50297
-# 3 (-121.313, 44.061)      Bend      61362
-# 4  (-122.67, 45.523)  Portland     537557
-# 5 (-124.054, 44.652)   Newport       9603
+##          coordinates    cities population
+## 1 (-122.699, 42.189)   Ashland      20062
+## 2  (-123.275, 44.57) Corvallis      50297
+## 3 (-121.313, 44.061)      Bend      61362
+## 4  (-122.67, 45.523)  Portland     537557
+## 5 (-124.054, 44.652)   Newport       9603
 ```
 We can see that `pts` has columns for out attributes but also a column called `coordinates` that contains our latitudes and longitudes together - that's already looking a little different from a standard data frame.
 
