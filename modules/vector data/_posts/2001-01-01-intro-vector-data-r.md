@@ -24,6 +24,8 @@ These data are a way of representing real-world features on a landscape in a hig
 
 We can represent these features in R without actually using GIS packages. In this example, we'll represent several cities in Oregon with common R data structures that you are probably already familiar with.
 
+### Excercise
+
 ```r
 cities <- c('Ashland','Corvallis','Bend','Portland','Newport')
 longitude <- c(-122.699, -123.275, -121.313, -122.670, -124.054)
