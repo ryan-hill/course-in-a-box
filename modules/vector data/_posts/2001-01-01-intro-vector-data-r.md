@@ -2,13 +2,19 @@
 title: "Introduction to Vector Data"
 ---
 
+## Goals and Motivation
+
+Vector data are one of the fundamental GIS data types and one of the first incorporated into R. R has several packages for working with vector data and we will cover these packages in this section. But first we will provide a short review of vector data.    
+
+By the end of this lesson, you should be able to:
+
+* Understand and describe the main features and types of vector data.
+* Read, write, query, and manipulate vector data using the `sp` package.
+* Read, write, query, and manipulate vector data using the `sf` package.
+
 ### Points, lines, and polygons!
 
------
-
-In this workshop, we assume you are familiar with basic GIS concepts, including **vector** data. In short, vector data are a way of representing real-world features on a landscape in a highly simplified way. 
-
-The simplest of these features is a `point`, which can be used to represent a specific location on the earth, such as a single tree or an entire city. Two points (or vertices) that are connected by a path form a `line` and when many points are connected these form a `polyline`. Finally, when a polyline's path returns to its origin to represent an enclosed space, this forms a `polygon`.
+These data are a way of representing real-world features on a landscape in a highly simplified way. The simplest of these features is a `point`, which can be used to represent a specific location on the earth, such as a single tree or an entire city. Two points (or vertices) that are connected by a path form a `line` and when many points are connected these form a `polyline`. Finally, when a polyline's path returns to its origin to represent an enclosed space, this forms a `polygon`.
 
 We can represent these features in R without actually using GIS packages. In this example, we'll represent several cities in Oregon with common R data structures.
 
@@ -23,7 +29,8 @@ plot(locs, cex=sqrt(population*.0002), pch=20, col='red',
 text(locs, cities, pos=4)
 ```
 
-Add a legend
+Add a legend...
+
 ```r
 breaks <- c(20000, 50000, 60000, 100000)
 options(scipen=3)
@@ -34,6 +41,7 @@ legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000,
 ![BasicMap](/AWRA_GIS_R_Workshop/figure/BasicMap.png)
 
 Add some more points, some lines, and a polygon to our map...
+
 ```r
 lon <- c(-123.5, -123.5, -122.5, -122.670, -123)
 lat <- c(43, 45.5, 44, 43, 43)
@@ -44,6 +52,9 @@ points(x, cex=2, pch=20)
 ```
 
 ![BasicMap2](/AWRA_GIS_R_Workshop/figure/BasicMap2.png)
+
+
+
 
 So, is this sufficient for working with spatial data in R and doing spatial analysis?  What are we missing?
 
