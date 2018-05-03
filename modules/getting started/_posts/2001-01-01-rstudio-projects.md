@@ -40,7 +40,7 @@ There are four panes in RStudio:
 
 ### RStudio projects
 
-We strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task. It helps with file management and is portable if all the files live in the same file tree.  RStudio projects also remember history - what commands you used and what data objects are in your enviornment.  
+I strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task.  It helps with file management and is portable if all the files live in the same file tree.  RStudio projects also remember history - what commands you used and what data objects are in your enviornment.  
 
 Here are the most important reasons to use RStudio projects:
 
@@ -59,7 +59,7 @@ It's ofen hard to determine the scope of a project. When should a new project be
 * Are all these files linked by a common theme (e.g., abundance data, environmental data)
 * If I shared this with someone, would they have all the necessary data?
 
-We'll use one project for this workshop that we'll create in the first exercise. Note that when you create a project and close RStudio, the next time you open RStudio that project will open automatically. If you are not wanting to continue working in that project you can simply set `Project: (None)` in the dropdown menu in the upper-right corner of RStudio.
+We'll use one project for this workshop that we'll create in the first exercise.
 
 ### Scripting
 
@@ -79,7 +79,7 @@ After you write your script it can be sent to the Console to run the code in R. 
 
 There are two outcomes when you run code.  First, the code will simply print output directly in the console.  Second, there is no output because you have stored it as a variable (we'll talk about variable assignment later).  Output that is stored is actually saved in the `environment`.  The environment is the collection of named objects that are stored in memory for your current R session.  Anything stored in memory will be accessible by its name without running the original script that was used to create it.  
 
-## Exercise 1
+## Exercise
 
 We'll create an RStudio project in this exercise that we'll continue to use for the rest of the workshop. Use the blue stickies when you have completed, and red stickies if you are running into problems.
 
