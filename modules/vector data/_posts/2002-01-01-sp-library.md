@@ -2,7 +2,7 @@
 title: "sp library"
 ---
 
-### Some background
+### Background
 
 ----
 
@@ -10,7 +10,7 @@ To start, let's consider the simplest vector feature - points. To contain all of
 
 ![SpatialClassesFig1](/AWRA_GIS_R_Workshop/figure/SpatialClassesFig1.png)
 
-The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of these drawbacks, there has been a big movement towards the `sf` package for working with vector data (next section). However, numerous packages still use the  `sp` object structure (see the image below tweeted by [Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)), so we need ti to learn to navigate the current R spatial ecosystem.
+The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of these drawbacks, there has been a big movement towards the newer `sf` package for working with vector data (covered in a subsequent section). However, numerous packages still use the  `sp` object structure (see the image below tweeted by [Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)), so we need ti to learn to navigate the current R spatial ecosystem.
 
 ![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
 
@@ -18,7 +18,9 @@ The structure of S4 objects can be intimidating and a difficult to work with. Pe
 
 <br>
 
-### Exploring `sp` and `sp` objects
+### Excercise
+
+#### Exploring `sp` package and objects
 
 To explore `sp` objects in R let's first start a new R Markdown. 
 
