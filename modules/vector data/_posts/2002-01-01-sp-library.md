@@ -20,7 +20,7 @@ The structure of S4 objects can be intimidating and a difficult to work with. Pe
 
 ### Excercise
 
-#### Exploring `sp` package and objects
+#### Exploring the `sp` package and objects
 
 To explore `sp` objects in R let's first start a new R Markdown. 
 
