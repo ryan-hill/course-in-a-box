@@ -113,6 +113,22 @@ Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
   .. .. ..$ : chr [1:2] "min" "max"
   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
   .. .. ..@ projargs: chr NA
+  
+# Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
+# ..@ data       :'data.frame':	5 obs. of  2 variables:
+#   .. ..$ cities    : Factor w/ 5 levels "Ashland","Bend",..: 1 3 2 5 4
+# .. ..$ population: num [1:5] 20062 50297 61362 537557 9603
+# ..@ coords.nrs : num(0) 
+# ..@ coords     : num [1:5, 1:2] -123 -123 -121 -123 -124 ...
+# .. ..- attr(*, "dimnames")=List of 2
+# .. .. ..$ : NULL
+# .. .. ..$ : chr [1:2] "longitude" "latitude"
+# ..@ bbox       : num [1:2, 1:2] -124.1 42.2 -121.3 45.5
+# .. ..- attr(*, "dimnames")=List of 2
+# .. .. ..$ : chr [1:2] "longitude" "latitude"
+# .. .. ..$ : chr [1:2] "min" "max"
+# ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
+# .. .. ..@ projargs: chr NA
 ```
 
 
