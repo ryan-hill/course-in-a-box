@@ -6,13 +6,15 @@ title: "sp library"
 
 ----
 
-To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called an [S4](http://adv-r.had.co.nz/S4.html). 
+To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called an [S4](http://adv-r.had.co.nz/S4.html) object. 
 
 ![SpatialClassesFig1](/AWRA_GIS_R_Workshop/figure/SpatialClassesFig1.png)
 
 The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of these drawbacks, there has been a big movement towards the `sf` package for working with vector data (next section). However, numerous packages still use the  `sp` object structure (see the image below tweeted by [Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)), so we need ti to learn to navigate the current R spatial ecosystem.
 
 ![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
+
+*Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)*
 
 <br>
 
