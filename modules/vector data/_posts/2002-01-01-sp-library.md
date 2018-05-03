@@ -72,6 +72,9 @@ summary(pts)
 
 When we do a summary we can see even more information. In addition to the attributes, we can see the min and max of the coordinates, whether the points are projected (`Is projected: NA`), and more. 
 
+#------------------------
+Ended here
+
 Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial lines and polygons inherit from the base spatial class - again, from the Bivand book:
 
 ![SpatialClassesFig2](/AWRA_GIS_R_Workshop/figure/SpatialClassesFig2.png)
