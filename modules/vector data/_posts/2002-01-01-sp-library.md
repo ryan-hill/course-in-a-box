@@ -55,7 +55,18 @@ print(pts)
 ```
 We can see that `pts` combines the attributes (cities and population) with the latitudes and longitudes and that these make an new combined column called 'coordinates'.
 
-Now, do a summary on `pts`...
+If we do a simple plot of the points and add labels with the `maptools` package, we should be able to confirm that the points are in fact the cities from the previous excercise.
+
+```r
+library(maptools)
+plot(pts)
+pointLabel(coordinates(pts),labels=pts$cities)
+```
+---
+![simple-sp-plot](/sfs-r-gis-2018/img/simple-sp-plot.png)
+---
+
+So, we can see that the points have coordinates and attributes but we said that for an object to be spatial it needed other features (see figure above). Now, do a summary on `pts`...
 
 ```r 
 summary(pts)
@@ -80,51 +91,32 @@ summary(pts)
 #                Max.   :537557  
 ```
 
-When we do a summary we can see even more information. In addition to the attributes, we can see the min and max of the coordinates, whether the points are projected (`Is projected: NA`), and more. 
-
-If we do a simple plot of the points and add labels with the `maptools` package, we should be able to confirm that the points are in fact the cities from the previous excercise.
+When we do a summary we can see even more information. In addition to the attributes, we can see the min and max of the coordinates, whether the points are projected (**Is projected: NA**), and more. We can see these other attributes, but how do we accesss them? This is where S4 objects will look strange for some users of R. 
 
 ```r
-library(maptools)
-plot(pts)
-pointLabel(coordinates(pts),labels=pts$cities)
+str(pts)
 ```
-![simple-sp-plot](/sfs-r-gis-2018/img/simple-sp-plot.png)
-
-<kbd>
-  <img src="https://raw.githubusercontent.com/ryan-hill/sfs-r-gis-2018/gh-pages/img/simple-sp-plot.png">
-</kbd>
-
-
-
-After:
-
-#------------------------
-Ended here
-
-Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial lines and polygons inherit from the base spatial class - again, from the Bivand book:
-
-![SpatialClassesFig2](/AWRA_GIS_R_Workshop/figure/SpatialClassesFig2.png)
-
-And to explore a bit in R:
-
+OUTPUT
 ```r
-getClass("SpatialPolygons")
+Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
+  ..@ data       :'data.frame':	5 obs. of  2 variables:
+  .. ..$ cities    : Factor w/ 5 levels "Ashland","Bend",..: 1 3 2 5 4
+  .. ..$ population: num [1:5] 20062 50297 61362 537557 9603
+  ..@ coords.nrs : num(0) 
+  ..@ coords     : num [1:5, 1:2] -123 -123 -121 -123 -124 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ : NULL
+  .. .. ..$ : chr [1:2] "longitude" "latitude"
+  ..@ bbox       : num [1:2, 1:2] -124.1 42.2 -121.3 45.5
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ : chr [1:2] "longitude" "latitude"
+  .. .. ..$ : chr [1:2] "min" "max"
+  ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
+  .. .. ..@ projargs: chr NA
 ```
 
-```r
-Class "SpatialPolygons" [package "sp"]
 
-Slots:
-                              
-Name:     polygons   plotOrder        bbox proj4string
-Class:        list     integer      matrix         CRS
 
-Extends: "Spatial" 
-
-Known Subclasses: 
-Class "SpatialPolygonsDataFrame", directly, with explicit coerce
-```
 
 Also, there are a number of spatial methods you can use with classes in `sp` - here are some useful ones to familarize yourself with:
 
