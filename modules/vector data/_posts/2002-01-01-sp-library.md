@@ -92,7 +92,7 @@ pointLabel(coordinates(pts),labels=pts$cities)
 ![simple-sp-plot](/sfs-r-gis-2018/img/simple-sp-plot.png)
 
 <kbd>
-  <img src="https://github.com/ryan-hill/sfs-r-gis-2018/blob/gh-pages/img/simple-sp-plot.png">
+  <img src="https://raw.githubusercontent.com/ryan-hill/sfs-r-gis-2018/gh-pages/img/simple-sp-plot.png">
 </kbd>
 
 
