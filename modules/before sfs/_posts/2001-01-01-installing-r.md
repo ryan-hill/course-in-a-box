@@ -5,6 +5,8 @@
 Prior to the start of the workshop everyone will need to have the software 
 installed and tested.  You will need to have  R and RStudio.  Get the latest versions of each and install using the defaults.  
 
+*If you do not have at least R version **3.4.4** installed you may not be able to install some of the packages this workshop requires.*
+
 - [General Info](http://cran.r-project.org/)
 - [Windows](http://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe)
 - [Mac](http://cran.r-project.org/bin/macosx/R-3.4.4.pkg)
