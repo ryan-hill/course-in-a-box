@@ -1,16 +1,16 @@
 ---
-title: "sp library"
+title: "sp package"
 ---
 
 ### Background
 
 ----
 
-To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called an [S4](http://adv-r.had.co.nz/S4.html) object. 
+To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called a `SpatialPointsDataFrame`. Think of it as a data frame that is bundled with other objects, such as a bounding box, a projection system (proj4string), and coordinates.
 
 ![SpatialClassesFig1](/AWRA_GIS_R_Workshop/figure/SpatialClassesFig1.png)
 
-The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of these drawbacks, there has been a big movement towards the newer `sf` package for working with vector data (covered in a subsequent section). However, numerous packages still use the  `sp` object structure (see the image below tweeted by [Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)), so we need ti to learn to navigate the current R spatial ecosystem.
+This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of this (and other reasons), there has been a big movement towards the newer `sf` package for working with vector data (covered in a subsequent section). However, numerous packages still use the  `sp` object structure (see the image below tweeted by [Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)), so we need to learn about them.
 
 ![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
 
@@ -20,13 +20,11 @@ The structure of S4 objects can be intimidating and a difficult to work with. Pe
 
 ### Excercise
 
-#### Exploring the `sp` package and objects
-
-To explore `sp` objects in R let's first start a new R Markdown. 
+We will explore `sp` objects in R by first starting a new R Markdown. 
 
 - In the project you created for this workshop, open a fresh R Markdown file (File > New File > R Markdown). Name it 'Vector data' and save it in your project.
 
-We will take the simple example we used in the previous example and convert it to an `sp` object. We'll print the data frame and the new points object and compare them.
+We will take the simple example we used in the previous section and convert it into an `sp` object. We'll print the data frame and the new points object and compare them.
 
 ```r
 library(sp)
@@ -37,17 +35,25 @@ latitude <- c(42.189, 44.57, 44.061, 45.523, 44.652)
 coords <- data.frame(longitude, latitude)
 dat <- data.frame(cities, population)
 pts <- SpatialPointsDataFrame(coords, dat)
+print(dat)
 print(pts)
 ```
 ```r
-##          coordinates    cities population
-## 1 (-122.699, 42.189)   Ashland      20062
-## 2  (-123.275, 44.57) Corvallis      50297
-## 3 (-121.313, 44.061)      Bend      61362
-## 4  (-122.67, 45.523)  Portland     537557
-## 5 (-124.054, 44.652)   Newport       9603
+#     cities population
+#1   Ashland      20062
+#2 Corvallis      50297
+#3      Bend      61362
+#4  Portland     537557
+#5   Newport       9603
+
+#          coordinates    cities population
+# 1 (-122.699, 42.189)   Ashland      20062
+# 2  (-123.275, 44.57) Corvallis      50297
+# 3 (-121.313, 44.061)      Bend      61362
+# 4  (-122.67, 45.523)  Portland     537557
+# 5 (-124.054, 44.652)   Newport       9603
 ```
-We can see that `pts` has columns for out attributes but also a column called `coordinates` that contains our latitudes and longitudes together - that's already looking a little different from a standard data frame.
+We can see that `pts` combines the attributes (cities and population) with the latitudes and longitudes and that these make an new combined column called 'coordinates'.
 
 Now, do a summary on `pts`...
 
@@ -75,6 +81,15 @@ summary(pts)
 ```
 
 When we do a summary we can see even more information. In addition to the attributes, we can see the min and max of the coordinates, whether the points are projected (`Is projected: NA`), and more. 
+
+If we do a simple plot of the points and add labels with the `maptools` package, we should be able to confirm that the points are in fact the cities from the previous excercise.
+
+```r
+library(maptools)
+plot(pts)
+pointLabel(coordinates(pts),labels=pts$cities)
+```
+
 
 #------------------------
 Ended here
