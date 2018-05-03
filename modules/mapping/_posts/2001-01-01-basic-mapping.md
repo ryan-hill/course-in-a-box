@@ -36,7 +36,7 @@ Let's first make sure we have an R Markdown file setup and the correct packages 
 
 <details> 
   <summary>Click here to cheat!</summary>
-   <script src="https://gist.github.com/fawda123/e3f1d19471652194e29f519b42b054f8.js"></script>
+   <script src="https://gist.github.com/fawda123/5ecb73e1304e7faee83eb05b922937e7.js"></script>
 </details>
 
 ### A primer on mapping
@@ -178,6 +178,8 @@ p + geom_text_repel(aes(x = longitude, y = latitude, label = cities), point.padd
 ![](../../../imgcitygg5-1.png)<!-- -->
 
 ### Chloropleth maps
+
+<!-- http://strimas.com/r/tidy-sf/ -->
 
 ### Mapview
 
