@@ -20,7 +20,7 @@ The structure of S4 objects can be intimidating and a difficult to work with. Pe
 
 To explore `sp` objects in R let's first start a new R Markdown. 
 
-- In the project you created for this workshop, open a fresh R Markdown file (File > New File > R Markdown). Name it ???Vector data??? and save it in your project.
+- In the project you created for this workshop, open a fresh R Markdown file (File > New File > R Markdown). Name it 'Vector data' and save it in your project.
 
 We will take the simple example we used in the previous example and convert it to an `sp` object. We'll print the data frame and the new points object and compare them.
 
