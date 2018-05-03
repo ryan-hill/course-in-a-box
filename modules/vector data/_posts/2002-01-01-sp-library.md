@@ -34,17 +34,41 @@ coords <- data.frame(longitude, latitude)
 dat <- data.frame(cities, population)
 pts <- SpatialPointsDataFrame(coords, dat)
 print(pts)
-summary(pts)
 ```
 ```r
-         coordinates    cities population
-1 (-122.699, 42.189)   Ashland      20062
-2  (-123.275, 44.57) Corvallis      50297
-3 (-121.313, 44.061)      Bend      61362
-4  (-122.67, 45.523)  Portland     537557
-5 (-124.054, 44.652)   Newport       9603
-
+#          coordinates    cities population
+# 1 (-122.699, 42.189)   Ashland      20062
+# 2  (-123.275, 44.57) Corvallis      50297
+# 3 (-121.313, 44.061)      Bend      61362
+# 4  (-122.67, 45.523)  Portland     537557
+# 5 (-124.054, 44.652)   Newport       9603
 ```
+We can see that `pts` has columns for out attributes but also a column called `coordinates` that contains our latitudes and longitudes together - that's already looking a little different from a standard data frame.
+
+Now, type:
+
+```r summary(pts)```
+
+```r
+# Object of class SpatialPointsDataFrame
+# Coordinates:
+#                min      max
+# longitude -124.054 -121.313
+# latitude    42.189   45.523
+# Is projected: NA 
+# proj4string : [NA]
+# Number of points: 5
+# Data attributes:
+#        cities    population    
+#  Ashland  :1   Min.   :  9603  
+#  Bend     :1   1st Qu.: 20062  
+#  Corvallis:1   Median : 50297  
+#  Newport  :1   Mean   :135776  
+#  Portland :1   3rd Qu.: 61362  
+#                Max.   :537557  
+```
+
+We can see
 
 Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial lines and polygons inherit from the base spatial class - again, from the Bivand book:
 
