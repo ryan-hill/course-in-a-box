@@ -44,27 +44,10 @@ Let's first make sure we have an R Markdown file setup and the correct packages 
 
 1. When you're done, compile the document by pressing the knit button at the top.
 
-<div class="fold s o">
-````
----
-title: "Basic mapping"
-author: "Turbo Todd"
-output: html_document
----
-
-This lessons covers base graphics, ggplot, and other R packags for mapping spatial data.
-
-```{r}`r ''`
-library(tidyverse)
-library(maps)
-library(sf)
-library(raster)
-library(tmap)
-library(micromap)
-```
-````
-</div>
-
+<details> 
+  <summary>Click here to cheat!</summary>
+   <script src="https://gist.github.com/fawda123/e3f1d19471652194e29f519b42b054f8.js"></script>
+</details>
 
 ### A primer on mapping
 
@@ -82,7 +65,7 @@ The answer to these questions can help you decide what type of visualization is 
 
 Let's start by taking the simplest type of spatial data and creating the simplest type of map.  We'll use the same dataset when we first started the workshop.  
 
-```{r}
+```{r citybs1}
 cities <- c('Ashland', 'Corvallis', 'Bend', 'Portland', 'Newport')
 longitude <- c(-122.699, -123.275, -121.313, -122.670, -124.054)
 latitude <- c(42.189, 44.57, 44.061, 45.523, 44.652)
@@ -100,18 +83,18 @@ head(dat_sf)
 ```
 
 Now we can just plot the locations of our `sf` object by telling R to only plot the geometry attribute.
-```{r}
+```{r citybs2}
 plot(st_geometry(dat_sf))
 ```
 
 Although it's a bland plot, the points are now georeferenced.  We can use some base maps from the `maps` package to add some context for the locations (note the `add = T` argument). 
-```{r}
+```{r citybs3}
 map('county', region = 'oregon')
 plot(st_geometry(dat_sf), add = T)
 ```
 
 There really isn't anything too interesting about the locations of these cities, so maybe we want to overlay an additional attribute from our dataset.  Remember that we have the population of each city as well.  We can change the point types and scale the size accordingly.
-```{r}
+```{r citybs4}
 map('county', region = 'oregon')
 plot(st_geometry(dat_sf), add = T, pch = 16, cex = sqrt(dat_sf$population * 0.0002))
 ```
@@ -123,14 +106,14 @@ state <- st_as_sf(map('county', region = 'oregon', plot = F, fill = T))
 ```
 
 Now we make the plot with the `geom_sf` function for both `sf` objects.
-```{r}
+```{r citygg1}
 ggplot() +
   geom_sf(data = state) +
   geom_sf(data = dat_sf)
 ```
 
 We can also map population to size and colour easily and add some text labels.
-```{r}
+```{r citygg2}
 ggplot(dat_sf) +
   geom_sf(data = state) +
   geom_sf(aes(size = population, colour = population))
@@ -142,7 +125,7 @@ p <- last_plot()
 ```
 
 Now let's make the size gradients more noticeable, remove the weird size legend, and change the color ramp.
-```{r}
+```{r citygg3}
 p <- p +
   scale_size(range = c(5, 15), guide = F) + 
   scale_colour_distiller(type = 'div', palette = 9)
@@ -150,12 +133,12 @@ p
 ```
 
 We can also add labels using `geom_text`.  Let's plot the city names over the points.
-```{r}
+```{r citygg4}
 p + geom_text(aes(x = longitude, y = latitude, label = cities))
 ```
 
 If we want to prevent the labels from overlapping the points, we can use the `geom_text_repel` function from the ggrepel package. You'll have to play around with the values for `point.padding` to get the distances you like. The `segment.alpha` value will also remove the lines joining the points to the labels.
-```{r}
+```{r citygg5}
 p + geom_text_repel(aes(x = longitude, y = latitude, label = cities), point.padding = 0.5, segment.alpha = 0)
 ```
 

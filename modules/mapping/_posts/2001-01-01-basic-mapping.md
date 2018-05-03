@@ -34,27 +34,10 @@ Let's first make sure we have an R Markdown file setup and the correct packages 
 
 1. When you're done, compile the document by pressing the knit button at the top.
 
-<div class="fold s o">
-````
----
-title: "Basic mapping"
-author: "Turbo Todd"
-output: html_document
----
-
-This lessons covers base graphics, ggplot, and other R packags for mapping spatial data.
-
-```{r}
-library(tidyverse)
-library(maps)
-library(sf)
-library(raster)
-library(tmap)
-library(micromap)
-```
-````
-</div>
-
+<details> 
+  <summary>Click here to cheat!</summary>
+   <script src="https://gist.github.com/fawda123/e3f1d19471652194e29f519b42b054f8.js"></script>
+</details>
 
 ### A primer on mapping
 
@@ -82,7 +65,7 @@ dat <- data.frame(cities, longitude, latitude, population)
 plot(latitude ~ longitude, data = dat)
 ```
 
-![](../../../imgunnamed-chunk-2-1.png)<!-- -->
+![](../../../imgcitybs1-1.png)<!-- -->
 
 Neat, we've created a map in cartesian space.  As we've learned, we need to convert our data into a spatial object with the correct coordinate system.  This will let us correctly view the georeferenced data.  Let's convert our data frame to an `sf` object.
 
@@ -114,7 +97,7 @@ Now we can just plot the locations of our `sf` object by telling R to only plot 
 plot(st_geometry(dat_sf))
 ```
 
-![](../../../imgunnamed-chunk-4-1.png)<!-- -->
+![](../../../imgcitybs2-1.png)<!-- -->
 
 Although it's a bland plot, the points are now georeferenced.  We can use some base maps from the `maps` package to add some context for the locations (note the `add = T` argument). 
 
@@ -123,7 +106,7 @@ map('county', region = 'oregon')
 plot(st_geometry(dat_sf), add = T)
 ```
 
-![](../../../imgunnamed-chunk-5-1.png)<!-- -->
+![](../../../imgcitybs3-1.png)<!-- -->
 
 There really isn't anything too interesting about the locations of these cities, so maybe we want to overlay an additional attribute from our dataset.  Remember that we have the population of each city as well.  We can change the point types and scale the size accordingly.
 
@@ -132,7 +115,7 @@ map('county', region = 'oregon')
 plot(st_geometry(dat_sf), add = T, pch = 16, cex = sqrt(dat_sf$population * 0.0002))
 ```
 
-![](../../../imgunnamed-chunk-6-1.png)<!-- -->
+![](../../../imgcitybs4-1.png)<!-- -->
 
 This is kind of tedious.  We can alternatively make the same plot using ggplot2 to map some of the data attributes to the plot aesthetics.  We'll take advantage of the `geom_sf` function to plot the `sf` object.  This will be much easier once we have all of our map objects the correct format for `sf`.  Our cities dataset is already an `sf` object, so all we have to do is convert our base state map to an `sf` object.
 
@@ -149,7 +132,7 @@ ggplot() +
   geom_sf(data = dat_sf)
 ```
 
-![](../../../imgunnamed-chunk-8-1.png)<!-- -->
+![](../../../imgcitygg1-1.png)<!-- -->
 
 We can also map population to size and colour easily and add some text labels.
 
@@ -159,7 +142,7 @@ ggplot(dat_sf) +
   geom_sf(aes(size = population, colour = population))
 ```
 
-![](../../../imgunnamed-chunk-9-1.png)<!-- -->
+![](../../../imgcitygg2-1.png)<!-- -->
 
 There are a few things we might want to modify with this plot, so let's assign it to a variable in our workspace that we can easily modify.
 
@@ -176,7 +159,7 @@ p <- p +
 p
 ```
 
-![](../../../imgunnamed-chunk-11-1.png)<!-- -->
+![](../../../imgcitygg3-1.png)<!-- -->
 
 We can also add labels using `geom_text`.  Let's plot the city names over the points.
 
@@ -184,7 +167,7 @@ We can also add labels using `geom_text`.  Let's plot the city names over the po
 p + geom_text(aes(x = longitude, y = latitude, label = cities))
 ```
 
-![](../../../imgunnamed-chunk-12-1.png)<!-- -->
+![](../../../imgcitygg4-1.png)<!-- -->
 
 If we want to prevent the labels from overlapping the points, we can use the `geom_text_repel` function from the ggrepel package. You'll have to play around with the values for `point.padding` to get the distances you like. The `segment.alpha` value will also remove the lines joining the points to the labels.
 
@@ -192,7 +175,7 @@ If we want to prevent the labels from overlapping the points, we can use the `ge
 p + geom_text_repel(aes(x = longitude, y = latitude, label = cities), point.padding = 0.5, segment.alpha = 0)
 ```
 
-![](../../../imgunnamed-chunk-13-1.png)<!-- -->
+![](../../../imgcitygg5-1.png)<!-- -->
 
 ### Chloropleth maps
 

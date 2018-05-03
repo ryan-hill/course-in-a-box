@@ -134,7 +134,7 @@ Figures and tables can be included and formatted within code chunks as well.  Mo
 ```{r, results = 'asis', echo = F}
 cat("<pre>```{r plotex, fig.height = 4, fig.width = 7, out.width = '75%'}\nhist(rnorm(100))\n```</pre>")
 ```
-```{r, fig.height = 4, fig.width = 7, echo = F}
+```{r plotex, fig.height = 4, fig.width = 7, echo = F}
 hist(rnorm(100))
 ```
 

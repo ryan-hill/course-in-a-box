@@ -130,7 +130,7 @@ Figures and tables can be included and formatted within code chunks as well.  Mo
 <pre>```{r plotex, fig.height = 4, fig.width = 7, out.width = '75%'}
 hist(rnorm(100))
 ```</pre>
-![](../../../imgunnamed-chunk-8-1.png)<!-- -->
+![](../../../imgplotex-1.png)<!-- -->
 
 Tables can also be displayed in R Markdown documents. The `knitr` package that is used to convert R Markdown to Markdown includes the `kable` function to convert data frames or matrices to an HTML format.
 
