@@ -89,7 +89,7 @@ library(maptools)
 plot(pts)
 pointLabel(coordinates(pts),labels=pts$cities)
 ```
-
+![](./img/simple-sp-plot.png)
 
 #------------------------
 Ended here
