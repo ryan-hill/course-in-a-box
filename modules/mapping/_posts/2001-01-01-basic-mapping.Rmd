@@ -9,7 +9,7 @@ self_contained: yes
 <script src="../../../js/hideoutput.js"></script>
 
 ```{r echo = F, message = F, warning = F}
-knitr::opts_chunk$set(fig.path = '../../../img')
+knitr::opts_chunk$set(fig.path = '../../../img/')
 
 library(tidyverse)
 library(maps)
