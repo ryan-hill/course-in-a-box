@@ -8,13 +8,24 @@ title: "sp package"
 
 To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called a `SpatialPointsDataFrame`. Think of it as a data frame that is bundled with other objects, such as a bounding box, a projection system (proj4string), and coordinates.
 
+---
+
 ![SpatialClassesFig1](/AWRA_GIS_R_Workshop/figure/SpatialClassesFig1.png)
+*Image from: Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)*
 
-This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of this (and other reasons), there has been a big movement towards the newer `sf` package for working with vector data (covered in a subsequent section). However, numerous packages still use the  `sp` object structure (see the image below tweeted by [Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)), so we need to learn about them.
+---
 
+This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of this (and other reasons), there has been a big movement towards the newer `sf` package for working with vector data (covered in a subsequent section). However, numerous packages still use the  `sp` object structure.
+---
 ![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
+[Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)
+---
 
-*Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)*
+(see the image below tweeted by ), so we need to learn about them.
+
+
+
+
 
 <br>
 
@@ -68,7 +79,9 @@ pointLabel(coordinates(pts),labels=pts$cities)
 
 ---
 
-So, we can see that the points have coordinates and attributes but we said that for an object to be spatial it needed other features (see figure above). Now, do a summary on `pts`...
+So, we can see that the points have coordinates and attributes, but we said that a spatial object needed other features (see figure above). 
+
+Now, do a summary on `pts`...
 
 ```r 
 summary(pts)
@@ -156,5 +169,8 @@ coordinates(pts)
 # [5,]  -124.054   44.652
 ```
 
-In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. 
+
+
+
+In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
 
