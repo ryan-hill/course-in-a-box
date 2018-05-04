@@ -2,7 +2,7 @@
 title: "sp package"
 ---
 
-### The `sp` Package
+## The `sp` package
 
 ----
 

@@ -1,14 +1,20 @@
 ---
-title: "sp package"
+title: "sp rgdal"
 ---
 
-### The `rgdal` package
+## The `rgdal` package
 
 ----
 
-The `sp` package gave us a way to 
+The `sp` package gave us a way to create and work with vector data in R, but what about reading and writing? The `rgdal` package provides methods to do just this. The `rgdal` package uses Geospatial Data Abstraction Library (GDAL) which is a set of open source C/C++ libraries that are extensively used by free and enterprise GIS software. 
 
-To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called a `SpatialPointsDataFrame`. Think of it as a data frame that is bundled with other objects, such as a bounding box, a projection system (proj4string), and coordinates.
+With the `sp` and `gdal` packages combined, we have the tools to read, manipulate (more on that in a bit), and write vector data. 
+
+### Excercise
+
+We will explore the `rgdal` package by opening a shapefile of USA states boundaries. We will then do some operations on those data in R. Specifically, we will:
+
+- 
 
 ---
 
