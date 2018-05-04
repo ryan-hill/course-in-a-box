@@ -117,7 +117,7 @@ str(pts)
 ```r
 # Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
 # ..@ data       :'data.frame':	5 obs. of  2 variables:
-#   .. ..$ cities    : Factor w/ 5 levels "Ashland","Bend",..: 1 3 2 5 4
+# .. ..$ cities    : Factor w/ 5 levels "Ashland","Bend",..: 1 3 2 5 4
 # .. ..$ population: num [1:5] 20062 50297 61362 537557 9603
 # ..@ coords.nrs : num(0) 
 # ..@ coords     : num [1:5, 1:2] -123 -123 -121 -123 -124 ...
@@ -171,7 +171,7 @@ coordinates(pts)
 
 ### Excercise 2
 
-Now that we understand how spatial objects are configured, you may remember there was one last thing that we said was required with spatial data - a coordinate reference system. It is beyond the scope of this workshop to provide a comprehensive review of the various coordinate systems. However, we encourage you do read about and understand some of the common coordinate systems in your study area and how these coordinate systems may affect the way data are presented in your maps. 
+Now that we understand how spatial objects are configured, you may remember there was one last thing that we said was required with spatial data - a coordinate reference system (**CRS**). It is beyond the scope of this workshop to provide a comprehensive review of the various coordinate systems. However, we encourage you do read about and understand some of the common coordinate systems in your study area and how these coordinate systems may affect the way data are presented in your maps. 
 
 ![crs-comparisons](../../../img/crs-comparisons.jpg)
 
@@ -179,9 +179,9 @@ Now that we understand how spatial objects are configured, you may remember ther
 
 ---
 
-From our excercise above, we can see that the latitudes and longitudes in this case are probably in degrees. However, this may not always be the case and it will be important for you to know what projection system you are working with and whether that makes sense for you project. For example, many distance operations are easier to conduct if your projection is an equal-area projection in distance units, such as meters. The USGS has developed just such a project system for the conterminous US and many data sets are now distributed with it.
+We can see that our points are likely in degrees. This may not always be the case. It is important to know what projection system you are working with and whether it makes sense for you project. Many GIS operations are easier to conduct if your projection is an equal-area projection with length distance units, such as meters. However, many functions in R can handle degrees. First, it's important to define our current CRS. 
 
-In this excercise we will provide a cooridinate reference system to the points from Excercise 1 and transform those points from a degree-base system to one that is based on meters (i.e., the USGS Albers sytem). A really great resource for finding the right details to provide to R when tranforming reference systems is http://spatialreference.org/. Another way is to use Google. Let's assume that we know these data were collected with the Norther American Datum 1983 (NAD83). By searching for "proj4string NAD83" we can find the spatial reference **[page](http://spatialreference.org/ref/epsg/4269/)** and if we click on **[Proj4](http://spatialreference.org/ref/epsg/4269/proj4/)** we can get the string that we should use in R. Let's walk through an example. 
+A good resource for finding CRS info to provide to R when tranforming reference systems is http://spatialreference.org/. Another way is to use Google. Let's assume that we know these data were collected with the Norther American Datum 1983 (NAD83). By searching for "proj4string NAD83" we find the spatial reference **[page](http://spatialreference.org/ref/epsg/4269/)** and if we click on **[Proj4](http://spatialreference.org/ref/epsg/4269/proj4/)** we can get the string that we should use in R. Let's walk through an example. 
 
 ```r
 pts@proj4string <- CRS('+proj=longlat +ellps=GRS80 
@@ -211,7 +211,18 @@ When we do a summary on **pts** we now see a CRS (proj4string):
 # Max.   :537557  
 ```
 
-Let's say that we want to find the nearest neighboring city to each city in our data set. For this excercise we'll use another package called `raster`. This code will:
+We can convert to a different CRS with `spTransform`. Let's conver to the [USGS Albers-Equal Area Conic](http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/) projection. 
+
+```r
+pts  spTran <- sform(pts, CRS('+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 
+                           +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 
+                           +datum=NAD83 +units=m +no_defs '))
+```
+
+![nad83](../../../img/cities-nad83.jpg) ![nad83](../../../img/cities-albers.jpg) 
+
+
+Now that we have a CRS set, let's say that we want to find the nearest neighboring city to each city in our data set. For this excercise we'll use another package called `raster`. This code will:
 
 - Use the function `raster::pointDistance` to find the distance of each point to every other point with the `lonlat=TRUE` option. 
 - Convert the results to a matrix and makes the diagonal `NA`.
