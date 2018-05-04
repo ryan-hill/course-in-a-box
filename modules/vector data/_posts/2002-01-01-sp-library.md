@@ -64,7 +64,7 @@ print(pts)
 # 4  (-122.67, 45.523)  Portland     537557
 # 5 (-124.054, 44.652)   Newport       9603
 ```
-We can see that `pts` combines the attributes (cities and population) with the latitudes and longitudes and that these make an new combined column called 'coordinates'.
+We can see that **pts** combines the attributes (cities and population) with the latitudes and longitudes and that these make an new combined column called 'coordinates'.
 
 If we do a simple plot of the points and add labels with the `maptools` package, we should be able to confirm that the points are in fact the cities from the previous excercise.
 
@@ -81,7 +81,7 @@ pointLabel(coordinates(pts),labels=pts$cities)
 
 So, we can see that the points have coordinates and attributes, but we said that a spatial object needed other features (see figure above). 
 
-Now, do a summary on `pts`...
+Now, do a summary on **pts**
 
 ```r 
 summary(pts)
