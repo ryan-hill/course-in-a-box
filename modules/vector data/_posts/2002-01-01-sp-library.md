@@ -144,14 +144,17 @@ pts@data$population
 Alternatively, there are a number of methods you can use with classes in `sp`.   
 
 ```r
-bbox(pts)
+coordinates(pts)
 ```
 
 ```r
-#                min      max
-# longitude -124.054 -121.313
-# latitude    42.189   45.523
+# longitude latitude
+# [1,]  -122.699   42.189
+# [2,]  -123.275   44.570
+# [3,]  -121.313   44.061
+# [4,]  -122.670   45.523
+# [5,]  -124.054   44.652
 ```
-<br>
 
+In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. 
 
