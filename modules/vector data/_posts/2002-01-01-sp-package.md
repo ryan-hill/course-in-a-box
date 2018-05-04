@@ -173,7 +173,7 @@ coordinates(pts)
 
 Now that we understand how spatial objects are configured, you may remember there was one last thing that we said was required with spatial data - a coordinate reference system. It is beyond the scope of this workshop to provide a comprehensive review of the various coordinate systems. However, we encourage you do read about and understand some of the common coordinate systems in your study area and how these coordinate systems may affect the way data are presented in your maps. 
 
-![crs-comparisons](../../../img/crs-comprisons.jpg)
+![crs-comparisons](../../../img/crs-comparisons.jpg)
 
 *Image from: https://nceas.github.io/oss-lessons/spatial-data-gis-law/1-mon-spatial-data-intro.html*
 
@@ -181,16 +181,15 @@ Now that we understand how spatial objects are configured, you may remember ther
 
 From our excercise above, we can see that the latitudes and longitudes in this case are probably in degrees. However, this may not always be the case and it will be important for you to know what projection system you are working with and whether that makes sense for you project. For example, many distance operations are easier to conduct if your projection is an equal-area projection in distance units, such as meters. The USGS has developed just such a project system for the conterminous US and many data sets are now distributed with it.
 
-In this excercise we will provide a cooridinate reference system to the points from Excercise 1 and transform those points from a degree-base system to one that is based on meters (i.e., the USGS Albers sytem). A really great resource for finding the right details to provide to R when tranforming reference systems is http://spatialreference.org/. Another way is to use Google. Let's assume that we know these data were collected with the Norther American Datum 1983 (NAD83). By searching for "proj4string NAD83" we can find the spatial reference **[page]**(http://spatialreference.org/ref/epsg/4269/) and if we click on **[Proj4]**(http://spatialreference.org/ref/epsg/4269/proj4/) we can get the string that we should use in R. Let's walk through an example. 
+In this excercise we will provide a cooridinate reference system to the points from Excercise 1 and transform those points from a degree-base system to one that is based on meters (i.e., the USGS Albers sytem). A really great resource for finding the right details to provide to R when tranforming reference systems is http://spatialreference.org/. Another way is to use Google. Let's assume that we know these data were collected with the Norther American Datum 1983 (NAD83). By searching for "proj4string NAD83" we can find the spatial reference **[page](http://spatialreference.org/ref/epsg/4269/)** and if we click on **[Proj4](http://spatialreference.org/ref/epsg/4269/proj4/)** we can get the string that we should use in R. Let's walk through an example. 
 
 ```r
-  # Define a CRS for pts
-pts@proj4string <- CRS('+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs')
-  # Re-check CRS
+pts@proj4string <- CRS('+proj=longlat +ellps=GRS80 
+                        +datum=NAD83 +no_defs')
 summary(pts)
 ```
 
-When we do a summary on pts we now see a CRS (proj4string):
+When we do a summary on **pts** we now see a CRS (proj4string):
 
 ```r
 # Object of class SpatialPointsDataFrame
@@ -212,8 +211,28 @@ When we do a summary on pts we now see a CRS (proj4string):
 # Max.   :537557  
 ```
 
+Let's say that we want to find the nearest neighboring city to each city in our data set. For this excercise we'll use another package called `raster`. This code will:
 
+- Use the function `raster::pointDistance` to find the distance of each point to every other point with the `lonlat=TRUE` option. 
+- Convert the results to a matrix and makes the diagonal `NA`.
+- Applies the `which.min` function on each row and adds the results to **pts** as a new column called 'nearest'. 
 
+```r
+library(raster)
+m <- pointDistance(points, lonlat=TRUE)
+diag(m) <- NA
+m <- apply(m, 1, which.min)
+pts$nearest <-  pts$cities[i]
+pts@data
+```
+```r
+#     cities population   nearest
+# 1   Ashland      20062      Bend
+# 2 Corvallis      50297   Newport
+# 3      Bend      61362 Corvallis
+# 4  Portland     537557 Corvallis
+# 5   Newport       9603 Corvallis
+```
 
 
 
