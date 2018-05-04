@@ -26,8 +26,6 @@ This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. T
 
 ---
 
-<br>
-
 ### Excercise 1
 
 We will explore `sp` objects in R by first starting a new R Markdown. 
