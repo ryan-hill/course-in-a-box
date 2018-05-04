@@ -209,22 +209,28 @@ When we do a summary on **pts** we now see a CRS (proj4string):
 # Max.   :537557  
 ```
 
-We can convert to a different CRS with `spTransform`. Let's conver to the [USGS Albers-Equal Area Conic](http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/) projection. 
+We can convert to a different CRS with `spTransform`. Let's conver to the [USGS Albers-Equal Area Conic](http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/) projection. R also makes it easy to compare different projections or use the projection of one layer to project another layer. 
+
+- Reproject **pts**.
+- Compare CRS of **pts** to **pts2**
+- Use the projection of **pts2** to reproject **pts**
 
 ```r
-pts  spTran <- sform(pts, CRS('+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 
+pts2 <- spTransform(pts, CRS('+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 
                            +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 
                            +datum=NAD83 +units=m +no_defs '))
+proj4string(pts) == proj4string(pts2)
+#Returns: FALSE
+pts3 <- spTransform(pts, proj4string(pts2))
 ```
 
 ![nad83](../../../img/cities-nad83.png) ![nad83](../../../img/cities-albers.png) 
 
 ### Spatial Operations
+<br>
+#### Example 1: Find the nearest cities
 
-#### Example 1: Find the nearest city
-
-
-Let's say that we want to find the nearest neighboring city to each city in our data set. For this excercise we'll use another package called `raster`. This code will:
+Let's say that we want to find the nearest neighboring city to every other city in our data set. For this excercise we'll use another package called `raster`. This code will:
 
 - Use the function `raster::pointDistance` to find the distance of each point to every other point with the `lonlat=TRUE` option. 
 - Convert the results to a matrix and makes the diagonal `NA`.
@@ -232,7 +238,7 @@ Let's say that we want to find the nearest neighboring city to each city in our 
 
 ```r
 library(raster)
-m <- pointDistance(points, lonlat=TRUE)
+m <- pointDistance(pts, lonlat=TRUE)
 diag(m) <- NA
 m <- apply(m, 1, which.min)
 pts$nearest <-  pts$cities[i]
