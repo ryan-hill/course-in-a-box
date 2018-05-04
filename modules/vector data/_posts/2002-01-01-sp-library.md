@@ -63,7 +63,9 @@ plot(pts)
 pointLabel(coordinates(pts),labels=pts$cities)
 ```
 ---
+
 ![simple-sp-plot](/sfs-r-gis-2018/img/simple-sp-plot.png)
+
 ---
 
 So, we can see that the points have coordinates and attributes but we said that for an object to be spatial it needed other features (see figure above). Now, do a summary on `pts`...
@@ -91,29 +93,15 @@ summary(pts)
 #                Max.   :537557  
 ```
 
-When we do a summary we can see even more information. In addition to the attributes, we can see the min and max of the coordinates, whether the points are projected (**Is projected: NA**), and more. We can see these other attributes, but how do we accesss them? This is where S4 objects will look strange for some users of R. 
+When we do a summary we can see even more information. In addition to the attributes, we can see the min and max of the coordinates, whether the points are projected (**Is projected: NA**), and more. 
+
+We can see these other attributes, but how do we accesss them? This is where S4 objects will look strange for some users of R that have not encountered them before. 
 
 ```r
 str(pts)
 ```
-OUTPUT
+
 ```r
-Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
-  ..@ data       :'data.frame':	5 obs. of  2 variables:
-  .. ..$ cities    : Factor w/ 5 levels "Ashland","Bend",..: 1 3 2 5 4
-  .. ..$ population: num [1:5] 20062 50297 61362 537557 9603
-  ..@ coords.nrs : num(0) 
-  ..@ coords     : num [1:5, 1:2] -123 -123 -121 -123 -124 ...
-  .. ..- attr(*, "dimnames")=List of 2
-  .. .. ..$ : NULL
-  .. .. ..$ : chr [1:2] "longitude" "latitude"
-  ..@ bbox       : num [1:2, 1:2] -124.1 42.2 -121.3 45.5
-  .. ..- attr(*, "dimnames")=List of 2
-  .. .. ..$ : chr [1:2] "longitude" "latitude"
-  .. .. ..$ : chr [1:2] "min" "max"
-  ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-  .. .. ..@ projargs: chr NA
-  
 # Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
 # ..@ data       :'data.frame':	5 obs. of  2 variables:
 #   .. ..$ cities    : Factor w/ 5 levels "Ashland","Bend",..: 1 3 2 5 4
@@ -131,10 +119,29 @@ Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
 # .. .. ..@ projargs: chr NA
 ```
 
+You will notice the `@` symbol in the output text above. These are called **slots** but for this workshop you don't have to remember that. Let's say that you wanted to get the bounding box of your data. You can use the `@` symbol much like you would the `$` to access particular columns in a data frame.
 
+```r
+pts@bbox
+```
 
+```r
+#                min      max
+# longitude -124.054 -121.313
+# latitude    42.189   45.523
+```
 
-Also, there are a number of spatial methods you can use with classes in `sp` - here are some useful ones to familarize yourself with:
+In fact, you can combine the `@` and `$` in the same expression. For example, you can access the attribute data (**slot**) and a particular column within that data (e.g., population) with:
+
+```r
+pts@data$population
+```
+
+```r
+# [1]  20062  50297  61362 537557   9603
+```
+
+Alternatively, there are a number of methods you can use with classes in `sp`. Play around with these and familarize yourself with them.
 
 | Method / Class   | Description | 
 |------------------|-------------| 
@@ -148,14 +155,4 @@ Also, there are a number of spatial methods you can use with classes in `sp` - h
 
 <br>
 
-As an example data set to try out some of these methods on some spatial data in `sp`, we'll load the `nor2k` data in the `rgdal` package which represents Norwegian peaks over 2000 meters:
 
-```r
-library(rgdal)
-data(nor2k)
-plot(nor2k,axes=TRUE)
-```
-
-Take a few minutes to examine the nor2k `SpatialPointsDataFrame` and try using methods we've seen such as `class()`, `str()`, `typeof()`, `proj4string()`, etc.  
-
-A big part of working with spatial data in `sp` is understanding slots, and understanding how we access slots. The easiest way to access particular slots in an `sp` object is to use the @ symbol.  You can also use the slotNames method. Take a few minutes using both to explore the structure of this simple `sp` object.
