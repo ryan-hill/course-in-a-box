@@ -221,8 +221,12 @@ pts  spTran <- sform(pts, CRS('+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5
 
 ![nad83](../../../img/cities-nad83.png) ![nad83](../../../img/cities-albers.png) 
 
+### Spatial Operations
 
-Now that we have a CRS set, let's say that we want to find the nearest neighboring city to each city in our data set. For this excercise we'll use another package called `raster`. This code will:
+#### Example 1: Find the nearest city
+
+
+Let's say that we want to find the nearest neighboring city to each city in our data set. For this excercise we'll use another package called `raster`. This code will:
 
 - Use the function `raster::pointDistance` to find the distance of each point to every other point with the `lonlat=TRUE` option. 
 - Convert the results to a matrix and makes the diagonal `NA`.
