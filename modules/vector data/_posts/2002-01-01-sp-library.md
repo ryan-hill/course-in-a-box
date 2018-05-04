@@ -11,6 +11,7 @@ To start, let's consider the simplest vector feature - points. To contain all of
 ---
 
 ![SpatialClassesFig1](/AWRA_GIS_R_Workshop/figure/SpatialClassesFig1.png)
+
 *Image from: Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)*
 
 ---
@@ -18,8 +19,11 @@ To start, let's consider the simplest vector feature - points. To contain all of
 This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. The structure of S4 objects can be intimidating and a difficult to work with. Perhaps because of this (and other reasons), there has been a big movement towards the newer `sf` package for working with vector data (covered in a subsequent section). However, numerous packages still use the  `sp` object structure, so we need to learn a little bit about them.
 
 ---
+
 ![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
+
 [Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)
+
 ---
 
 <br>
@@ -164,8 +168,7 @@ coordinates(pts)
 # [5,]  -124.054   44.652
 ```
 
-
-
+<br>
 
 In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
 
