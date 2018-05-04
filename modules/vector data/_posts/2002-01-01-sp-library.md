@@ -75,7 +75,7 @@ pointLabel(coordinates(pts),labels=pts$cities)
 ```
 ---
 
-![simple-sp-plot](/sfs-r-gis-2018/img/simple-sp-plot.png)
+![simple-sp-plot](../../../img/simple-sp-plot.png)
 
 ---
 
