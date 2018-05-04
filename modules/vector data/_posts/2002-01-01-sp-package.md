@@ -179,7 +179,38 @@ Now that we understand how spatial objects are configured, you may remember ther
 
 ---
 
+From our excercise above, we can see that the latitudes and longitudes in this case are probably in degrees. However, this may not always be the case and it will be important for you to know what projection system you are working with and whether that makes sense for you project. For example, many distance operations are easier to conduct if your projection is an equal-area projection in distance units, such as meters. The USGS has developed just such a project system for the conterminous US and many data sets are now distributed with it.
 
+In this excercise we will provide a cooridinate reference system to the points from Excercise 1 and transform those points from a degree-base system to one that is based on meters (i.e., the USGS Albers sytem). A really great resource for finding the right details to provide to R when tranforming reference systems is http://spatialreference.org/. Another way is to use Google. Let's assume that we know these data were collected with the Norther American Datum 1983 (NAD83). By searching for "proj4string NAD83" we can find the spatial reference **[page]**(http://spatialreference.org/ref/epsg/4269/) and if we click on **[Proj4]**(http://spatialreference.org/ref/epsg/4269/proj4/) we can get the string that we should use in R. Let's walk through an example. 
+
+```r
+  # Define a CRS for pts
+pts@proj4string <- CRS('+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs')
+  # Re-check CRS
+summary(pts)
+```
+
+When we do a summary on pts we now see a CRS (proj4string):
+
+```r
+# Object of class SpatialPointsDataFrame
+# Coordinates:
+#   min      max
+# longitude -124.054 -121.313
+# latitude    42.189   45.523
+# Is projected: FALSE 
+# proj4string :
+#   [+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0]
+# Number of points: 5
+# Data attributes:
+#   cities    population    
+# Ashland  :1   Min.   :  9603  
+# Bend     :1   1st Qu.: 20062  
+# Corvallis:1   Median : 50297  
+# Newport  :1   Mean   :135776  
+# Portland :1   3rd Qu.: 61362  
+# Max.   :537557  
+```
 
 
 
