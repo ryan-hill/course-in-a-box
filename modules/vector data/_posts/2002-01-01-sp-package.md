@@ -2,11 +2,11 @@
 title: "sp package"
 ---
 
-## The `sp` package
+## Spatial Objects
 
 ----
 
-To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called a `SpatialPointsDataFrame`. Think of it as a data frame that is bundled with other objects, such as a bounding box, a projection system (proj4string), and coordinates.
+To start, let's consider the simplest vector feature - points. To contain all of the characteristics of a set of points, we need more than just set of latitudes and longitudes. We also need a coordinate reference system, a bounding box, data, and more. The `sp` package bundles all of these things together into a single object called a `SpatialPointsDataFrame`. Think of it as a data frame that is bundled with other features, such as a bounding box, a projection system (proj4string), and coordinates.
 
 ---
 
@@ -22,13 +22,13 @@ This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. T
 
 ![CRANdependencies](/AWRA_GIS_R_Workshop/figure/CRANdependencies.jpg)
 
-[Colin Gillespie](https://twitter.com/csgillespie/status/854438264538845184)
+*[Image from: Colin Gillespie's Twitter feed.](https://twitter.com/csgillespie/status/854438264538845184)*
 
 ---
 
 <br>
 
-### Excercise
+### Excercise 1
 
 We will explore `sp` objects in R by first starting a new R Markdown. 
 
@@ -169,7 +169,23 @@ coordinates(pts)
 # [5,]  -124.054   44.652
 ```
 
-<br>
+### Excercise 2
+
+Now that we understand how spatial objects are configured, you may remember there was one last thing that we said was required with spatial data - a coordinate reference system. It is beyond the scope of this workshop to provide a comprehensive review of the various coordinate systems. However, we encourage you do read about and understand some of the common coordinate systems in your study area and how these coordinate systems may affect the way data are presented in your maps. 
+
+![crs-comparisons](../../../img/crs-comprisons.jpg)
+
+*Image from: https://nceas.github.io/oss-lessons/spatial-data-gis-law/1-mon-spatial-data-intro.html*
+
+---
+
+
+
+
+
+
+
+
 
 In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
 
