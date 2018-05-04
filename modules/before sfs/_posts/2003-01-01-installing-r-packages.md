@@ -50,6 +50,7 @@ If you prefer to use the standard CRAN version of `tidyverse`, simply use `insta
 install.packages("devtools")
 devtools::install_github("edzer/sfr")
 devtools::install_github("hadley/tidyverse")
+devtools::install_github("hadley/ggplot2")
 ```
 
 For Linux users, to install simple features for R (`sf`), you need GDAL >= 2.0.0, GEOS >= 3.3.0, and Proj.4 >=  4.8.0.  Edzer Pebesma's Simple Features for R GitHub repo has a good explanation:
