@@ -131,7 +131,7 @@ pts@bbox
 # latitude    42.189   45.523
 ```
 
-In fact, you can combine the `@` and `$` in the same expression. For example, you can access the attribute data (**slot**) and a particular column within that data (e.g., population) with:
+In fact, you can combine the `@` and `$` in the same expression. For example, you can access the data frame (i.e., a slot) and a particular column within the data frame (e.g., population) with:
 
 ```r
 pts@data$population
@@ -141,18 +141,17 @@ pts@data$population
 # [1]  20062  50297  61362 537557   9603
 ```
 
-Alternatively, there are a number of methods you can use with classes in `sp`. Play around with these and familarize yourself with them.
+Alternatively, there are a number of methods you can use with classes in `sp`.   
 
-| Method / Class   | Description | 
-|------------------|-------------| 
-| bbox()           | Returns the bounding box coordinates | 
-| proj4string()    | Sets or retrieves projection attributes using the CRS object | 
-| CRS()            | Creates an object of class of coordinate reference system arguments | 
-| spplot()         | Plots a separate map of all the attributes unless specified otherwise | 
-| coordinates()    | Returns a matrix with the spatial coordinates. For spatial polygons it returns the centroids. | 
-| over(x, y)       | Used for example to retrieve the polygon or grid indexes on a set of points | 
-| spsample(x)      | Sampling of spatial points within the spatial extent of objects |   
+```r
+bbox(pts)
+```
 
+```r
+#                min      max
+# longitude -124.054 -121.313
+# latitude    42.189   45.523
+```
 <br>
 
 
