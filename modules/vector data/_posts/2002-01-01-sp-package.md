@@ -179,7 +179,7 @@ Now that we understand how spatial objects are configured, you may remember ther
 
 We can see that our points are likely in degrees. This may not always be the case. It is important to know what projection system you are working with and whether it makes sense for you project. Many GIS operations are easier to conduct if your projection is an equal-area projection with length distance units, such as meters. However, many functions in R can handle degrees. First, it's important to define our current CRS. 
 
-A good resource for finding CRS info to provide to R when tranforming reference systems is http://spatialreference.org/. Another way is to use Google. Let's assume that we know these data were collected with the Norther American Datum 1983 (NAD83). By searching for "proj4string NAD83" we find the spatial reference **[page](http://spatialreference.org/ref/epsg/4269/)** and if we click on **[Proj4](http://spatialreference.org/ref/epsg/4269/proj4/)** we can get the string that we should use in R. Let's walk through an example. 
+A good resource for finding CRS info to provide to R when tranforming reference systems is http://spatialreference.org/. Another way is to use Google. Let's assume that we know these data were collected with the Norther American Datum 1983 (NAD83). By searching for "proj4string NAD83" we find the spatial reference [page](http://spatialreference.org/ref/epsg/4269/) and if we click on [Proj4](http://spatialreference.org/ref/epsg/4269/proj4/) we can get the string that we should use in R. Let's walk through an example. 
 
 ```r
 pts@proj4string <- CRS('+proj=longlat +ellps=GRS80 
@@ -224,25 +224,31 @@ proj4string(pts) == proj4string(pts2)
 pts3 <- spTransform(pts, proj4string(pts2))
 ```
 
+We can compare maps of **pts** and **pts2** to see the difference (although difficult to see at this scale). 
+
 ![nad83](../../../img/cities-nad83.png) ![nad83](../../../img/cities-albers.png) 
 
+---
+
 ### Spatial Operations
-<br>
+
+We have covered many of the basics of working with spatial objects with the `sp` package. Now we'll walk through a couple of examples of how you can query and modify these kinds of data. 
+
 #### Example 1: Find the nearest cities
 
-Let's say that we want to find the nearest neighboring city to every other city in our data set. For this excercise we'll use another package called `raster`. This code will:
+Let's say that we want to find the nearest neighboring city to every other city in our data set. We'll use another package called `rgeos`, which has numerous [functions](https://cran.r-project.org/web/packages/rgeos/rgeos.pdf) for doing spatial operations with geospatial data. Here, we will:
 
-- Use the function `raster::pointDistance` to find the distance of each point to every other point with the `lonlat=TRUE` option. 
-- Convert the results to a matrix and makes the diagonal `NA`.
-- Applies the `which.min` function on each row and adds the results to **pts** as a new column called 'nearest'. 
+- Use the function `rgeos::gDistance` to find the distance of each point to every other point. We will use **pts2** from above because the function returns the distances in the units of the data. 
+- Make the diagonal `NA`.
+- Applies the `which.min` function on each row to find the location of the shortest distance and adds the results to **pts** as a new column called 'nearest'. 
 
 ```r
-library(raster)
-m <- pointDistance(pts, lonlat=TRUE)
+library(rgeos)
+m <- gDistance(pts2, byid=T)
 diag(m) <- NA
 m <- apply(m, 1, which.min)
-pts$nearest <-  pts$cities[i]
-pts@data
+pts2$nearest <- pts2$cities[m]
+pts2@data
 ```
 ```r
 #     cities population   nearest
@@ -253,7 +259,13 @@ pts@data
 # 5   Newport       9603 Corvallis
 ```
 
+#### Example 2: Place a buffer around each city
 
+Buffers are a commonly used in GIS analyses. Let's place a buffer around each point using `rgeos::gBuffer`.
+
+```r
+
+``
 
 
 In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
