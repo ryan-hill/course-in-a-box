@@ -1,8 +1,8 @@
 ---
-title: "sp rgdal"
+title: "Reading & Writing Spatial Objects"
 ---
 
-## The `rgdal` package
+## Reading & Writing Spatial Objects
 
 ----
 
