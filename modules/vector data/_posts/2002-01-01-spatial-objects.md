@@ -308,17 +308,18 @@ plot(gCentroid(pts2), pch = 21, col='red', add = T)
 
 We provided a comma-delimited text file called 'StreamGages.csv'. Using what we covered in this section, can you determine how many gages are within 50 km of Portland, OR?
 
-There's also a second approach that uses `sp::over` function. 
 
 <details> 
-  <summary>Approach 1</summary>
+  <summary>Approach 1 (click to see answer)</summary>
    <script src="https://gist.github.com/ryan-hill/db60260c510aa720bf1bfa13423f71d7.js"></script>
 </details>
 
 ---
 
+There's also a second approach that uses `sp::over` function. 
+
 <details> 
-  <summary>Approach 2</summary>
+  <summary>Approach 2 (click to see answer)</summary>
    <script src="https://gist.github.com/ryan-hill/120d9ad34a7ab64a13c9c641b2390a93.js"></script>
 </details>
 
