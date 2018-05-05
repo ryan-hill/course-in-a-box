@@ -26,7 +26,7 @@ This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. T
 
 ---
 
-### Excercise 1
+### Exploring `sp`
 
 We will explore `sp` objects in R by first starting a new R Markdown. 
 
@@ -167,7 +167,7 @@ coordinates(pts)
 # [5,]  -124.054   44.652
 ```
 
-### Excercise 2
+### Coordinate reference systems
 
 Now that we understand how spatial objects are configured, you may remember there was one last thing that we said was required with spatial data - a coordinate reference system (**CRS**). It is beyond the scope of this workshop to provide a comprehensive review of the various coordinate systems. However, we encourage you do read about and understand some of the common coordinate systems in your study area and how these coordinate systems may affect the way data are presented in your maps. 
 
@@ -264,7 +264,7 @@ pts2@data
 Buffers are a commonly used in GIS analyses. Let's place a buffer around each point using `rgeos::gBuffer`. Remember that the units are in meters. 
 
 ```r
-buff = gBuffer(pts2, byid = T, width = 30000)
+buff <- gBuffer(pts2, byid = T, width = 30000)
 plot(buff, col = buff$cities)
 #We can also do negative buffers on polygons
 plot(gBuffer(buff, width = -10000), add = T)
@@ -272,9 +272,31 @@ plot(gBuffer(buff, width = -10000), add = T)
 
 ![buffer-example](../../../img/buffer-example.png)
 
+In this example, we used `byid = T`. If we had not, the polygons would have been a single features with none of the city information associated with them. 
+
 ---
 
-#### Example 3: Subsetting features
+#### Example 3: It all feels like R
+
+If you are already comfortable working with R, doing GIS in R will feel very familiar. This is a huge benefit. Here are some excercises that should feel familiar
+
+```r
+#Select out just one record (Ashland)
+ashland <- pts2[pts2$cities == 'Ashland', ]
+#Select cities with a population < 50,000
+towns <- pts2[pts2$population < 50000, ]
+#Add these towns to our plot of buffers
+plot(towns, add = T, col = 'green', pch = 21)
+#Plot horizontal and vertical lines at the mean lat/lon
+abline(h = mean(coordinates(pts2)[,2]))
+abline(v = mean(coordinates(pts2)[,1]))
+#Add a point at the centroid of all the cities
+plot(gCentroid(pts2), pch = 21, col='red', add = T)
+```
+
+![ugly-map](../../../img/ugly-map.png)
+
+### On your own
 
 
 
