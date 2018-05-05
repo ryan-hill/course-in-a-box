@@ -173,7 +173,7 @@ Now that we understand how spatial objects are configured, you may remember ther
 
 ![crs-comparisons](../../../img/crs-comparisons.jpg)
 
-*Image from: https://nceas.github.io/oss-lessons/spatial-data-gis-law/1-mon-spatial-data-intro.html*
+*Image from: [https://nceas.github.io/oss-lessons/spatial-data-gis-law/1-mon-spatial-data-intro.html](https://nceas.github.io/oss-lessons/spatial-data-gis-law/1-mon-spatial-data-intro.html)*
 
 ---
 
@@ -298,6 +298,7 @@ plot(gCentroid(pts2), pch = 21, col='red', add = T)
 
 ### On your own
 
+You should have downloaded a comma-delimited text file called '' for this workshop. This 
 
 
 In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
