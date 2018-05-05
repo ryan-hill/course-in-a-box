@@ -167,6 +167,8 @@ coordinates(pts)
 # [5,]  -124.054   44.652
 ```
 
+---
+
 ### Coordinate reference systems
 
 Now that we understand how spatial objects are configured, you may remember there was one last thing that we said was required with spatial data - a coordinate reference system (**CRS**). It is beyond the scope of this workshop to provide a comprehensive review of the various coordinate systems. However, we encourage you do read about and understand some of the common coordinate systems in your study area and how these coordinate systems may affect the way data are presented in your maps. 
