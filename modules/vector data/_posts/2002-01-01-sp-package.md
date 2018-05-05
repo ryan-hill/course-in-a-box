@@ -258,14 +258,24 @@ pts2@data
 # 4  Portland     537557 Corvallis
 # 5   Newport       9603 Corvallis
 ```
-
+<br>
 #### Example 2: Place a buffer around each city
 
-Buffers are a commonly used in GIS analyses. Let's place a buffer around each point using `rgeos::gBuffer`.
+Buffers are a commonly used in GIS analyses. Let's place a buffer around each point using `rgeos::gBuffer`. Remember that the units are in meters. 
 
 ```r
+buff = gBuffer(pts2, byid = T, width = 30000)
+plot(buff, col = buff$cities)
+#We can also do negative buffers on polygons
+plot(gBuffer(buff, width = -10000), add = T)
+```
 
-``
+![buffer-example](../../../img/buffer-example.png)
+
+---
+
+#### Example 3: Subsetting features
+
 
 
 In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
