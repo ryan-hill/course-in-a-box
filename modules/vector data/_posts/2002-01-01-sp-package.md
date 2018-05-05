@@ -234,6 +234,8 @@ We can compare maps of **pts** and **pts2** to see the difference (although diff
 
 We have covered many of the basics of working with spatial objects with the `sp` package. Now we'll walk through a couple of examples of how you can query and modify these kinds of data. 
 
+---
+
 #### Example 1: Find the nearest cities
 
 Let's say that we want to find the nearest neighboring city to every other city in our data set. We'll use another package called `rgeos`, which has numerous [functions](https://cran.r-project.org/web/packages/rgeos/rgeos.pdf) for doing spatial operations with geospatial data. Here, we will:
@@ -258,7 +260,9 @@ pts2@data
 # 4  Portland     537557 Corvallis
 # 5   Newport       9603 Corvallis
 ```
-<br>
+
+---
+
 #### Example 2: Place a buffer around each city
 
 Buffers are a commonly used in GIS analyses. Let's place a buffer around each point using `rgeos::gBuffer`. Remember that the units are in meters. 
@@ -295,6 +299,8 @@ plot(gCentroid(pts2), pch = 21, col='red', add = T)
 ```
 
 ![ugly-map](../../../img/ugly-map.png)
+
+---
 
 ### On your own
 
