@@ -164,7 +164,7 @@ bsmap <-  get_map(location = dat_ext, maptype = 'satellite', zoom = 7)
 ggmap(bsmap)
 ```
 
-Now that we've got the base map in order, we can simply add the locations of our cities with the `geom_sf` geometry as before.  The `ggmap` function returns a `ggplot2` object so wan just add geoms and other ggplot options as we normally would.  We'll have to tell ggplot to ignore the aesthetics from ggmap for the plot to work correctly.
+Now that we've got the base map in order, we can simply add the locations of our cities with the `geom_sf` geometry as before.  The `ggmap` function returns a `ggplot2` object so we can just add geoms and other ggplot options as we normally would.  We'll have to tell ggplot to ignore the aesthetics from ggmap for the plot to work correctly.
 ```{r ggmap2}
 ggmap(bsmap) +
   geom_sf(data = dat_sf, inherit.aes = F, color = 'red')
