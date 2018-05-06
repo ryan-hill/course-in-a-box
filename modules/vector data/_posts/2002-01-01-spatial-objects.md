@@ -226,7 +226,7 @@ proj4string(pts) == proj4string(pts2)
 pts3 <- spTransform(pts, proj4string(pts2))
 ```
 
-We can compare maps of **pts** and **pts2** to see the difference (although difficult to see at this scale). 
+We can compare maps of **pts** (red dots) and **pts2** (blue dots) to see the difference (although difficult to see at this scale). 
 
 ![nad83](../../../img/cities-nad83.png) ![nad83](../../../img/cities-albers.png) 
 
@@ -304,10 +304,9 @@ plot(gCentroid(pts2), pch = 21, col='red', add = T)
 
 ---
 
-### On your own
+### Challenge
 
 We provided a comma-delimited text file called 'StreamGages.csv'. Using what we covered in this section, can you determine how many gages are within 50 km of Portland, OR?
-
 
 <details> 
   <summary>Approach 1 (click to see answer)</summary>
@@ -316,7 +315,7 @@ We provided a comma-delimited text file called 'StreamGages.csv'. Using what we 
 
 ---
 
-There's also a second approach that uses `sp::over` function. 
+There's a second approach that uses `sp::over` function, which we didn't cover. 
 
 <details> 
   <summary>Approach 2 (click to see answer)</summary>
@@ -326,4 +325,3 @@ There's also a second approach that uses `sp::over` function.
 ---
 
 In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
-
