@@ -226,7 +226,7 @@ proj4string(pts) == proj4string(pts2)
 pts3 <- spTransform(pts, proj4string(pts2))
 ```
 
-We can compare maps of **pts** and **pts2** to see the difference (although difficult to see at this scale). 
+We can compare maps of **pts** (red dots) and **pts2** (blue dots) to see the difference (although difficult to see at this scale). 
 
 ![nad83](../../../img/cities-nad83.png) ![nad83](../../../img/cities-albers.png) 
 
