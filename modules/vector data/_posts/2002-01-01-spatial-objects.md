@@ -304,14 +304,14 @@ plot(gCentroid(pts2), pch = 21, col='red', add = T)
 
 ---
 
-### Challenge
+### On your own
 
 We provided a comma-delimited text file called 'StreamGages.csv'. Using what we covered in this section, can you determine how many gages are within 50 km of Portland, OR?
 
 
 <details> 
   <summary>Approach 1 (click to see answer)</summary>
-  <script src="https://gist.github.com/ryan-hill/db60260c510aa720bf1bfa13423f71d7.js"></script>
+   <script src="https://gist.github.com/ryan-hill/db60260c510aa720bf1bfa13423f71d7.js"></script>
 </details>
 
 ---
@@ -320,33 +320,9 @@ There's also a second approach that uses `sp::over` function.
 
 <details> 
   <summary>Approach 2 (click to see answer)</summary>
-  <p>
-    
-  - Read in gages data and convert to spatial points data frame
-  - Give it the **pts** CRS and reproject to **pts2** CRS
-  - Select out Portland and use `gBuffer` from `rgeos` package with width = 50,000 meters.
-  - Use `over` function from `sp` package to identify overlapping points with 50 km buffer. 
-    
-   ```r
-    library(sp); library(rgeos)
-
-    gages <- read.csv('./data/StreamGages.csv')
-    gages <- SpatialPointsDataFrame(gages[c('LON_SITE','LAT_SITE')], gages)
-    gages@proj4string <- pts@proj4string
-    gages <- spTransform(gages, proj4string(pts2))
-
-    portland <- pts2[pts2$cities == 'Portland', ]
-    buff_pdx <- gBuffer(portland, byid = T, width = 50000)
-
-    test = over(buff_pdx, gages, returnList = T)
-    test = data.frame(test)
-    nrow(test)
-   ```
-   
-  </p>
+   <script src="https://gist.github.com/ryan-hill/120d9ad34a7ab64a13c9c641b2390a93.js"></script>
 </details>
 
 ---
 
 In the next section, we will learn how to read existing data (e.g., shapefiles) into R with the `rgdal` package. In addition, we will cover some basic manipulations of these data. 
-
