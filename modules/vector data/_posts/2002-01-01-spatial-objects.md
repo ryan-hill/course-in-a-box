@@ -312,6 +312,7 @@ We provided a comma-delimited text file called 'StreamGages.csv'. Using what we 
 <details> 
   <summary>Approach 1 (click to see answer)</summary>
   <p>
+    
    ```r
     gages <- read.csv('./data/StreamGages.csv')
     gages <- SpatialPointsDataFrame(gages[c('LON_SITE','LAT_SITE')], gages)
@@ -326,6 +327,7 @@ We provided a comma-delimited text file called 'StreamGages.csv'. Using what we 
     #Bonus - How to get the station names within 50km
     gages$STATION_NM[which(m < 50000)]
    ```
+   
   </p>
 </details>
 
@@ -334,8 +336,9 @@ We provided a comma-delimited text file called 'StreamGages.csv'. Using what we 
 There's also a second approach that uses `sp::over` function. 
 
 <details> 
-  <summary>Approach 1 (click to see answer)</summary>
+  <summary>Approach 2 (click to see answer)</summary>
   <p>
+    
    ```r
     library(sp); library(rgeos)
 
@@ -349,7 +352,9 @@ There's also a second approach that uses `sp::over` function.
 
     test = over(buff_pdx, gages, returnList = T)
     test = data.frame(test)
-    nrow(test)   ```
+    nrow(test)
+   ```
+   
   </p>
 </details>
 
