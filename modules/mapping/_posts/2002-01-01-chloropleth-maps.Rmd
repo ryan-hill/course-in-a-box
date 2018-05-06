@@ -1,0 +1,37 @@
+---
+title: "Chloropleth Maps"
+output: 
+  html_document:
+    keep_md: true
+self_contained: yes
+---
+
+<script src="../../../js/hideoutput.js"></script>
+
+```{r echo = F, message = F, warning = F}
+knitr::opts_chunk$set(fig.path = '../../../img/')
+
+library(tidyverse)
+library(maps)
+library(sf)
+library(raster)
+library(tmap)
+library(micromap)
+library(ggrepel)
+```
+
+### Chloropleth maps
+
+<!-- http://strimas.com/r/tidy-sf/ -->
+
+### Mapview
+
+### tmap
+
+### micromap -->
+
+### Mapview
+
+### tmap
+
+### micromap

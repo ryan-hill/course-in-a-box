@@ -9,7 +9,7 @@ self_contained: yes
 <script src="../../../js/hideoutput.js"></script>
 
 ```{r echo = F, message = F, warning = F}
-knitr::opts_chunk$set(fig.path = '../../../img/')
+knitr::opts_chunk$set(fig.path = '../../../img/', warning = F, message = F)
 
 library(tidyverse)
 library(maps)
@@ -18,6 +18,7 @@ library(raster)
 library(tmap)
 library(micromap)
 library(ggrepel)
+library(ggmap)
 ```
 
 ### Goals and Motivation
@@ -40,7 +41,7 @@ Let's first make sure we have an R Markdown file setup and the correct packages 
 
 1. Remove all the template content below the YAML header.  Add some descriptive text using Markdown below the YAML header that briefly describes the lesson plan (e.g., "This lessons covers base graphics, ggplot, and other R packags for mapping spatial data.")
 
-1. Below this text, add a code chunk and write some script to load the following packages: `tidyverse`, `maps`, `sf`, `raster`, `tmap`, `micromap`.
+1. Below this text, add a code chunk and write some script to load the following packages: `tidyverse`, `maps`, `sf`, `ggmap`, `raster`, `tmap`, `micromap`.
 
 1. When you're done, compile the document by pressing the knit button at the top.
 
@@ -139,15 +140,75 @@ p + geom_text(aes(x = longitude, y = latitude, label = cities))
 
 If we want to prevent the labels from overlapping the points, we can use the `geom_text_repel` function from the ggrepel package. You'll have to play around with the values for `point.padding` to get the distances you like. The `segment.alpha` value will also remove the lines joining the points to the labels.
 ```{r citygg5}
-p + geom_text_repel(aes(x = longitude, y = latitude, label = cities), point.padding = 0.5, segment.alpha = 0)
+p + geom_text_repel(aes(x = longitude, y = latitude, label = cities), point.padding = grid::unit(0.5, 'lines'), segment.alpha = 0)
 ```
 
-### Chloropleth maps
+### ggmap
 
-<!-- http://strimas.com/r/tidy-sf/ -->
+As an alternative basemap, we can leverage the `ggmap` package to download a static image of our plot region.  This often works well for plotting points where the mapping unit of interest is relatively simple (i.e., not a line or polygon).  It's also useful for arbitrary areas of interest that aren't easily captured by the geopolitical boundaries in the `maps` package. 
 
-### Mapview
+To use `ggmap`, you have to first download the image based on the extent of the plotting area.  This requires pulling the extent from our existing data object that we want to plot.  Then, we can choose from many types of basemaps, such as Google basemaps, terrain maps, and satellite images.  For this example we'll download a satellite image our area.  One thing to keep in mind is the zoom option.  This is used to specify the level of detail in your downloaded image and can take quite some to download depending on the area and level of specificity.  We'll follow these steps to download the basemap:
 
-### tmap
+* Get the extent from our `dat_sf` object using `st_bbox` and `unname` to remove the name attributes (ggmap will fuss otherwise)
+* Download a satellite image using the `get_map` function in the ggmap package with the extent, pick the right `zoom` level and specify `maptype = "satellite"`
+* plot the base map with the `ggmap` function
 
-### micromap
+```{r ggmap1}
+# get the extent
+dat_ext <- unname(st_bbox(dat_sf))
+
+# get the base map using the extent
+bsmap <-  get_map(location = dat_ext, maptype = 'satellite', zoom = 7)
+
+# plot the basemape
+ggmap(bsmap)
+```
+
+Now that we've got the base map in order, we can simply add the locations of our cities with the `geom_sf` geometry as before.  The `ggmap` function returns a `ggplot2` object so wan just add geoms and other ggplot options as we normally would.  We'll have to tell ggplot to ignore the aesthetics from ggmap for the plot to work correctly.
+```{r ggmap2}
+ggmap(bsmap) +
+  geom_sf(data = dat_sf, inherit.aes = F, color = 'red')
+```
+
+We can also map the same aesthetics in our dataset as before to plot size and colour for city population and create some nice labels for the city name.
+```{r ggmap3}
+ggmap(bsmap) +
+  geom_sf(data = dat_sf, inherit.aes = F, aes(size = population, colour= population)) +
+  geom_text_repel(data = dat_sf, aes(x = longitude, y = latitude, label = cities), point.padding = grid::unit(0.5, 'lines'), segment.alpha = 0, colour = 'white')
+```
+
+Changing some of the plot options for the aesthetics can also be done as before.
+```{r ggmap4}
+ggmap(bsmap) +
+  geom_sf(data = dat_sf, inherit.aes = F, aes(size = population, colour= population)) +
+  geom_text_repel(data = dat_sf, aes(x = longitude, y = latitude, label = cities), point.padding = grid::unit(0.5, 'lines'), segment.alpha = 0, colour = 'white') +
+  scale_size(range = c(5, 15), guide = F) + 
+  scale_colour_distiller(type = 'div', palette = 9)
+```
+
+This might seem incredibly tedious but most of the coding has to do with formatting ggplot2. The spatial components are relatively simple and should come naturally if you are already familiar with using R.   
+
+### Exercise
+
+In this exercise we'll recreate the steps we learned in this module but on a different dataset.  The `meuse` dataset comes with the `sp` package and describes the locations and topsoil heavy metal concentrations collected in a flood plain of the river Meuse, Netherlands.  The data are in raw format so you'll have to import and convert it to an `sf` object with the correct reference system. Once we have the object created, you can map it with `geom_sf` and link any of the other dataset variables to additional aesthetics.  We'll also want to pick an appropriate basemap for the region using `ggmap`. This is a long exercise so feel free to use the code in the cheat box below.
+
+1. Create a new code chunk in your R markdown file and load the `sp`, `sf`, `maps`, and `gglot2` libraries.
+
+1. Import the meuse dataset from the `sp` package.  Just load the `sp` library as you normally would and run `data(meuse)`. 
+
+1. What is the structure of the data (Hint: `class(meuse)` or `str(meuse)`)? Which columns contain the sample coordinates?  
+
+1. Convert the data frame to an `sf` object using the `st_as_sf` function. Check the help file to see what required arguments are needed for converting a data frame with `st_as_sf`.  You'll need to specify the `coords` and `crs` argument (hint: `coords = c("x, y"), crs = "+init=epsg:28992").  Don't worry about which coordinate system we used, we can find this info in the help file for meuse. 
+
+1. The native coordinate system for meuse is projected.  We'll want to convert the `sf` object to a geographic coordinate system to work with `ggmap`.  You can use the `st_transform` and the argument `crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"`.
+
+1. Now get an appropriate basemap for the region from `ggmap`. Remember, you have to first get the extent from the `sf` object (hint: `unname(st_bbox(dat))` where `dat` is your transformed meuse data). Then download the map using the extent with `get_map` using `maptype = "satelitte"` and `zoom = 13`.
+
+1. Plot the map with `ggmap` and add the meuse data with `geom_sf`.  Don't forget to use the argument `inherit.aes = F` in `geom_sf`.  It should look something like this: `ggmap(bsmap) + geom_sf(data = dat, inherit.aes = F)` if your base map is called   `bsmap` and your meuse data is `dat`. 
+
+1. When you're satisified, try mapping some of the attributes in the meuse dataset to some of the ggplot aesthetics, e.g., `geom_sf(data = dat, inherit.aes = F, aes(colour = cadmium))`
+
+<details> 
+  <summary>Click here to cheat!</summary>
+   <script src="https://gist.github.com/fawda123/bcad2ca3cad529eee6e0d53217dd8a60.js"></script>
+</details>
