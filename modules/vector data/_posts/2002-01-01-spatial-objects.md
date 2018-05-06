@@ -304,36 +304,14 @@ plot(gCentroid(pts2), pch = 21, col='red', add = T)
 
 ---
 
-### Challenges
+### Challenge
 
 We provided a comma-delimited text file called 'StreamGages.csv'. Using what we covered in this section, can you determine how many gages are within 50 km of Portland, OR?
 
 
 <details> 
   <summary>Approach 1 (click to see answer)</summary>
-  <p>
-  
-  - Read in gages data and convert to spatial points data frame
-  - Give it the **pts** CRS and reproject to **pts2** CRS
-  - Select out Portland and use `gDistance` from `rgeos` package with portand as x and gages as y in the function.
-  - Sum across TRUE/FALSE values in query. R will count TRUE == 1 and FALSE == 0.
-    
-   ```r
-    gages <- read.csv('./data/StreamGages.csv')
-    gages <- SpatialPointsDataFrame(gages[c('LON_SITE','LAT_SITE')], gages)
-    gages@proj4string <- pts@proj4string
-    gages <- spTransform(gages, proj4string(pts2))
-
-    portland <- pts2[pts2$cities == 'Portland', ]
-
-    m <- gDistance(portland, gages, byid=T)
-    sum(m < 50000)
-
-    #Bonus - How to get the station names within 50km
-    gages$STATION_NM[which(m < 50000)]
-   ```
-   
-  </p>
+  <script src="https://gist.github.com/ryan-hill/db60260c510aa720bf1bfa13423f71d7.js"></script>
 </details>
 
 ---
