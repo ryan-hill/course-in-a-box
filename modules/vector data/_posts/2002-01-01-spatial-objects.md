@@ -312,6 +312,11 @@ We provided a comma-delimited text file called 'StreamGages.csv'. Using what we 
 <details> 
   <summary>Approach 1 (click to see answer)</summary>
   <p>
+  
+  - Read in gages data and convert to spatial points data frame
+  - Give it the **pts** CRS and reproject to **pts2** CRS
+  - Select out Portland and use `gDistance` from `rgeos` package with portand as x and gages as y in the function.
+  - Sum across TRUE/FALSE values in query. R will count TRUE == 1 and FALSE == 0.
     
    ```r
     gages <- read.csv('./data/StreamGages.csv')
@@ -338,6 +343,11 @@ There's also a second approach that uses `sp::over` function.
 <details> 
   <summary>Approach 2 (click to see answer)</summary>
   <p>
+    
+  - Read in gages data and convert to spatial points data frame
+  - Give it the **pts** CRS and reproject to **pts2** CRS
+  - Select out Portland and use `gBuffer` from `rgeos` package with width = 50,000 meters.
+  - Use `over` function from `sp` package to identify overlapping points with 50 km buffer. 
     
    ```r
     library(sp); library(rgeos)
