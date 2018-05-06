@@ -304,7 +304,7 @@ plot(gCentroid(pts2), pch = 21, col='red', add = T)
 
 ---
 
-### On your own
+### Challenge
 
 We provided a comma-delimited text file called 'StreamGages.csv'. Using what we covered in this section, can you determine how many gages are within 50 km of Portland, OR?
 
