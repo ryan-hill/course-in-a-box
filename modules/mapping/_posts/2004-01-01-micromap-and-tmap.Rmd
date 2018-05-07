@@ -1,5 +1,5 @@
 ---
-title: "Mapview"
+title: "micromap and tmap"
 output: 
   html_document:
     keep_md: true
@@ -9,7 +9,7 @@ self_contained: yes
 <script src="../../../js/hideoutput.js"></script>
 
 ```{r echo = F, message = F, warning = F}
-knitr::opts_chunk$set(fig.path = '../../../img/')
+knitr::opts_chunk$set(fig.path = '../../../img/', message = F, warning = F)
 
 library(tidyverse)
 library(maps)
@@ -18,10 +18,8 @@ library(raster)
 library(tmap)
 library(micromap)
 library(ggrepel)
+library(plotly)
+library(tmap)
+library(micromap)
 ```
 
-<!-- https://moderndata.plot.ly/visualizing-geo-spatial-data-with-sf-and-plotly/ -->
-
-### tmap
-
-### micromap 

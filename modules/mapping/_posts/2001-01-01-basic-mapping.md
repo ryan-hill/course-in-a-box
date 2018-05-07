@@ -1,4 +1,10 @@
-# Basic Mapping
+---
+title: "Basic Mapping"
+output: 
+  html_document:
+    keep_md: true
+self_contained: yes
+---
 
 <script src="../../../js/hideoutput.js"></script>
 
@@ -12,9 +18,10 @@ By the end of this lesson, you should be able to answer these questions:
 
 * How can I use base graphics to create simple vector and raster plots?
 * How can I use ggplot2 to create simple vector and raster plots?
+* How and when would I use plotly?
 * How and when would I use mapview?
-* How and when would I use tmap?
 * How and when would I use micromap?
+* How and when would I use tmap?
 
 ### Exercise
 
@@ -24,7 +31,7 @@ Let's first make sure we have an R Markdown file setup and the correct packages 
 
 1. Remove all the template content below the YAML header.  Add some descriptive text using Markdown below the YAML header that briefly describes the lesson plan (e.g., "This lessons covers base graphics, ggplot, and other R packags for mapping spatial data.")
 
-1. Below this text, add a code chunk and write some script to load the following packages: `tidyverse`, `maps`, `sf`, `ggmap`, `raster`, `tmap`, `micromap`.
+1. Below this text, add a code chunk and write some script to load the following packages: `tidyverse`, `maps`, `sf`, `ggmap`, `plotly`, `mapview`, `micromap`, `tmap`.
 
 1. When you're done, compile the document by pressing the knit button at the top.
 
@@ -195,7 +202,7 @@ ggmap(bsmap)
 
 ![](../../../img/ggmap1-1.png)<!-- -->
 
-Now that we've got the base map in order, we can simply add the locations of our cities with the `geom_sf` geometry as before.  The `ggmap` function returns a `ggplot2` object so wan just add geoms and other ggplot options as we normally would.  We'll have to tell ggplot to ignore the aesthetics from ggmap for the plot to work correctly.
+Now that we've got the base map in order, we can simply add the locations of our cities with the `geom_sf` geometry as before.  The `ggmap` function returns a `ggplot2` object so we can just add geoms and other ggplot options as we normally would.  We'll have to tell ggplot to ignore the aesthetics from ggmap for the plot to work correctly.
 
 ```r
 ggmap(bsmap) +

@@ -24,9 +24,7 @@ In the last submodule we learned a lot of the nitty gritty details of mapping po
 
 ![](../../../img/chloroex.jpg)
 
-These maps are not without criticism and it's worth noting that they can sometimes obscure relationships by mis-representing scale. As we'll see later with micromaps, they also score gloriously low in the information to ink ratio.  Just keep these in mind when creating chloropleth maps and don't use them beyond their abilities, i.e., they are at best exploratory in nature.
-
-<!-- http://strimas.com/r/tidy-sf/ -->
+These maps are not without criticism and it's worth noting that they can sometimes obscure relationships by mis-representing scale. As we'll see later with micromaps, they also score gloriously low in the information to ink ratio.  Just keep these issues in mind when creating chloropleth maps and don't use them beyond their abilities, i.e., they are at best exploratory in nature.
 
 The requirement of course with chloropleth maps is the need to have secondary data to plot. Either this is included in the data as part of the collected information or it's derived by you the analyst.  The example we'll go through now will focus on the latter example where we use simple spatial operations to estimate polygon areas as our variable to show in the map.  
 
