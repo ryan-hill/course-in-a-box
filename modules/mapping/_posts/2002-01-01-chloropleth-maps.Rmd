@@ -24,7 +24,7 @@ In the last submodule we learned a lot of the nitty gritty details of mapping po
 
 ![](../../../img/chloroex.jpg)
 
-These maps are not without criticism and it's worth noting that they can sometimes obscure relationships by mis-representing scale. Just keep that in mind when creating chloropleth maps and don't use them beyond their abilities, i.e., they are exploratory in nature.
+These maps are not without criticism and it's worth noting that they can sometimes obscure relationships by mis-representing scale. As we'll see later with micromaps, they also score gloriously low in the information to ink ratio.  Just keep these in mind when creating chloropleth maps and don't use them beyond their abilities, i.e., they are at best exploratory in nature.
 
 <!-- http://strimas.com/r/tidy-sf/ -->
 

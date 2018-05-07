@@ -20,6 +20,8 @@ library(micromap)
 library(ggrepel)
 ```
 
+<!-- https://moderndata.plot.ly/visualizing-geo-spatial-data-with-sf-and-plotly/ -->
+
 ### tmap
 
 ### micromap 
