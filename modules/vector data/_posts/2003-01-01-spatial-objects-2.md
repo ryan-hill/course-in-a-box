@@ -51,7 +51,7 @@ We will simplify the HUCs layer and write it out to compare how simplification a
 ```r
 library(rgeos); library(zoom)
 # tol=tolerance
-hucs_simple <- gSimplify(hucs, tol = 60, topologyPreserve = T)
+hucs_simple <- gSimplify(hucs, tol = 500, topologyPreserve = T)
 # gSimplify strips the attribute table and writeOGR will give us an error if we try to write a shapefile without a table. 
 hucs_simple <- SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
 writeOGR(hucs_simple, dsn = './data', layer = 'HUCs_simple', driver="ESRI Shapefile")
@@ -67,7 +67,7 @@ The `zoom` package provides a very simple way to navigate around plot windows us
 - r: reset view
 - q: quit graphics window
 
-We can see from the plot that the simplified geometry is very similar to the original. However, on disk the new shapefile has been reduced to ~2.4MB. 
+We can see from the plot that the simplified geometry is very similar to the original. However, on disk the new shapefile has been reduced to ~1.5MB. 
 
 In addition to shapefiles, it is possible to read geodatabases. For example, if a geodatabase were stored in our **'data'** folder and called 'our_gdb', the code to read in a layer called 'HUCs' within that geodatabase would be as follows:
 
@@ -83,9 +83,9 @@ We will walk through several examples of spatial operations that are more easier
 
 ---
 
-#### Example 1: How many HUC 8s inersect Malheur county? Are contained completely within?
+#### Example 1: How many HUC 8s inersect Malheur county? How big are these areas? 
 
-First, let's plot Malheur county with the HUCs to get some context.
+First, let's select out Malheur county as it's own object and plot it with the other counties and HUCs to get some context.
 
 ```r
 counties <- readOGR(dsn = './data', layer = 'counties', verbose = F)
@@ -96,6 +96,17 @@ plot(hucs_simple, add = T)
 ```
 
 ![counties-hucs](../../../img/counties-hucs.png)
+
+Now, let's clip the HUCs by Malheur county. To do this, we'll need to use `raster::intersect` because `rgeos::gIntersection` unfortunately does not keep data tables after the intersection has taken place.
+
+```r
+library(raster)
+malhucs <- intersect(malheur, hucs_simple)
+nrow(malhucs)
+```
+```r
+#[1] 16
+```
 
 
 
