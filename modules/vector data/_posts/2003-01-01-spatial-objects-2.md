@@ -31,8 +31,26 @@ First, let's read in a shapefile called 'HUCs.shp'. The code below assumes that 
 library(rgdal); library(zoom)
 hucs <- readOGR(dsn = './data', layer = 'HUCs', verbose = F)
 plot(hucs)
-writeOGR(hucs, './data', 'HUCs', driver="ESRI Shapefile")
+zm()
 ```
+
+The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
+
+- L/R: move left/right
+- Up/Down: k/j
+- + or i/- or o: zoom in/out
+- r: reset view
+- q: quit graphics window
+
+![huc 8 oregon](../../../img/hucs-8a.jpg)
+
+You'll notice that this layer looks suspiciously like Oregon. These are indeed the 8-digit HUCs for Oregon. 
+
+- What is this layer's CRS?
+- What kind of data are included with the layer?
+
+If you look at the shapefile, you'll notice that it is ~12MB on file. This isn't terrible but remember that R reads everything into memory. If we had read all 8-digit HUCs in for the US it may have overwhelmed some computers. Vector data can often
+
 
 ### 
 
