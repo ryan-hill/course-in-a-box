@@ -63,9 +63,11 @@ The `zoom` package provides a very simple way to navigate around plot windows us
 
 - l/r: move left/right
 - Up/Down: k/j
-- &plus or i/- or o: zoom in/out
+- <span>&#43;</span> or i/- or o: zoom in/out
 - r: reset view
 - q: quit graphics window
+
+We can see from the plot that the simplified geometry is very similar to the original. However, on disk the new shapefile has been reduced to ~2.4MB. 
 
 
 
