@@ -83,7 +83,7 @@ We will walk through several examples of spatial operations that are more easier
 
 ---
 
-#### Example 1: How many HUC 8s are there in Malheur county?
+#### Example 1: How many HUC 8s inersect Malheur county? Are contained completely within?
 
 ```r
 counties <- readOGR(dsn = './data', layer = 'counties', verbose = F)
