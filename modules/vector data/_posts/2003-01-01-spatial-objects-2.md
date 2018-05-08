@@ -83,6 +83,13 @@ We will walk through several examples of spatial operations that are more easier
 
 ---
 
-#### Example 1: 
+#### Example 1: How many HUC 8s are there in Malheur county?
 
+```r
+counties <- readOGR(dsn = './data', layer = 'counties', verbose = F)
+plot(counties, col = 'lightblue', border = 'white')
+plot(hucs_simple, add = T)
+```
+
+![counties-hucs](../../../img/counties-hucs.png)
 
