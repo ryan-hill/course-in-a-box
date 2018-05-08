@@ -33,17 +33,9 @@ hucs <- readOGR(dsn = './data', layer = 'HUCs', verbose = F)
 plot(hucs)
 ```
 
-The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
-
-- L/R: move left/right
-- Up/Down: k/j
-- + or i/- or o: zoom in/out
-- r: reset view
-- q: quit graphics window
-
 ![huc 8 oregon](../../../img/hucs-8a.png)
 
-You'll notice that this layer looks suspiciously like Oregon. These are indeed the 8-digit HUCs for Oregon. 
+You'll notice that this layer looks suspiciously like a mutant Oregon. These are indeed the 8-digit HUCs this state. 
 
 - What is this layer's CRS?
 - What kind of data are included with the layer?
@@ -67,6 +59,13 @@ plot(hucs_simple, border="red", add=T)
 zm()
 ```
 
+The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
+
+- L/R: move left/right
+- Up/Down: k/j
+- &plus or i/- or o: zoom in/out
+- r: reset view
+- q: quit graphics window
 
 
 
