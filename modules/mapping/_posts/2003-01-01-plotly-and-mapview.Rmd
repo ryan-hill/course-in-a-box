@@ -4,6 +4,7 @@ output:
   html_document:
     keep_md: true
 self_contained: yes
+htmlwidgets: true
 ---
 
 <script src="../../../js/hideoutput.js"></script>
