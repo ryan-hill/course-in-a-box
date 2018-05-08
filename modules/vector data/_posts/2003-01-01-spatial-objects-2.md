@@ -53,7 +53,7 @@ library(rgeos); library(zoom)
 # tol=tolerance
 hucs_simple <- gSimplify(hucs, tol = 60, topologyPreserve = T)
 # gSimplify strips the attribute table and writeOGR will give us an error if we try to write a shapefile without a table. 
-hucs_simple = SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
+hucs_simple <- SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
 writeOGR(hucs_simple, dsn = './data', layer = 'HUCs_simple', driver="ESRI Shapefile")
 plot(hucs_simple, border="red", add=T)
 zm()
@@ -69,6 +69,20 @@ The `zoom` package provides a very simple way to navigate around plot windows us
 
 We can see from the plot that the simplified geometry is very similar to the original. However, on disk the new shapefile has been reduced to ~2.4MB. 
 
+In addition to shapefiles, it is possible to read geodatabases. For example, if a geodatabase were stored in our **'data'** folder and called 'our_gdb', the code to read in a layer called 'HUCs' within that geodatabase would be as follows:
 
+```r
+HUCs <- readOGR(dsn = './data/out_gdb.gdb', layer = 'HUCs', verbose = F)
+```
+
+---
+
+### Spatial Operations
+
+We will walk through several examples of spatial operations that are more easier to do now that we can read in shapefiles of data types other than points. Most of these operations are found within the `rgeos` package.   
+
+---
+
+#### Example 1: 
 
 
