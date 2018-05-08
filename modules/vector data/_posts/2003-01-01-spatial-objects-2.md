@@ -33,17 +33,9 @@ hucs <- readOGR(dsn = './data', layer = 'HUCs', verbose = F)
 plot(hucs)
 ```
 
-The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
+![huc 8 oregon](../../../img/hucs-8a.png)
 
-- L/R: move left/right
-- Up/Down: k/j
-- + or i/- or o: zoom in/out
-- r: reset view
-- q: quit graphics window
-
-![huc 8 oregon](../../../img/hucs-8a.jpg)
-
-You'll notice that this layer looks suspiciously like Oregon. These are indeed the 8-digit HUCs for Oregon. 
+You'll notice that this layer looks suspiciously like a mutant Oregon. These are indeed the 8-digit HUCs this state. 
 
 - What is this layer's CRS?
 - What kind of data are included with the layer?
@@ -61,13 +53,43 @@ library(rgeos); library(zoom)
 # tol=tolerance
 hucs_simple <- gSimplify(hucs, tol = 60, topologyPreserve = T)
 # gSimplify strips the attribute table and writeOGR will give us an error if we try to write a shapefile without a table. 
-hucs_simple = SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
+hucs_simple <- SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
 writeOGR(hucs_simple, dsn = './data', layer = 'HUCs_simple', driver="ESRI Shapefile")
 plot(hucs_simple, border="red", add=T)
 zm()
 ```
 
+The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
 
+- l/r: move left/right
+- Up/Down: k/j
+- <span>&#43;</span> or i/- or o: zoom in/out
+- r: reset view
+- q: quit graphics window
 
+We can see from the plot that the simplified geometry is very similar to the original. However, on disk the new shapefile has been reduced to ~2.4MB. 
 
+In addition to shapefiles, it is possible to read geodatabases. For example, if a geodatabase were stored in our **'data'** folder and called 'our_gdb', the code to read in a layer called 'HUCs' within that geodatabase would be as follows:
+
+```r
+HUCs <- readOGR(dsn = './data/out_gdb.gdb', layer = 'HUCs', verbose = F)
+```
+
+---
+
+### Spatial Operations
+
+We will walk through several examples of spatial operations that are more easier to do now that we can read in shapefiles of data types other than points. Most of these operations are found within the `rgeos` package.   
+
+---
+
+#### Example 1: How many HUC 8s are there in Malheur county?
+
+```r
+counties <- readOGR(dsn = './data', layer = 'counties', verbose = F)
+plot(counties, col = 'lightblue', border = 'white')
+plot(hucs_simple, add = T)
+```
+
+![counties-hucs](../../../img/counties-hucs.png)
 
