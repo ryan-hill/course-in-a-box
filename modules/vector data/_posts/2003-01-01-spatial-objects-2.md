@@ -41,7 +41,7 @@ The `zoom` package provides a very simple way to navigate around plot windows us
 - r: reset view
 - q: quit graphics window
 
-![huc 8 oregon](../../../img/hucs-8a.jpg)
+![huc 8 oregon](../../../img/hucs-8a.png)
 
 You'll notice that this layer looks suspiciously like Oregon. These are indeed the 8-digit HUCs for Oregon. 
 
