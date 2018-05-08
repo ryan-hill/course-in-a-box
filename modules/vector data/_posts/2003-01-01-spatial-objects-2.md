@@ -85,11 +85,17 @@ We will walk through several examples of spatial operations that are more easier
 
 #### Example 1: How many HUC 8s inersect Malheur county? Are contained completely within?
 
+First, let's plot Malheur county with the HUCs to get some context.
+
 ```r
 counties <- readOGR(dsn = './data', layer = 'counties', verbose = F)
+malheur <- counties[counties$NAME == 'Malheur', ]
 plot(counties, col = 'lightblue', border = 'white')
+plot(malheur, col = 'pink', border = 'transparent', add = T)
 plot(hucs_simple, add = T)
 ```
 
 ![counties-hucs](../../../img/counties-hucs.png)
+
+
 
