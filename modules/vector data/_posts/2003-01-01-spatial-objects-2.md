@@ -61,7 +61,7 @@ zm()
 
 The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
 
-- L/R: move left/right
+- l/r: move left/right
 - Up/Down: k/j
 - &plus or i/- or o: zoom in/out
 - r: reset view
