@@ -83,7 +83,7 @@ We will walk through several examples of spatial operations that are more easier
 
 ---
 
-#### Example 1: How many HUC 8s inersect Malheur county? How big are these areas? 
+#### Example 1: How many HUC 8s inersect Malheur county? How big are these areas in km<sup>2</sup>? 
 
 First, let's select out Malheur county as it's own object and plot it with the other counties and HUCs to get some context.
 
@@ -108,5 +108,30 @@ nrow(malhucs)
 #[1] 16
 ```
 
+To calculate the areas we'll use `rgeos::gArea`. First, remove most of the columns so it's easier to see the data. Then we'll add the areas.
 
+```r
+malhucs <- malhucs[, 'HUC_8']
+malhucs$sqkm <- gArea(malhucs, byid = T) / 1e6
+malhucs@data
+```
+```r
+#    HUC_8       sqkm
+# 1  16040201 1367.20920
+# 2  17050103  833.81447
+# 3  17050105   22.43079
+# 4  17050106  343.75242
+# 5  17050107 3112.80129
+# 6  17050108 1813.13677
+# 7  17050109 3422.59638
+# 8  17050110 5117.44578
+# 9  17050115  425.85980
+# 10 17050116 1781.50753
+# 11 17050117 2454.28297
+# 12 17050118 1516.54821
+# 13 17050119 1933.15554
+# 14 17050201  317.69394
+# 15 17050202   16.65395
+# 16 17120009 1235.12002
+```
 
