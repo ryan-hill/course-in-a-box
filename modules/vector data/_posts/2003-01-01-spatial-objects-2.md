@@ -28,10 +28,9 @@ First, let's read in a shapefile called 'HUCs.shp'. The code below assumes that 
 - verbose = rgdal likes to print a lot of stuff while reading in a shapefile - let's tell it to be quiet
 
 ```r
-library(rgdal); library(zoom)
+library(rgdal)
 hucs <- readOGR(dsn = './data', layer = 'HUCs', verbose = F)
 plot(hucs)
-zm()
 ```
 
 The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
@@ -49,9 +48,26 @@ You'll notice that this layer looks suspiciously like Oregon. These are indeed t
 - What is this layer's CRS?
 - What kind of data are included with the layer?
 
-If you look at the shapefile, you'll notice that it is ~12MB on file. This isn't terrible but remember that R reads everything into memory. If we had read all 8-digit HUCs in for the US it may have overwhelmed some computers. Vector data can often
+If you look at the shapefile, you'll notice that it is ~12MB on file. This isn't terrible but remember that R reads everything into memory. If we had read all 8-digit HUCs in for the US it may have overwhelmed some computers. Vector data often have far more vertices than is needed for many applications.
+
+![simplification](../../../img/simplification.png)
+
+*[Image from: https://nceas.github.io/oss-lessons/spatial-data-gis-law/3-mon-intro-gis-in-r.html](https://nceas.github.io/oss-lessons/spatial-data-gis-law/3-mon-intro-gis-in-r.html)*
+
+We will simplify the HUCs layer and write it out to compare how simplification affects the size on disk.
+
+```r
+library(rgeos); library(zoom)
+# tol=tolerance
+hucs_simple <- gSimplify(hucs, tol = 60, topologyPreserve = T)
+# gSimplify strips the attribute table and writeOGR will give us an error if we try to write a shapefile without a table. 
+hucs_simple = SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
+writeOGR(hucs_simple, dsn = './data', layer = 'HUCs_simple', driver="ESRI Shapefile")
+plot(hucs_simple, border="red", add=T)
+zm()
+```
 
 
-### 
 
-###
+
+
