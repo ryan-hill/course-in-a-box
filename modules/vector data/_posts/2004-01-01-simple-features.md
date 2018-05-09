@@ -6,13 +6,12 @@ title: "Simple Features"
 
 ----
 
+### Equivalent functions
 
 | `sp`   | `sf` | 
 |------------------|-------------| 
-| bbox()           | Returns the bounding box coordinates | 
-| proj4string()    | Sets or retrieves projection attributes using the CRS object | 
-| CRS()            | Creates an object of class of coordinate reference system arguments | 
-| spplot()         | Plots a separate map of all the attributes unless specified otherwise | 
-| coordinates()    | Returns a matrix with the spatial coordinates. For spatial polygons it returns the centroids. | 
-| over(x, y)       | Used for example to retrieve the polygon or grid indexes on a set of points | 
+| bbox()           | st_bbox()   | 
+| proj4string()    | st_crs() $proj4string | 
+| coordinates()    | st_coordinates() | 
+| over(x, y)       | st_join() | 
 | spsample(x)      | Sampling of spatial points within the spatial extent of objects |   
