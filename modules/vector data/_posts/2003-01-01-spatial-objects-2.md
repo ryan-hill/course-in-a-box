@@ -204,5 +204,7 @@ plot(snapped, pch=20, add = T)
 
 ![snapped](../../../snapped.png)
 
+---
 
+There are a ton of possible operations that are possible that we could explore. However, many of these operations are also available in the `sf` (simple features) R package. As we noted in the last section, the movement is towards the `sf` package and it will be important to be familiar with it as well. 
 
