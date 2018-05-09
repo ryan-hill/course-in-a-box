@@ -14,7 +14,7 @@ By the end of this section you will be able to:
 - Simplify spatial layers with complex geometries.
 - Calculate geometry metrics such as area of polygons or lengths of lines.
 - Clip one vector feature based on a polygon feature.
-
+- Snap points to the nearest line.
 
 ### Reading and writing external data
 
@@ -174,8 +174,35 @@ print(drn_density)
 [1] 0.0006736335
 ```
 
-Notice that we used `byid=FALSE`. We could have found the length for each stream segment individually with `byid=TRUE`, but in this example it was convenient for us to get the total length at once
+Notice that we used `byid=FALSE`. We could have found the length for each stream segment individually with `byid=TRUE`, but in this example it was convenient for us to get the total length at once. 
 
+We could spend more time exploring operations in 
+
+<br>
+
+#### Example 3: Moving points to the nearest line 
+
+Let's say that you have a colletion of sample sites ('sample1.shp' and 'sample2') and you need to combine them and then snap them to the stream layer. Here's how you can snap the points to the nearest stream line. 
+
+```r
+s1 <- readOGR(dsn = './data', layer = 'sample1')
+s2 <- readOGR(dsn = './data', layer = 'sample2')
+plot(s1, add = T)
+plot(s2, add = T, col='red')
+```
+
+![pts-off-stream](../../../pts-off-stream.png)
+
+We can see that, in fact, the sites are slightly away from the stream network. Let's first combine the points and then snap them to the stream network. 
+
+```r
+s1 <- s1 + s2 #Yes! 
+frac <- gProject(strclp, s1)
+snapped <- gInterpolate(strclp, frac)
+plot(snapped, pch=20, add = T)
+```
+
+![snapped](../../../snapped.png)
 
 
 
