@@ -13,7 +13,7 @@ By the end of this section you will be able to:
 - Read and write shapefiles.
 - Simplify spatial layers with complex geometries.
 - Calculate geometry metrics such as area of polygons or lengths of lines.
-- Clip one polygon feature based on another polygon feature.
+- Clip one vector feature based on a polygon feature.
 
 
 ### Reading and writing external data
@@ -174,6 +174,7 @@ print(drn_density)
 [1] 0.0006736335
 ```
 
+Notice that we used `byid=FALSE`. We could have found the length for each stream segment individually with `byid=TRUE`, but in this example it was convenient for us to get the total length at once
 
 
 
