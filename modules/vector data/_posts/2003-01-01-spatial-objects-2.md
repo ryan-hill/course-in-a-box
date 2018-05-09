@@ -154,6 +154,15 @@ plot(streams, add = T, col='lightblue')
 
 ![streams-ws-overlay](../../../img/streams-ws-overlay.png)
 
+To clip the streams, we use the `rgeos::gIntersection` function. 
+
+```r
+strclp = gIntersection(streams, ws, byid = TRUE, drop_lower_td = TRUE)
+```
+
+
+
+
 
 
 
