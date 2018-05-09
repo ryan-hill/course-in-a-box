@@ -1,11 +1,10 @@
 ---
-title: "plotly and Mapview"
 output: 
-  html_document:
-    keep_md: true
-self_contained: yes
+  html_document
 htmlwidgets: true
 ---
+
+<title>plotly and Mapview</title>
 
 <script src="../../../js/hideoutput.js"></script>
 
@@ -26,12 +25,14 @@ We've seen how to use some of the basic plotting features in R to create static 
 
 We'll introduce the following packages in this submodule:
 
-* [plotly](https://plot.ly/r/): interactive graphs in R, not limited to maps
-* [mapview](https://github.com/r-spatial/mapview): quick interactive maps to examine eand visually investigate geometries and attributes of spatial data
+<ul>
+<li>[plotly](https://plot.ly/r/): interactive graphs in R, not limited to maps</li>
+<li>[mapview](https://github.com/r-spatial/mapview): quick interactive maps to examine eand visually investigate geometries and attributes of spatial data</li>
+</ul>
 
 <!-- https://moderndata.plot.ly/visualizing-geo-spatial-data-with-sf-and-plotly/ -->
 
-### plotly
+<h3>plotly</h3>
 
 The plotly library lets you easily create interactive plots in R.
 
