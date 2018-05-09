@@ -134,6 +134,8 @@ malhucs@data
 # 16 17120009 1235.12002
 ```
 
+<br>
+
 #### Example 2: Clipping features (lines and polygons) based on a second feature
 
 We provided you with a shapefile of a sub-basin of the S. Santiam River (ws.shp). We generated this watershed by visiting the USGS's StreamStats [website](https://streamstats.usgs.gov/ss/), navigating to the S. Santiam, and using the watershed delineation tool. Let's use this polygon to clip a set of streams ('south_santiam.shp') and calculate the drainage density (km/km<sup>2</sup>. 
@@ -151,6 +153,15 @@ plot(streams, add = T, col='lightblue')
 ```
 
 ![streams-ws-overlay](../../../img/streams-ws-overlay.png)
+
+To clip the streams, we use the `rgeos::gIntersection` function. 
+
+```r
+strclp = gIntersection(streams, ws, byid = TRUE, drop_lower_td = TRUE)
+```
+
+
+
 
 
 
