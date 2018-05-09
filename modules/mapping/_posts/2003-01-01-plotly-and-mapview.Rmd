@@ -35,7 +35,7 @@ We'll introduce the following packages in this submodule:
 
 The plotly library lets you easily create interactive plots in R.
 
-```{r}
+```{r plotlyex1}
 library(plotly)
 p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
 p
@@ -45,7 +45,7 @@ p
 
 The mapview library lets you easily create interactive maps in R.
 
-```{r}
+```{r mapviewex1}
 library(mapview)
 mapview(breweries)
 ```
