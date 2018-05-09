@@ -13,7 +13,7 @@ By the end of this section you will be able to:
 - Read and write shapefiles.
 - Simplify spatial layers with complex geometries.
 - Calculate geometry metrics such as area of polygons or lengths of lines.
-- Clip one polygon feature based on another polygon feature.
+- Clip one vector feature based on a polygon feature.
 
 
 ### Reading and writing external data
@@ -140,7 +140,7 @@ malhucs@data
 
 We provided you with a shapefile of a sub-basin of the S. Santiam River (ws.shp). We generated this watershed by visiting the USGS's StreamStats [website](https://streamstats.usgs.gov/ss/), navigating to the S. Santiam, and using the watershed delineation tool. Let's use this polygon to clip a set of streams ('south_santiam.shp') and calculate the drainage density (km/km<sup>2</sup>. 
 
-First, let's read in the watershed boundary and stream lines. It's always good to check if layers are in the same projection as well and to make them match if they are different. Plot the results and see if everything is overlaying correctly.
+First, let's read in the watershed boundary and stream lines. It's always good to check if layers are in the same projection as well and to make them match if they are different. 
 
 ```r
 ws <- readOGR(dsn = './data', layer = 'ws', verbose=F)
@@ -148,23 +148,33 @@ streams <- readOGR(dsn = './data', layer = 'south_santiam', verbose = F)
 proj4string(ws) == proj4string(streams)
 #Use ws since it is in an equal area projectiong w/ units==meters
 streams <- spTransform(streams, proj4string(ws))
+```
+
+To clip the streams, it is possible to use `rgeos::gIntersection` function but this function strips data table from the layer. However, `raster::intersect` can be used to clip vector data and retains the layer attribute information at the same time. Plot the results and see if everything is overlaying correctly.
+
+```r
+library(raster)
+strclp <- intersect(streams, ws)
 plot(ws)
 plot(streams, add = T, col='lightblue')
+plot(strclp, add = T, col = 'pink', lwd=3)
 ```
 
 ![streams-ws-overlay](../../../img/streams-ws-overlay.png)
 
-To clip the streams, we use the `rgeos::gIntersection` function. 
+Nice! Now let's look at the stream layer and get the lengths. If we look at the tables of each layer (not shown here), you'll notice that the do have 'Shape_Leng' and 'Shape_Area' columns. They are incorrect and won't work in this case.
 
 ```r
-strclp = gIntersection(streams, ws, byid = TRUE, drop_lower_td = TRUE)
+strlen <- gLength(strclp, byid=FALSE)
+wsarea <- gArea(ws, byid=FALSE)
+drn_density <- strlen / wsarea
+print(drn_density)
+```
+```r
+[1] 0.0006736335
 ```
 
-
-
-
-
-
+Notice that we used `byid=FALSE`. We could have found the length for each stream segment individually with `byid=TRUE`, but in this example it was convenient for us to get the total length at once
 
 
 
