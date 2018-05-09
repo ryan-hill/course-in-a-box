@@ -6,16 +6,15 @@ title: "Spatial Objects II"
 
 ----
 
-In the previous section, we learned how to create spatial objects in R. In those examples, we focused on importing points from geographic coordinates. However, it is common to bring in data from external data sets, including ESRI shapefiles. In this section, we will learn how to import and export data from shapefiles. These layers will include polygons and lines and we will continue with out exploration of geoprocessing examples with these types of data. 
+In the previous section, we learned how to create spatial objects in R. In those examples, we focused on importing points from geographic coordinates. However, it is common to bring in external data sets, such ESRI shapefiles. In this section, we will learn how to import and export data from shapefiles. These layers will include polygons and lines and we will wrap up our exploration of geoprocessing examples `sp`-type data, especially with the `rgeos` package. 
 
 By the end of this section you will be able to:
 
 - Read and write shapefiles.
 - Simplify spatial layers with complex geometries.
-- Modify geomoe
 - Calculate geometry metrics such as area of polygons or lengths of lines.
 - Clip one polygon feature based on another polygon feature.
-- Calculate 
+
 
 ### Reading and writing external data
 
@@ -134,4 +133,28 @@ malhucs@data
 # 15 17050202   16.65395
 # 16 17120009 1235.12002
 ```
+
+#### Example 2: Clipping features (lines and polygons) based on a second feature
+
+We provided you with a shapefile of a sub-basin of the S. Santiam River (ws.shp). We generated this watershed by visiting the USGS's StreamStats [website](https://streamstats.usgs.gov/ss/), navigating to the S. Santiam, and using the watershed delineation tool. Let's use this polygon to clip a set of streams ('south_santiam.shp') and calculate the drainage density (km/km<sup>2</sup>. 
+
+First, let's read in the watershed boundary and stream lines. It's always good to check if layers are in the same projection as well and to make them match if they are different. Plot the results and see if everything is overlaying correctly.
+
+```r
+ws <- readOGR(dsn = './data', layer = 'ws', verbose=F)
+streams <- readOGR(dsn = './data', layer = 'south_santiam', verbose = F)
+proj4string(ws) == proj4string(streams)
+#Use ws since it is in an equal area projectiong w/ units==meters
+streams <- spTransform(streams, proj4string(ws))
+plot(ws)
+plot(streams, add = T, col='lightblue')
+```
+
+![streams-ws-overlay](../../../img/streams-ws-overlay.png)
+
+
+
+
+
+
 
