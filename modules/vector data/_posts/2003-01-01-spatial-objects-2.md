@@ -191,7 +191,7 @@ plot(s1, add = T)
 plot(s2, add = T, col='red')
 ```
 
-![pts-off-stream](../../../pts-off-stream.png)
+![pts-off-stream](../../../img/pts-off-stream.png)
 
 We can see that, in fact, the sites are slightly away from the stream network. Let's first combine the points and then snap them to the stream network. 
 
@@ -202,7 +202,7 @@ snapped <- gInterpolate(strclp, frac)
 plot(snapped, pch=20, add = T)
 ```
 
-![snapped](../../../snapped.png)
+![snapped](../../../img/snapped.png)
 
 ---
 
