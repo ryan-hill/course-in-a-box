@@ -76,7 +76,7 @@ HUCs <- readOGR(dsn = './data/out_gdb.gdb', layer = 'HUCs', verbose = F)
 
 ---
 
-### Spatial Operations
+### Excercises
 
 We will walk through several examples of spatial operations that are more easier to do now that we can read in shapefiles of data types other than points. Most of these operations are found within the `rgeos` package.   
 

@@ -239,7 +239,7 @@ We can compare maps of **pts** (red dots) and **pts2** (blue dots) to see the di
 
 ---
 
-### Spatial Operations
+### Excercises
 
 We have covered many of the basics of working with spatial objects with the `sp` package. Now we'll walk through a couple of examples of how you can query and modify these kinds of data. 
 

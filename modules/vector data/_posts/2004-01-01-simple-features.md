@@ -36,6 +36,8 @@ Edzar Pebesma has extensive documentation, blog posts and vignettes available fo
 
 ---
 
+The best way to introduce the `sf` package and working with simple features may be to dive in with some examples.
+
 #### Excercise 1: Exploring `sf`
 
 To begin, let's look at the methods (specific functions) that are available with `sf`. 
@@ -66,13 +68,9 @@ library(RCurl)
 library(sf)
 
 download <- getURL("https://www.epa.gov/sites/production/files/2014-10/wsa_siteinfo_ts_final.csv")
-
 wsa <- read.csv(text = download)
 class(wsa)
 ```
-
-Just a data frame that includes location and other identifying information about river and stream sampled sites from 2000 to 2004.
-
 ```
 ## [1] "data.frame"
 ```
@@ -82,24 +80,62 @@ Because this dataframe has coordinate information, we can promotote it to an `sf
 ```r
 wsa = st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")
 str(wsa)
-par(mar = c(0,0,0,0))
-plot(wsa$geometry, pch = 19)
+plot(wsa$geometry)
 ```
 
 ![](../../../img/wsa-usa.jpg)
 
+Notice that in the plot we used `wsa$geometry`. By default, `sf` will create a multi-pane plot, one for each column in the data frame, which can take a long time if you have many columns. However, it can be convenient if you want to plot several columns.
+
+```r
+plot(wsa[c(46,56)], graticule = st_crs(wsa), axes=TRUE)
+```
+
+![](../../../img/sf-column-plots.png)
 
 
-
-
-Let's subset our data to just the US plains ecoregions using the 'ECOWSA9' variable in the wsa dataset. Here's an image of the regions in this table: 
+Let's subset our feature to just the US plains ecoregions using the 'ECOWSA9' variable in the wsa dataset. Here's an image of the regions in this table: 
 
 ![](../../../img/ecoregions_withlegend_7_27_2016_cropped2.jpg)
 
 ```r
 levels(wsa$ECOWSA9)
-wsa_plains <- wsa[wsa$ECOWSA9 %in% c("TPL","NPL","SPL"),]
+wsa_plains <- wsa[wsa$ECOWSA9 %in% c("TPL","NPL","SPL"), ]
+plot(wsa_plains$geometry, col='red', add=T)
 ```
+
+![](../../../img/wsa-red-plains.jpg)
+
+
+
+
+
+
+
+
+#### `dplyr` and `sf`
+
+Remember we said one of the advantages of `sf` is that it fits into the `tidyverse` way of operating that streamlines our ability to work with spatial data in R.  One concrete example, which we'll build on in this section, is that we can manipulate and reshape `sf` spatial data directly using `dplyr` and `tidyr` verbs.  
+
+Let's do the same subsetting step above using `dplyr` - for some of you this will be familiar territory, for others it may be confusing - the idea with `dplyr` and 'chained' operations is that it allows you to do more expressive sequences of operations on data in the order you typically think about doing it, rather than created convoluted nested statements in R.
+
+```r
+wsa_plains <- wsa %>%
+  dplyr::filter(ECOWSA9 %in% c("TPL","NPL","SPL"))
+```
+
+The `dply` package has methods to summarize and manipulate data:
+
+* select() keeps only certain variables
+* rename() renames a variable and leaves all others unchanged
+* filter() returns rows that match a certain condition(s)
+* mutate() adds new variables based on existing variables
+* transmute() creates new variables and drops existing variables
+* arrange() sorts the data frame the by a variable(s)
+* slice() selects rows based on row number
+* sample_n() samples n features randomly
+
+
 
 
 Note that this is now still a dataframe but with an additional geometry column. `sf` objects are still a data frame, but have an additional list-column for geometry. 
