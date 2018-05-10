@@ -26,6 +26,13 @@ This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. T
 
 ---
 
+### Lesson Goals
+
+- Import raw coordinates as a spatial object.
+- Explore and understand the structure of this object.
+- Manipulate the coordinate reference system of objects.
+- Explore geospatial operations in R, such as buffering and measuring distance.
+
 ### Exploring `sp`
 
 We will explore `sp` objects in R by first starting a new R Markdown. 

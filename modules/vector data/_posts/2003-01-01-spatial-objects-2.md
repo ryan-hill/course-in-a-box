@@ -8,7 +8,7 @@ title: "Spatial Objects II"
 
 In the previous section, we learned how to create spatial objects in R. In those examples, we focused on importing points from geographic coordinates. However, it is common to bring in external data sets, such ESRI shapefiles. In this section, we will learn how to import and export data from shapefiles. These layers will include polygons and lines and we will wrap up our exploration of geoprocessing examples `sp`-type data, especially with the `rgeos` package. 
 
-By the end of this section you will be able to:
+### Lesson Goals
 
 - Read and write shapefiles.
 - Simplify spatial layers with complex geometries.
