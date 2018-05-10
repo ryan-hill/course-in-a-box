@@ -206,5 +206,5 @@ plot(snapped, pch=20, add = T)
 
 ---
 
-There are a ton of possible operations that are possible that we could explore. However, many of these operations are also available in the `sf` (simple features) R package. As we noted in the last section, the movement is towards the `sf` package and it will be important to be familiar with it as well. 
+First, let's bask in how easy it was to merge these two sets of point features (`s1 + s2`). There are a ton of possible operations that are possible that we could explore. However, many of these operations are also available in the `sf` (simple features) R package. As we noted in the last section, the movement is towards the `sf` package and it will be important to be familiar with it as well. 
 
