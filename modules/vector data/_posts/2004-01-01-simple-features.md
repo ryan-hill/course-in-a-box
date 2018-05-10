@@ -18,7 +18,7 @@ sp::bbox()           | st_bbox()
 sp::proj4string()    | st_crs()$proj4string 
 sp::coordinates()    | st_coordinates() 
 sp::over()           | st_join() 
-sp::SpatialPoints<br>DataFrame() | st_as_sf() 
+sp::SpatialPointsDataFrame() | st_as_sf() 
 rgdal:: readOGR() | st_read() 
 rgdal::writeOGR() | st_write() 
 rgeos::gSimplify() | st_simplify() 
@@ -35,6 +35,8 @@ Edzar Pebesma has extensive documentation, blog posts and vignettes available fo
   - Use topological operations in `sf` such as spatial intersections, joins and aggregations with example data
 
 ---
+
+#### Excercise 1: Exploring `sf`
 
 To begin, let's look at the methods (specific functions) that are available with `sf`. 
 
@@ -57,10 +59,12 @@ methods(class = "sf")
 ## see '?methods' for accessing help and source code
 ```
 
+Let's read in a set of point coordinates. For this example, we'll use data from the US EPA's Wadeable Streams Assessment (WSA). 
+
 ```r
 library(RCurl)
 library(sf)
-library(ggplot2)
+
 download <- getURL("https://www.epa.gov/sites/production/files/2014-10/wsa_siteinfo_ts_final.csv")
 
 wsa <- read.csv(text = download)
@@ -73,7 +77,22 @@ Just a data frame that includes location and other identifying information about
 ## [1] "data.frame"
 ```
 
-Before we go any further, let's subset our data to just the US plains ecoregions using the 'ECOWSA9' variable in the wsa dataset. Here's an image of the regions in this table: 
+Because this dataframe has coordinate information, we can promotote it to an `sf` spatial object.
+
+```r
+wsa = st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")
+str(wsa)
+par(mar = c(0,0,0,0))
+plot(wsa$geometry, pch = 19)
+```
+
+![](../../../img/wsa-usa.jpg)
+
+
+
+
+
+Let's subset our data to just the US plains ecoregions using the 'ECOWSA9' variable in the wsa dataset. Here's an image of the regions in this table: 
 
 ![](../../../img/ecoregions_withlegend_7_27_2016_cropped2.jpg)
 
@@ -82,12 +101,6 @@ levels(wsa$ECOWSA9)
 wsa_plains <- wsa[wsa$ECOWSA9 %in% c("TPL","NPL","SPL"),]
 ```
 
-Because this dataframe has coordinate information, we can promotote it to an `sf` spatial object.
-
-```r
-wsa_plains = st_as_sf(wsa_plains, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")
-str(wsa_plains)
-```
 
 Note that this is now still a dataframe but with an additional geometry column. `sf` objects are still a data frame, but have an additional list-column for geometry. 
 
