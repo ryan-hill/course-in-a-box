@@ -8,10 +8,23 @@ title: "Simple Features"
 
 ### Equivalent functions
 
-| `sp`   | `sf` | 
+| Previous Section   | `sf` | 
 |------------------|-------------| 
-| bbox()           | st_bbox()   | 
-| proj4string()    | st_crs() $proj4string | 
-| coordinates()    | st_coordinates() | 
-| over(x, y)       | st_join() | 
-| spsample(x)      | Sampling of spatial points within the spatial extent of objects |   
+| sp::bbox()           | st_bbox()   | 
+| sp::proj4string()    | st_crs() $proj4string | 
+| sp::coordinates()    | st_coordinates() | 
+| sp::over()           | st_join() | 
+| sp::SpatialPointsDataFrame() | st_as_sf() |
+| rgdal:: readOGR() | st_read() |
+| rgdal::writeOGR() | st_write() |
+| rgeos::gSimplify() | st_simplify() |
+| raster::intersect() | st_intersection() |
+
+
+
+
+
+
+
+
+
