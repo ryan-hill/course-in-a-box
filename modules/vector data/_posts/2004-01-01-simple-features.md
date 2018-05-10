@@ -98,8 +98,6 @@ Let's subset our feature to just the US plains ecoregions using the 'ECOWSA9' va
 
 ![](../../../img/ecoregions_withlegend_7_27_2016_cropped2.jpg)
 
-*Image from: [https://www.epa.gov/national-aquatic-resource-surveys/nars-ecoregion-descriptions](https://www.epa.gov/national-aquatic-resource-surveys/nars-ecoregion-descriptions)*
-
 ---
 
 ```r
@@ -108,7 +106,7 @@ wsa_plains <- wsa[wsa$ECOWSA9 %in% c("TPL","NPL","SPL"), ]
 plot(wsa_plains$geometry, col='red', add=T)
 ```
 
-![](../../../img/wsa-red-plains.jpg)
+![](../../../img/wsa-red-plains.png)
 
 
 
