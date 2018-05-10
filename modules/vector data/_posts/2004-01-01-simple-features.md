@@ -199,7 +199,31 @@ head(wsa_plains)
 #18 1077808017       Iowa         IA             state POINT (-91.92294 42.70254)
 ```
 
-#### Excercise 4: Aggregation
+#### Excercise 4: `dplyr` and `sf`
+
+Remember we said one of the advantages of `sf` is that it fits into the `tidyverse` way of operating that streamlines our ability to work with spatial data in R.  One concrete example, which we'll build on in this section, is that we can manipulate and reshape `sf` spatial data directly using `dplyr` and `tidyr` verbs.  
+
+Let's do the same subsetting step above using `dplyr` - for some of you this will be familiar territory, for others it may be confusing - the idea with `dplyr` and 'chained' operations is that it allows you to do more expressive sequences of operations on data in the order you typically think about doing it, rather than created convoluted nested statements in R.
+
+```r
+wsa_plains <- wsa %>%
+  dplyr::filter(ECOWSA9 %in% c("TPL","NPL","SPL"))
+```
+
+The `dply` package has methods to summarize and manipulate data:
+
+* select() keeps only certain variables
+* rename() renames a variable and leaves all others unchanged
+* filter() returns rows that match a certain condition(s)
+* mutate() adds new variables based on existing variables
+* transmute() creates new variables and drops existing variables
+* arrange() sorts the data frame the by a variable(s)
+* slice() selects rows based on row number
+* sample_n() samples n features randomly
+
+---------------------add example of dissolve----------------------
+
+#### Excercise 5: Aggregation
 
 Now that we've joined water quality data based on proximity to our WSA sample sites, we can aggregate the results for each WSA site.  
 
@@ -237,6 +261,8 @@ avg_cond_state <- st_join(states, wsa) %>%
 plot(avg_cond_state['MeanCond'])
 ```
 ![mean-cond](../../../img/mean-cond.png)
+
+
 
 
 
