@@ -26,6 +26,7 @@ rgeos::gArea() | st_area()
 rgeos::gLength() | st_length() 
 raster::intersect() | st_intersection() 
 
+<br>
 Edzar Pebesma has extensive documentation, blog posts and vignettes available for `sf` here:
 [Simple Features for R](https://github.com/edzer/sfr).  Additionally, see Edzar's [r-spatial blog](http://r-spatial.org/) which has numerous announcements, discussion pieces and tutorials on spatial work in R focused. 
 
@@ -34,7 +35,6 @@ Edzar Pebesma has extensive documentation, blog posts and vignettes available fo
   - Understand plotting with of `sf` objects
   - Use topological operations in `sf` such as spatial intersections, joins and aggregations with example data
 
----
 
 The best way to introduce the `sf` package and working with simple features may be to dive in with some examples.
 
@@ -198,6 +198,7 @@ head(wsa_plains)
 # 17 1077808017       Iowa         IA             state POINT (-95.40089 41.33272)
 #18 1077808017       Iowa         IA             state POINT (-91.92294 42.70254)
 ```
+<br>
 
 #### Excercise 4: `dplyr` and `sf`
 
