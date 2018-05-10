@@ -111,7 +111,7 @@ plot(wsa_plains$geometry, col='red', add=T)
 ![](../../../img/wsa-red-plains.png)
 
 
-#### Excercise 2. Spatial Subsetting & Intersecting
+#### Excercise 2: Spatial Subsetting & Intersecting
 
 Now let's grab some administrative boundary data, for instance US states.  After bringing in, let's examine the coordinate system and compare with the coordinate system of the WSA data we already have loaded.  Remember, in `sf`, as with `sp`, we need to have data in the same CRS in order to do any kind of spatial operations involving both datasets.
 
@@ -152,7 +152,7 @@ There are actually several ways to achieve the same thing - here's another:
 plains_states <- states[wsa_plains,op = st_intersects]
 ```
 
-And we can do another attribute subset and then apply a spatial subset yet another way - verify this works for you by plotting results together
+And we can do another attribute subset and then apply a spatial subset yet another way - verify this works for you by plotting results together.
 
 ```r
 iowa = states[states$state_abbr=='IA',]
@@ -161,10 +161,82 @@ iowa_sites <- st_intersection(wsa_plains, iowa)
 
 ![](../../../img/iowa-sites.png)
 
+#### Excercise 3: Joins
+
+Spatial joining in R is an incredibly handy thing and is simple with `st_joins`. Many of us are likely old hands at doing attribute joins of shapefiles with other tabular data in GIS software like ArcGIS or QGis.
+By default `st_joins` will perform a left join (return all rows in the left, 'joined to' table regardless of whether there are matches in the right, 'joined' table). `st_joins` also uses st_intersect for the spatial operation.  Note that you can also do an inner join (a match in both tables) as well as use other topological operations for the join such as `st_touches`, `st_disjoint`, `st_equals`, etc.
+
+For this simple example, we'll strip out the state and most other attributes from our WSA sites we've been using, and then use the states `sf` file in a spatial join to get state for each site spatially.  This is a typical task many of us frequently face - assign attribute information from some spatial unit for points within the unit.
+
+So we're asking, in code below, "what state is each WSA site in?", based on where it is located.
+```r
+# Use column indexing to subset just a couple attribute columns - need to keep geometry column!
+wsa_plains <- wsa_plains[c(1:4,60)]
+wsa_plains <- st_join(wsa_plains, plains_states)
+# verify your results
+head(wsa_plains)
+```
+```
+# simple feature collection with 6 features and 16 fields
+# geometry type:  POINT
+# dimension:      XY
+# bbox:           xmin: -104.7643 ymin: 39.35901 xmax: -91.92294 ymax: 42.70254
+# epsg (SRID):    4326
+# proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#          SITE_ID YEAR VISIT_NO               SITENAME statefp  statens    affgeoid geoid stusps     name lsad        aland
+# 13        CC0001 2004        1           CHERRY CREEK      08 01779779 0400000US08    08     CO Colorado   00 268429343790
+# 14 IAW02344-0096 2004        1          BEAVER BRANCH      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
+# 15 IAW02344-0096 2004        2          BEAVER BRANCH      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
+# 16 IAW02344-0097 2004        1 WEST NISHNABOTNA RIVER      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
+# 17 IAW02344-0097 2004        2       WEST NISHNABOTNA      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
+# 18 IAW02344-0098 2004        1  UNN TRIB. OTTER CREEK      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
+#        awater state_name state_abbr jurisdiction_type                   geometry
+# 13 1175112870   Colorado         CO             state POINT (-104.7643 39.35901)
+# 14 1077808017       Iowa         IA             state POINT (-94.08973 41.95088)
+# 15 1077808017       Iowa         IA             state POINT (-94.08973 41.95088)
+# 16 1077808017       Iowa         IA             state POINT (-95.40089 41.33272)
+# 17 1077808017       Iowa         IA             state POINT (-95.40089 41.33272)
+#18 1077808017       Iowa         IA             state POINT (-91.92294 42.70254)
+```
+
+#### Excercise 4: Aggregation
+
+Now that we've joined water quality data based on proximity to our WSA sample sites, we can aggregate the results for each WSA site.  
+
+What happened in the previous spatial join step we performed was that we generated a new record for every water quality site within the proximity we gave to our WSA sites - check the number of records in the wsa_iowa data versus the number of records in our join result - we haved repeated records for unique WSA sites.  
+
+So let's aggregate results using dplyr - take a few minutes and see if you can figure out how on your own! The answer is in the SourceCode.R file, but try a bit on your own first, and then if needed run and try to follow the anwer code in SourceCode.R file.
 
 
+For performing spatial aggregation, the idea is to take some spatial data, and summarize that data in relation to another spatial grouping variable (think city populations averaged by state).  Using some of the data we've used in previous steps, we can accomplish this in a couple of ways.
 
+Let's grab some chemistry data for the WSA sites we've been using so far:
 
+```r
+download <- getURL("https://www.epa.gov/sites/production/files/2014-10/waterchemistry.csv")
+
+wsa_chem <- read.csv(text = download)
+wsa$COND <- wsa_chem$COND[match(wsa$SITE_ID, wsa_chem$SITE_ID)]
+```
+
+Let's join the chemistry data to WSA sites - we're going to summarize the data by states, so let's also plot all the WSA sites with states.
+
+```r
+states <- st_transform(states, st_crs(wsa))
+plot(states$geometry, axes=TRUE)
+```
+
+![States_WSA.png](/AWRA_GIS_R_Workshop/figure/States_WSA.png)
+
+Now we'll roll together join and dplyr group-by and summarize to get a conducivity per state object which we'll map using ggplot and geom_sf
+```r
+avg_cond_state <- st_join(states, wsa) %>%
+  dplyr::group_by(name) %>%
+  dplyr::summarize(MeanCond = mean(COND, na.rm = TRUE))
+
+plot(avg_cond_state['MeanCond'])
+```
+![mean-cond](../../../img/mean-cond.png)
 
 
 
