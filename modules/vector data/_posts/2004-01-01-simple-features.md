@@ -98,6 +98,8 @@ Let's subset our feature to just the US plains ecoregions using the 'ECOWSA9' va
 
 ![](../../../img/ecoregions_withlegend_7_27_2016_cropped2.jpg)
 
+*Image from: [https://www.epa.gov/national-aquatic-resource-surveys/nars-ecoregion-descriptions](https://www.epa.gov/national-aquatic-resource-surveys/nars-ecoregion-descriptions)*
+
 ---
 
 ```r
@@ -109,72 +111,56 @@ plot(wsa_plains$geometry, col='red', add=T)
 ![](../../../img/wsa-red-plains.png)
 
 
+#### Excercise 2. Spatial Subsetting & Intersecting
 
-
-
-
-
-
-#### `dplyr` and `sf`
-
-Remember we said one of the advantages of `sf` is that it fits into the `tidyverse` way of operating that streamlines our ability to work with spatial data in R.  One concrete example, which we'll build on in this section, is that we can manipulate and reshape `sf` spatial data directly using `dplyr` and `tidyr` verbs.  
-
-Let's do the same subsetting step above using `dplyr` - for some of you this will be familiar territory, for others it may be confusing - the idea with `dplyr` and 'chained' operations is that it allows you to do more expressive sequences of operations on data in the order you typically think about doing it, rather than created convoluted nested statements in R.
+Now let's grab some administrative boundary data, for instance US states.  After bringing in, let's examine the coordinate system and compare with the coordinate system of the WSA data we already have loaded.  Remember, in `sf`, as with `sp`, we need to have data in the same CRS in order to do any kind of spatial operations involving both datasets.
 
 ```r
-wsa_plains <- wsa %>%
-  dplyr::filter(ECOWSA9 %in% c("TPL","NPL","SPL"))
+library(USAboundaries)
+states  <- us_states()
+levels(as.factor(states$state_abbr))
+states <- states[!states$state_abbr %in% c('AK','PR','HI'),]
+
+# Check for equal CRS
+st_crs(states) == st_crs(wsa_plains)
 ```
 
-The `dply` package has methods to summarize and manipulate data:
-
-* select() keeps only certain variables
-* rename() renames a variable and leaves all others unchanged
-* filter() returns rows that match a certain condition(s)
-* mutate() adds new variables based on existing variables
-* transmute() creates new variables and drops existing variables
-* arrange() sorts the data frame the by a variable(s)
-* slice() selects rows based on row number
-* sample_n() samples n features randomly
-
-
-
-
-Note that this is now still a dataframe but with an additional geometry column. `sf` objects are still a data frame, but have an additional list-column for geometry. 
+They're not equal. We'll tranfsorm the WSA sites to same CRS as states.
 
 ```r
-head(wsa_plains[,c(1,60)])
+wsa_plains <- st_transform(wsa_plains, st_crs(states))
 ```
-```
-##Simple feature collection with 6 features and 1 field
-##Attribute-geometry relationship: 1 constant, 0 aggregate, 0 identity
-##geometry type:  POINT
-##dimension:      XY
-##bbox:           xmin: -104.7643 ymin: 39.35901 xmax: -91.92294 ymax: 42.70254
-##epsg (SRID):    4269
-##proj4string:    +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs
-##        SITE_ID                    geometry
-##13        CC0001  POINT(-104.76432 39.35901)
-##14 IAW02344-0096 POINT(-94.089731 41.950878)
-##15 IAW02344-0096 POINT(-94.089731 41.950878)
-##16 IAW02344-0097 POINT(-95.400885 41.332723)
-##17 IAW02344-0097 POINT(-95.400885 41.332723)
-##18 IAW02344-0098   POINT(-91.92294 42.70254)
-```
-We can do simple plotting just as with `sp` spatial objects. `sf` by default creates a multi-panel lattice plot much like the `sp` package `spplot` function - either plot particular columns in multiple plots or specify the `geometry` column to make a single simple plot.  Note how it's easy to use graticules as a parameter for `plot` in `sf`. 
+
+Now we can plot together in base R.
 
 ```r
-plot(wsa_plains[c(46,56)], graticule = st_crs(wsa_plains), axes=TRUE)
+plot(states$geometry, axes=TRUE)
+plot(wsa_plains$geometry, col='blue',add=TRUE)
 ```
+![States_WSASites.png](/AWRA_GIS_R_Workshop/figure/States_WSASites.png)
 
-![WSASites](/AWRA_GIS_R_Workshop/figure/WSASites.png)
-
-Try some of these variations and see if they make sense to you.
+Spatial subsetting is an essential spatial task and it can be performed just like you would subset a table in R.  Say we want to pull out just the states that intersect our 'wsa_plains' sites. 
 
 ```r
-plot(wsa_plains[c(38,46)],graticule = st_crs(wsa_plains), axes=TRUE)
-plot(wsa_plains['geometry'], main='Keeping things simple',graticule = st_crs(wsa_plains), axes=TRUE)
+plains_states <- states[wsa_plains,] #Yes!!!
+plot(plains_states$geometry)
 ```
+
+There are actually several ways to achieve the same thing - here's another:
+
+```r
+plains_states <- states[wsa_plains,op = st_intersects]
+```
+
+And we can do another attribute subset and then apply a spatial subset yet another way - verify this works for you by plotting results together
+
+```r
+iowa = states[states$state_abbr=='IA',]
+iowa_sites <- st_intersection(wsa_plains, iowa)
+```
+
+![](../../../img/iowa-sites.png)
+
 
 
 
