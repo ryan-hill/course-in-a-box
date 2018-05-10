@@ -3,8 +3,7 @@ title: "plotly and Mapview"
 output: 
   html_document:
     keep_md: true
-self_contained: yes
-htmlwidgets: true
+htmlwidgets: TRUE
 ---
 
 <script src="../../../js/hideoutput.js"></script>
@@ -38,8 +37,10 @@ The plotly library lets you easily create interactive plots in R.
 ```{r plotlyex1}
 library(plotly)
 p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
-p
+tmpFile <- tempfile(fileext = ".png")
+export(p, file = tmpFile)
 ```
+<!-- ![](`r tmpFile`) -->
 
 ### mapview
 
