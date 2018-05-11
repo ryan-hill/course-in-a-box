@@ -256,7 +256,7 @@ plot(avg_cond_state['MeanCond'])
 <br>
 ### Challenge
 
-Can you identify states whose center is NE, SE, NW, or SW of the center of the US? Can you dissolve the borders between these groups? 
+Can you identify states that have centers NE, SE, NW, or SW of the center of the US? Can you dissolve the borders between these groups? 
 
 <details> 
   <summary>Click here to cheat! (click to see answer)</summary>
