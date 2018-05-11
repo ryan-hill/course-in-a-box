@@ -176,7 +176,7 @@ So we're asking, in code below, "what state is each WSA site in?", based on wher
 wsa_plains <- wsa_plains[c(1:4,60)]
 wsa_plains <- st_join(wsa_plains, plains_states)
 # verify your results
-head(wsa_plains)
+plot(wsa_plains['state_abbr'], add = T, pch=19)
 ```
 
 ![](../../../img/wsa-plains.png)
@@ -207,9 +207,13 @@ The `dply` package has methods to summarize and manipulate data:
 
 #### Excercise 5: Dissolve
 
-Dissolve is a common task in GIS. Let's dissolve the states boundaries of the US. 
+Dissolve is a common task in GIS. Let's dissolve the states boundaries of the US. You can use the `st_union` function to dissolve borders of polygons.
 
+```r
+plot(st_union(states))
+```
 
+![](../../../img/wsa-plains.png)
 
 #### Excercise 6: Aggregation
 
@@ -226,7 +230,6 @@ Let's grab some chemistry data for the WSA sites we've been using so far:
 
 ```r
 download <- getURL("https://www.epa.gov/sites/production/files/2014-10/waterchemistry.csv")
-
 wsa_chem <- read.csv(text = download)
 wsa$COND <- wsa_chem$COND[match(wsa$SITE_ID, wsa_chem$SITE_ID)]
 ```
@@ -236,6 +239,7 @@ Let's join the chemistry data to WSA sites - we're going to summarize the data b
 ```r
 states <- st_transform(states, st_crs(wsa))
 plot(states$geometry, axes=TRUE)
+plot(wsa$geometry, add=T)
 ```
 
 ![States_WSA.png](/AWRA_GIS_R_Workshop/figure/States_WSA.png)
@@ -245,7 +249,6 @@ Now we'll roll together join and dplyr group-by and summarize to get a conducivi
 avg_cond_state <- st_join(states, wsa) %>%
   dplyr::group_by(name) %>%
   dplyr::summarize(MeanCond = mean(COND, na.rm = TRUE))
-
 plot(avg_cond_state['MeanCond'])
 ```
 ![mean-cond](../../../img/mean-cond.png)
