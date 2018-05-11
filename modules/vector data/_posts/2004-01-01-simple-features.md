@@ -213,7 +213,7 @@ Dissolve is a common task in GIS. Let's dissolve the states boundaries of the US
 plot(st_union(states))
 ```
 
-![](../../../img/wsa-plains.png)
+![](../../../img/us-border.png)
 
 #### Excercise 6: Aggregation
 
