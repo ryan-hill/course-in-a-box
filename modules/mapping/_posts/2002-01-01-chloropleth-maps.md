@@ -1,4 +1,10 @@
-# Chloropleth Maps
+---
+title: "Chloropleth Maps"
+output: 
+  html_document:
+    keep_md: true
+self_contained: yes
+---
 
 <script src="../../../js/hideoutput.js"></script>
 
@@ -8,9 +14,7 @@ In the last submodule we learned a lot of the nitty gritty details of mapping po
 
 ![](../../../img/chloroex.jpg)
 
-These maps are not without criticism and it's worth noting that they can sometimes obscure relationships by mis-representing scale. Just keep that in mind when creating chloropleth maps and don't use them beyond their abilities, i.e., they are exploratory in nature.
-
-<!-- http://strimas.com/r/tidy-sf/ -->
+These maps are not without criticism and it's worth noting that they can sometimes obscure relationships by mis-representing scale. As we'll see later with micromaps, they also score gloriously low in the information to ink ratio.  Just keep these issues in mind when creating chloropleth maps and don't use them beyond their abilities, i.e., they are at best exploratory in nature.
 
 The requirement of course with chloropleth maps is the need to have secondary data to plot. Either this is included in the data as part of the collected information or it's derived by you the analyst.  The example we'll go through now will focus on the latter example where we use simple spatial operations to estimate polygon areas as our variable to show in the map.  
 
@@ -37,13 +41,13 @@ head(counties)
 ## bbox:           xmin: -88.01778 ymin: 30.24071 xmax: -85.06131 ymax: 34.2686
 ## epsg (SRID):    4326
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-##                         geometry              ID
-## 1 MULTIPOLYGON (((-86.50517 3... alabama,autauga
-## 2 MULTIPOLYGON (((-87.93757 3... alabama,baldwin
-## 3 MULTIPOLYGON (((-85.42801 3... alabama,barbour
-## 4 MULTIPOLYGON (((-87.02083 3...    alabama,bibb
-## 5 MULTIPOLYGON (((-86.9578 33...  alabama,blount
-## 6 MULTIPOLYGON (((-85.66866 3... alabama,bullock
+##                ID                       geometry
+## 1 alabama,autauga MULTIPOLYGON (((-86.50517 3...
+## 2 alabama,baldwin MULTIPOLYGON (((-87.93757 3...
+## 3 alabama,barbour MULTIPOLYGON (((-85.42801 3...
+## 4    alabama,bibb MULTIPOLYGON (((-87.02083 3...
+## 5  alabama,blount MULTIPOLYGON (((-86.9578 33...
+## 6 alabama,bullock MULTIPOLYGON (((-85.66866 3...
 ```
 
 We can leverage some of the simple functions in `sf` to estimate an area for each county as a derived spatial variable.  The `st_area` function can peform this operation quickly.  You might get a warning saying you need to install the `lwgeom` package, so make sure to install as needed.
@@ -87,13 +91,13 @@ head(counties)
 ## bbox:           xmin: -88.01778 ymin: 30.24071 xmax: -85.06131 ymax: 34.2686
 ## epsg (SRID):    4326
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-##                         geometry              ID     area
-## 1 MULTIPOLYGON (((-86.50517 3... alabama,autauga 1489.348
-## 2 MULTIPOLYGON (((-87.93757 3... alabama,baldwin 4107.739
-## 3 MULTIPOLYGON (((-85.42801 3... alabama,barbour 2331.593
-## 4 MULTIPOLYGON (((-87.02083 3...    alabama,bibb 1543.364
-## 5 MULTIPOLYGON (((-86.9578 33...  alabama,blount 1634.238
-## 6 MULTIPOLYGON (((-85.66866 3... alabama,bullock 1614.622
+##                ID     area                       geometry
+## 1 alabama,autauga 1489.348 MULTIPOLYGON (((-86.50517 3...
+## 2 alabama,baldwin 4107.739 MULTIPOLYGON (((-87.93757 3...
+## 3 alabama,barbour 2331.593 MULTIPOLYGON (((-85.42801 3...
+## 4    alabama,bibb 1543.364 MULTIPOLYGON (((-87.02083 3...
+## 5  alabama,blount 1634.238 MULTIPOLYGON (((-86.9578 33...
+## 6 alabama,bullock 1614.622 MULTIPOLYGON (((-85.66866 3...
 ```
 
 Mapping the area to the fill aesthetic is now straight-forward and we have our first chloropleth map.
@@ -193,7 +197,7 @@ In this exercise we'll make a chloropleth map of state areas, just as we did abo
 
 1. Make a new code chunk in your R Markdown file and load the `sf`, `maps`, and `ggplot2` libraries.
 
-1. Create an `sf` object of states from the `maps` package: `states <- st_as_sf(map(region = 'usa', plot = F, fill = T))`
+1. Create an `sf` object of states from the `maps` package: `states <- st_as_sf(map('state', plot = F, fill = T))`
 
 1. Use the `st_area` function to estimate the area of each state.  Make this a numeric object (`as.numeric`), convert it to square kilometers (divide by `1e6`), and bind it to the states object you just created (`states$area <- area`).
 

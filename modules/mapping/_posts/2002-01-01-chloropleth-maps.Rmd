@@ -130,7 +130,7 @@ In this exercise we'll make a chloropleth map of state areas, just as we did abo
 
 1. Make a new code chunk in your R Markdown file and load the `sf`, `maps`, and `ggplot2` libraries.
 
-1. Create an `sf` object of states from the `maps` package: `states <- st_as_sf(map(region = 'usa', plot = F, fill = T))`
+1. Create an `sf` object of states from the `maps` package: `states <- st_as_sf(map('state', plot = F, fill = T))`
 
 1. Use the `st_area` function to estimate the area of each state.  Make this a numeric object (`as.numeric`), convert it to square kilometers (divide by `1e6`), and bind it to the states object you just created (`states$area <- area`).
 
