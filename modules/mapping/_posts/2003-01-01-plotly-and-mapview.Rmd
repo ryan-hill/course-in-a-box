@@ -18,6 +18,8 @@ library(ggrepel)
 library(plotly)
 ```
 
+__The plots on this submodule are not interactive, please visit the page [here](https://fawda123.github.io/sfs-r-gis-2018-supp/modules/plotly-and-mapview.html) for the full experience!__
+
 We've seen how to use some of the basic plotting features in R to create static maps in the last two sub-modules.  Although static maps are still the de facto format for publications, interacting with the plot data can be much more informative.  R is no longer limited to static plotting since several new package have been introduced in the last few years.  Most of these packages link R code to existing plotting libraries that were developed in other languages (e.g., JavaScript).  Many of these new packages also work well with web integration, adding a new level of experience and collaboration to your owrk.  These are not new packages in the computing world, just new to the R universe.  They are insanely easy to use if you know just a bit of R code and they interface really well with R Markdown.  
 
 We'll introduce the following packages in this submodule:
