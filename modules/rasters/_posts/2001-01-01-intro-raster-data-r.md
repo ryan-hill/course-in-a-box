@@ -23,6 +23,8 @@ All that said, `raster` has not been updated in the last year - there has been d
 - Understand basic structure of rasters in R and how to manipulate
 - Try some typical GIS-y operations on raster data in R like performing zonal statistics
 
+#### Rasters
+
 Let's create an empty `RasterLayer` object - we have to define the matrix (rows and columns) the spatial bounding box, and then we provide values to the cells using the runif function to derive random values from the uniform distribution.
 ```r
 library(raster)
@@ -38,11 +40,34 @@ plot(r)
 
 When you look at summary information for the `RasterLayer`, by simply typing "r", you'll notice the main information defining a `RasterLayer` object described.  Minimal information needed to define a `RasterLayer` include the number of columns and rows, the bounding box or spatial extent of the raster, and the coordinate reference system.  What do you notice about the coordinate reference system of the raster we just generated from scratch?
 
-An important feature of the `raster` package is that when you load a raster from disk, it is not loaded into memory. However, this raster we made from scratch is in memory but very small. Instead, it reads information about the raster into memory, such as its dimensions, its extent, and more. This makes loading and working with rasters as it will only ever load into memory what is needed for a specific task. For example, you can access raster values via direct indexing or line/column indexing. The `raster` package accesses just those locations on the disk. Take a minute to see how this works using raster r we just created - the syntax is:
+An important feature of the `raster` package is that when you load a raster, it is not actually loaded into memory. However, this raster we made from scratch is in memory but very small. Instead, it reads information about the raster into memory, such as its dimensions, its extent, and more. This makes loading and working with rasters as it will only ever load into memory what is needed for a specific task. For example, you can access raster values via direct indexing or line/column indexing. The `raster` package accesses just those locations on the disk. Take a minute to see how this works using raster r we just created - the syntax is:
 
 ```r
 r[i]
 r[line, column]
+```
+
+#### RasterStacks
+
+A  `RasterStack` is a raster object with multiple raster layers - essentially a multi-band raster.  `RasterStack` and `RasterBrick` are very similar and we won't delve into differences much here - basically, a `RasterStack` can virtually connect several `RasterLayer` objects in memory and allows pixel-based calculations on separate raster layers, while a `RasterBrick` has to refer to a single multi-layer file or multi-layer object.  Note that methods that operate on either a `RasterStack` or `RasterBrick` usually return a `RasterBrick`, and processing will be mor efficient on a `RasterBrick` object.  
+
+It's easy to manipulate our `RasterLayer` to make a couple new layers, and then stack layers:
+
+```r
+r2 <- r * 50
+r3 <- sqrt(r * 5)
+s <- stack(r, r2, r3)
+s
+plot(s)
+```
+
+![plot-stack1](../../../img/plot-stack1.png)
+
+Same process for generating a raster brick (here I make layers and create a `RasterBrick` in same step):
+
+```r
+b <- brick(x=c(r, r * 50, sqrt(r * 5)))
+b
 ```
 
 
