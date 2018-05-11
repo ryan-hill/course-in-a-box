@@ -78,7 +78,7 @@ class(wsa)
 Because this dataframe has coordinate information, we can promotote it to an `sf` spatial object.
 
 ```r
-wsa = st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")
+wsa <- st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")
 str(wsa)
 plot(wsa$geometry)
 ```
@@ -88,7 +88,7 @@ plot(wsa$geometry)
 Notice that in the plot we used `wsa$geometry`. By default, `sf` will create a multi-pane plot, one for each column in the data frame, which can take a long time if you have many columns. However, it can be convenient if you want to plot several columns.
 
 ```r
-plot(wsa[c(46,56)], graticule = st_crs(wsa), axes=TRUE)
+plot(wsa[c('ECOWSA9','HUC8')], graticule = st_crs(wsa), axes=TRUE)
 ```
 
 ![](../../../img/sf-column-plots.png)
@@ -105,6 +105,7 @@ Let's subset our feature to just the US plains ecoregions using the 'ECOWSA9' va
 ```r
 levels(wsa$ECOWSA9)
 wsa_plains <- wsa[wsa$ECOWSA9 %in% c("TPL","NPL","SPL"), ]
+plot(wsa)
 plot(wsa_plains$geometry, col='red', add=T)
 ```
 
@@ -157,6 +158,7 @@ And we can do another attribute subset and then apply a spatial subset yet anoth
 ```r
 iowa = states[states$state_abbr=='IA',]
 iowa_sites <- st_intersection(wsa_plains, iowa)
+plot(iowa_sites$geometry, col='red', add = T)
 ```
 
 ![](../../../img/iowa-sites.png)
@@ -176,28 +178,9 @@ wsa_plains <- st_join(wsa_plains, plains_states)
 # verify your results
 head(wsa_plains)
 ```
-```
-# simple feature collection with 6 features and 16 fields
-# geometry type:  POINT
-# dimension:      XY
-# bbox:           xmin: -104.7643 ymin: 39.35901 xmax: -91.92294 ymax: 42.70254
-# epsg (SRID):    4326
-# proj4string:    +proj=longlat +datum=WGS84 +no_defs
-#          SITE_ID YEAR VISIT_NO               SITENAME statefp  statens    affgeoid geoid stusps     name lsad        aland
-# 13        CC0001 2004        1           CHERRY CREEK      08 01779779 0400000US08    08     CO Colorado   00 268429343790
-# 14 IAW02344-0096 2004        1          BEAVER BRANCH      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
-# 15 IAW02344-0096 2004        2          BEAVER BRANCH      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
-# 16 IAW02344-0097 2004        1 WEST NISHNABOTNA RIVER      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
-# 17 IAW02344-0097 2004        2       WEST NISHNABOTNA      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
-# 18 IAW02344-0098 2004        1  UNN TRIB. OTTER CREEK      19 01779785 0400000US19    19     IA     Iowa   00 144667643793
-#        awater state_name state_abbr jurisdiction_type                   geometry
-# 13 1175112870   Colorado         CO             state POINT (-104.7643 39.35901)
-# 14 1077808017       Iowa         IA             state POINT (-94.08973 41.95088)
-# 15 1077808017       Iowa         IA             state POINT (-94.08973 41.95088)
-# 16 1077808017       Iowa         IA             state POINT (-95.40089 41.33272)
-# 17 1077808017       Iowa         IA             state POINT (-95.40089 41.33272)
-#18 1077808017       Iowa         IA             state POINT (-91.92294 42.70254)
-```
+
+![](../../../img/wsa-plains.png)
+
 <br>
 
 #### Excercise 4: `dplyr` and `sf`
@@ -222,9 +205,13 @@ The `dply` package has methods to summarize and manipulate data:
 * slice() selects rows based on row number
 * sample_n() samples n features randomly
 
----------------------add example of dissolve----------------------
+#### Excercise 5: Dissolve
 
-#### Excercise 5: Aggregation
+Dissolve is a common task in GIS. Let's dissolve the states boundaries of the US. 
+
+
+
+#### Excercise 6: Aggregation
 
 Now that we've joined water quality data based on proximity to our WSA sample sites, we can aggregate the results for each WSA site.  
 
