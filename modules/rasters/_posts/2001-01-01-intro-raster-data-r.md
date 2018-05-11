@@ -35,3 +35,15 @@ plot(r)
 ```
 
 ![BasicRaster](/AWRA_GIS_R_Workshop/figure/BasicRaster.png)
+
+When you look at summary information for the `RasterLayer`, by simply typing "r", you'll notice the main information defining a `RasterLayer` object described.  Minimal information needed to define a `RasterLayer` include the number of columns and rows, the bounding box or spatial extent of the raster, and the coordinate reference system.  What do you notice about the coordinate reference system of the raster we just generated from scratch?
+
+You can access raster values via direct indexing or line, column indexing - take a minute to see how this works using raster r we just created - the syntax is:
+
+```r
+r[i]
+r[line, column]
+```
+
+An important feature of the `raster` package is that when you load a raster, it is not loaded into memory (at least not intially). 
+
