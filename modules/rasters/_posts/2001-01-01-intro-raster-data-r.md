@@ -18,10 +18,10 @@ The `raster` package uses three classes / types of objects to represent raster d
 
 All that said, `raster` has not been updated in the last year - there has been discussion in the R spatial developer world among several folks of updating / modifying raster to be both `sf` and pipe-based workflow friendly - it looks like this is coalescing in the `stars: spatiotemporal tidy arrays for R` package being developed by Edzer Pebezma, Michael Sumer, and Etienne Racine.  Their [proposal](https://github.com/r-spatial/stars/blob/master/PROPOSAL.md) outlines the approach they are taking - you can play with the [development version](https://www.r-spatial.org/r/2017/11/23/stars1.html) but it is still very much in alpha stages. 
 
-### Module Goals
+By the end of this module, you will: 
 - Understand how to create, load, and analyze raster data in R
 - Understand basic structure of rasters in R and how to manipulate
-- Try some typical GIS-y operations on raster data in R like performing zonal statistics
+- Be able to conduct operations on raster data, such as zonal statistics
 
 <br>
 #### Rasters
