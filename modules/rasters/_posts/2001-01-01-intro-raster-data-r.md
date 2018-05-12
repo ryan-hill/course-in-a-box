@@ -6,7 +6,7 @@ title: "Introduction to Raster Data"
 
 ---
 
-Rasters are the second fundamental GIS data type and one that works very will in R. the prefered method far and away is to use the `raster` package by Robert J. Hijmans.  The `raster` package has made working with raster data (as well as vector spatial data for some things) much easier and more efficient.  The `raster` package allows you to:
+Rasters are the other fundamental GIS data type and one that works very will in R. the prefered method far and away is to use the `raster` package by Robert J. Hijmans.  The `raster` package has made working with raster data (as well as vector spatial data for some things) much easier and more efficient.  The `raster` package allows you to:
 - read and write almost any commonly used raster data format using `rgdal`
 - create rasters, do typical raster processing operations such as resampling, projecting, filtering, raster math, etc.
 - work with files on disk that are too big to read into memory in R
