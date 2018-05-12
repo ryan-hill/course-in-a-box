@@ -23,6 +23,7 @@ All that said, `raster` has not been updated in the last year - there has been d
 - Understand basic structure of rasters in R and how to manipulate
 - Try some typical GIS-y operations on raster data in R like performing zonal statistics
 
+<br>
 #### Rasters
 
 Let's create an empty `RasterLayer` object - we have to define the matrix (rows and columns) the spatial bounding box, and then we provide values to the cells using the runif function to derive random values from the uniform distribution.
@@ -47,6 +48,7 @@ r[i]
 r[line, column]
 ```
 
+<br>
 #### RasterStacks
 
 A  `RasterStack` is a raster object with multiple raster layers - essentially a multi-band raster.  `RasterStack` and `RasterBrick` are very similar and we won't delve into differences much here - basically, a `RasterStack` can virtually connect several `RasterLayer` objects in memory and allows pixel-based calculations on separate raster layers, while a `RasterBrick` has to refer to a single multi-layer file or multi-layer object.  Note that methods that operate on either a `RasterStack` or `RasterBrick` usually return a `RasterBrick`, and processing will be mor efficient on a `RasterBrick` object.  
