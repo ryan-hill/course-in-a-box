@@ -72,4 +72,6 @@ b <- brick(x=c(r, r * 50, sqrt(r * 5)))
 b
 ```
 
+---
 
+In the next section, we'll work with real raster data and do exploratory analyses. 
