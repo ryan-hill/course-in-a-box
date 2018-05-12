@@ -5,6 +5,7 @@ output:
     keep_md: true
 ---
 
+# plotly and Mapview
 
 
 __The plots on this submodule are not interactive, please visit the page [here](https://fawda123.github.io/sfs-r-gis-2018-supp/modules/plotly-and-mapview.html) for the full experience!__
@@ -37,7 +38,7 @@ library(plotly)
 p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
 p
 ```
-![](../img/unnamed-chunk-3-1.png)<!-- -->
+![](../../../img/plotlyex1-1.png)<!-- -->
 
 We can see in this simple scatter plot many of the added features that are provided with plotly.  Mouse over any of the points and you can see the corresponding values on the x and y axes.  Different subsets of the data can also be emphasized with the zooming options.    
 
@@ -49,7 +50,7 @@ p <- ggplot(data = iris, aes(x = Petal.Width, fill = Species)) +
   geom_histogram()
 ggplotly(p)
 ```
-![](../img/unnamed-chunk-4-1.png)<!-- -->
+![](../../../img/plotlyex2-1.png)<!-- -->
 
 Plotly is also very adept at creating three-dimensional plots, which of course requires three-dimensional data.
 
@@ -76,7 +77,7 @@ The development version of plotly can work directly with `sf` objects (noticing 
 ```r
 plot_ly(states)
 ```
-![](../img/unnamed-chunk-8-1.png)<!-- -->
+![](../../../img/plotlysts1-1.png)<!-- -->
 
 This is our basemap so let's change some of the arguments to make the map more useful.
 
@@ -89,7 +90,7 @@ This is our basemap so let's change some of the arguments to make the map more u
 ```r
 plot_ly(states, split = ~ID, color = ~ area, showlegend = F, alpha = 1)
 ```
-![](../img/unnamed-chunk-10-1.png)<!-- -->
+![](../../../img/plotlysts2-1.png)<!-- -->
 
 We can also change the color scheme with the `colors` (note plural) argument.  We can use any of the palettes from RColorBrewer.
 
@@ -97,7 +98,7 @@ We can also change the color scheme with the `colors` (note plural) argument.  W
 ```r
 plot_ly(states, split = ~ID, color = ~ area, colors = 'PiYG', showlegend = F, alpha = 1)
 ```
-![](../img/unnamed-chunk-12-1.png)<!-- -->
+![](../../../img/plotlysts3-1.png)<!-- -->
 
 As a side note, this same code works for the counties data we used in the last sub-module.  It just takes a while render... try this code on your own. 
 

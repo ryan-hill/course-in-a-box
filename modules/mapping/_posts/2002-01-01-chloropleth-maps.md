@@ -6,7 +6,7 @@ output:
 self_contained: yes
 ---
 
-<script src="../../../js/hideoutput.js"></script>
+# Chloropleth maps
 
 
 
@@ -138,7 +138,7 @@ ggplot() +
 
 ![](../../../img/cntygm2-1.png)<!-- -->
 
-We could have also used the full specification by type and palette index (the spectral palette is ninth from the bottom on the divergent scale.
+We could have also used the full specification by type and palette index (the PuOr palette is fourth from the bottom on the divergent scale.
 
 ```r
 ggplot() +

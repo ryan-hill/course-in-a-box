@@ -6,7 +6,7 @@ output:
 self_contained: yes
 ---
 
-<script src="../../../js/hideoutput.js"></script>
+# Chloropleth maps
 
 ```{r echo = F, message = F, warning = F}
 knitr::opts_chunk$set(fig.path = '../../../img/')
@@ -91,7 +91,7 @@ ggplot() +
   scale_fill_distiller(palette = 'PuOr')
 ```
 
-We could have also used the full specification by type and palette index (the spectral palette is ninth from the bottom on the divergent scale.
+We could have also used the full specification by type and palette index (the PuOr palette is fourth from the bottom on the divergent scale.
 ```{r cntygm3}
 ggplot() +
   geom_sf(data = counties, aes(fill = area)) +

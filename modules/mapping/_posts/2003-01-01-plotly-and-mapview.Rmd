@@ -5,8 +5,9 @@ output:
     keep_md: true
 ---
 
+# plotly and Mapview
 ```{r echo = F, message = F, warning = F}
-knitr::opts_chunk$set(fig.path = '../img/', message = F, warning = F)
+knitr::opts_chunk$set(fig.path = '../../../img/', message = F, warning = F)
 
 library(tidyverse)
 library(maps)
@@ -41,12 +42,12 @@ install_github("ropensci/plotly")
 
 Now can load the plotly library and create a simple scatterplot. 
 
-```{r plotlyex1, eval = F}
+```{r, eval = F}
 library(plotly)
 p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
 p
 ```
-```{r, echo = F}
+```{r plotlyex1, echo = F}
 library(plotly)
 p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
 tmpFile <- tempfile(fileext = ".png")
@@ -57,12 +58,12 @@ We can see in this simple scatter plot many of the added features that are provi
 
 A nice feature of the plotly library is the seamless integration with ggplot.  The `ggplotly` function can be appended to any ggplot object to convert it to an interactive plotly chart. If you know how to use ggplot, you can use plotly. 
 
-```{r plotlyex2, eval = F}
+```{r, eval = F}
 p <- ggplot(data = iris, aes(x = Petal.Width, fill = Species)) + 
   geom_histogram()
 ggplotly(p)
 ```
-```{r, echo = F}
+```{r plotlyex2, echo = F}
 p <- ggplot(data = iris, aes(x = Petal.Width, fill = Species)) + 
   geom_histogram()
 p <- ggplotly(p)
@@ -92,7 +93,7 @@ The development version of plotly can work directly with `sf` objects (noticing 
 ```{r, eval = F}
 plot_ly(states)
 ```
-```{r, echo = F}
+```{r plotlysts1, echo = F}
 p <- plot_ly(states)
 tmpFile <- tempfile(fileext = ".png")
 export(p, file = tmpFile)
@@ -108,7 +109,7 @@ This is our basemap so let's change some of the arguments to make the map more u
 ```{r, eval = F}
 plot_ly(states, split = ~ID, color = ~ area, showlegend = F, alpha = 1)
 ```
-```{r, echo = F}
+```{r plotlysts2, echo = F}
 p <- plot_ly(states, split = ~ID, color = ~ area, showlegend = F, alpha = 1)
 tmpFile <- tempfile(fileext = ".png")
 export(p, file = tmpFile)
@@ -119,7 +120,7 @@ We can also change the color scheme with the `colors` (note plural) argument.  W
 ```{r, eval = F}
 plot_ly(states, split = ~ID, color = ~ area, colors = 'PiYG', showlegend = F, alpha = 1)
 ```
-```{r, echo = F}
+```{r plotlysts3, echo = F, fig.height = 4, fig.width = 6}
 p <- plot_ly(states, split = ~ID, color = ~ area, colors = 'PiYG', showlegend = F, alpha = 1)
 tmpFile <- tempfile(fileext = ".png")
 export(p, file = tmpFile)
