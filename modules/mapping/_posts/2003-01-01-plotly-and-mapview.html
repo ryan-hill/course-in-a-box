@@ -307,8 +307,8 @@ $(document).ready(function () {
 </div>
 
 
-<div id="plotly-and-mapview" class="section level1">
-<h1>plotly and Mapview</h1>
+<div id="interactive-mapping-with-plotly-and-mapview" class="section level1">
+<h1>Interactive mapping with plotly and mapview</h1>
 <p><strong>The plots on this submodule are not interactive, please visit the page <a href="https://fawda123.github.io/sfs-r-gis-2018-supp/modules/plotly-and-mapview.html">here</a> for the full experience!</strong></p>
 <p>We’ve seen how to use some of the basic plotting features in R to create static maps in the last two sub-modules. Although static maps are still the de facto format for publications, interacting with the plot data can be much more informative. R is no longer limited to static plotting since several new package have been introduced in the last few years. Most of these packages link R code to existing plotting libraries that were developed in other languages (e.g., JavaScript). Many of these new packages also work well with web integration, adding a new level of experience and collaboration to your owrk. These are not new packages in the computing world, just new to the R universe. They are insanely easy to use if you know just a bit of R code and they interface really well with R Markdown.</p>
 <p>We’ll introduce the following packages in this submodule:</p>
@@ -372,9 +372,9 @@ plot_ly(counties, split = ~ID, color = ~ area, colors = 'PiYG', showlegend = F, 
 <p>Now let’s put some of these javascript tools to use. A really cool feature of plotly is the ability to link plots through interactive brushing, such as highligtings parts of one plot and seeing where they correspond on another plot. For example, it’s clear to see from our chloropleth map of state area which one is the biggest. But what are the top ten largest states? Can we setup the plots in a way to help us view this information?</p>
 <p>The crosstalk package lets you link plotly objects. This package is installed automatically when you install plotly, but you’ll have to load it to use its features. There are a couple steps that need to happen to link the plots.</p>
 <ol style="list-style-type: decimal">
-<li>Create a <code>SharedData</code> object for the data you’re using in both plots</li>
-<li>Create both plots from the <code>SharedData</code> object by specifying how higlighing or brushing happens to select the plot elements</li>
-<li>Link the two plots using the <code>bscols</code> function.</li>
+<li><p>Create a <code>SharedData</code> object for the data you’re using in both plots</p></li>
+<li><p>Create both plots from the <code>SharedData</code> object by specifying how higlighing or brushing happens to select the plot elements</p></li>
+<li><p>Link the two plots using the <code>bscols</code> function.</p></li>
 </ol>
 <p>We’ll make this example using our states area dataset by creating a map as we’ve done before and also creating a histogram of all the areas. Step by step it looks like this:</p>
 <p>First we load the crosstalk package and create our <code>SharedData</code> object from our states data.</p>

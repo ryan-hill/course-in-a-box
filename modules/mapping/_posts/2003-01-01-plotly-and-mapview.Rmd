@@ -5,7 +5,8 @@ output:
     keep_md: true
 ---
 
-# plotly and Mapview
+# Interactive mapping with plotly and mapview
+
 ```{r echo = F, message = F, warning = F}
 knitr::opts_chunk$set(fig.path = '../../../img/', message = F, warning = F)
 
@@ -145,9 +146,11 @@ Now let's put some of these javascript tools to use.  A really cool feature of p
 
 The crosstalk package lets you link plotly objects.  This package is installed automatically when you install plotly, but you'll have to load it to use its features. There are a couple steps that need to happen to link the plots.  
 
-1) Create a `SharedData` object for the data you're using in both plots
-1) Create both plots from the `SharedData` object by specifying how higlighing or brushing happens to select the plot elements
-1) Link the two plots using the `bscols` function.
+1. Create a `SharedData` object for the data you're using in both plots
+
+1. Create both plots from the `SharedData` object by specifying how higlighing or brushing happens to select the plot elements
+
+1. Link the two plots using the `bscols` function.
 
 We'll make this example using our states area dataset by creating a map as we've done before and also creating a histogram of all the areas.  Step by step it looks like this:
 
@@ -254,15 +257,15 @@ It's also worth mentioning that mapview is built off of the leaflet package. Map
 
 For this exercise we'll download the US EPA's Wadeable Streams Assessment (WSA) data and make some simple plotly and mapview graphics. These are point data that describe different monitoring sites at streams throughout the US. 
 
-1) Make a new code chunk in your R Markdown file and load the `sf`, `plotly`, and `mapview` packages.
+1. Make a new code chunk in your R Markdown file and load the `sf`, `plotly`, and `mapview` packages.
 
-1) Run the following code to download the data: `r wsa <- read.csv("https://www.epa.gov/sites/production/files/2014-10/wsa_siteinfo_ts_final.csv")`
+1. Run the following code to download the data: `r wsa <- read.csv("https://www.epa.gov/sites/production/files/2014-10/wsa_siteinfo_ts_final.csv")`
 
-1) Convert the wsa data to an `sf` object with the following: `wsa <- st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")`
+1. Convert the wsa data to an `sf` object with the following: `wsa <- st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")`
 
-1) Use `plot_ly` to create a scatterplot of the variables `XELEV` and `WSAREA`.  Remember that we have to use `add_markers()` to create a scatterplot with `sf` objects.  If you're ggplot savvy, try creating a ggplot object first and then using `ggplotly`
+1. Use `plot_ly` to create a scatterplot of the variables `XELEV` and `WSAREA`.  Remember that we have to use `add_markers()` to create a scatterplot with `sf` objects.  If you're ggplot savvy, try creating a ggplot object first and then using `ggplotly`
 
-1) Use `mapview` to create a map of the stream sites.  Try using `XELEV` or `WSAREA` to color the points.  Alternatively, try a categorical variable for color, e.g., `ECOWSA9`.  Try changing the base map on the plot to find one that you like. 
+1. Use `mapview` to create a map of the stream sites.  Try using `XELEV` or `WSAREA` to color the points.  Alternatively, try a categorical variable for color, e.g., `ECOWSA9`.  Try changing the base map on the plot to find one that you like. 
 
 <details> 
   <summary>Click here to cheat!</summary>
