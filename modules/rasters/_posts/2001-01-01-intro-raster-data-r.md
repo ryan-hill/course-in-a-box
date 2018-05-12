@@ -1,5 +1,5 @@
-## Introduction to Raster Data
-
+---
+title: "Introduction to Raster Data"
 ---
 
 ### Goals and Motivation
