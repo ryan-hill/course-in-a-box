@@ -78,10 +78,75 @@ We can use `extract` to get elevations at out sample sites. This function return
 
 ```r
 sites$elevation <- extract(cal_elev, sites)
-plot(elevation~SampleID, data=sites@data)
+sites@data
+```
+```r
+#  SampleID elevation
+#1    Site1  133.6236
+#2    Site2  192.2931
+#3    Site3  423.4795
+#4    Site4  489.0032
+#5    Site5  679.1790
 ```
 
+### Excercise 3: Extracting data by polygon 
 
+Creating summaries within a polygon is a common and important analysis in GIS, especially in water resources where watershed summaries are often used to understand why freshwater environments differ from one another. Here, we'll walk through an example of delineating watersheds from our points and in **Excercise 2**. We'll then use these watersheds to extract summaries of some of the terrain metrics we calculated for the Calapooia River basin.
+
+To start, we wrote a custion R function that takes advantage of the USGS [StreamStats](https://streamstats.usgs.gov/ss/) online watershed delineation tool. It is worth exploring the point-and-click version. The StreamStat Service API is exposed, meaning  we can build simple text URLs that can be submitted to the server as a query. We won't go into detail for this excercise. First, we need to import the custom function
+
+```r
+library(jsonlite);library(sf);library(sp);library(geojsonio)
+#Defin function - watershed
+watershed = function(state, lon, lat){
+  p1 = 'https://streamstats.usgs.gov/streamstatsservices/watershed.geojson?rcode='
+  p2 = '&xlocation='
+  p3 = '&ylocation='
+  p4 = '&crs=4326&includeparameters=false&includeflowtypes=false&includefeatures=true&simplify=true'
+  query <-  paste0(p1, state, p2, toString(lon), p3, toString(lat), p4)
+  mydata <- fromJSON(query, simplifyVector = FALSE, simplifyDataFrame = FALSE)
+  poly_geojsonsting <- toJSON(mydata$featurecollection[[2]]$feature, auto_unbox = TRUE)
+  poly <- geojson_sp(poly_geojsonsting)
+  poly
+}
+```
+
+Now that the function is defined, we can read in our table with coordinates and run the function on them, each in turn. Doing so requires a `for` loop in which we select out each point at a time, submit its coordinates to the online service.
+
+```r#Read in the points table
+pts <- read.csv('./data/calapooia-samples.csv')
+#Loop through each point where each point is a in the table
+for(i in 1:nrow(pts)){
+  print(i) 
+  pt <- pts[i, ] #select row i from table
+  #Use info from that row to delin watershed
+  wstmp <- watershed(pt$State, pt$Lon, pt$Lat)
+  #Make sure they're in the same CRS
+  wstmp <- spTransform(wstmp, CRS(proj4string(cal_terrain)))
+  #Add a sample ID column to new watershed
+  wstmp$SampleID <- pt$SampleID
+  #Remove all unnecessary columns
+  wstmp <- wstmp[, 'SampleID']
+  #Use extract on raster brick
+  metrics <- extract(cal_terrain, wstmp, fun = 'mean', na.rm = T, small = T)
+  wstmp@data <- cbind(wstmp@data, metrics)
+  if(i == 1){
+    cal_ws <- wstmp
+  }else{
+    cal_ws <- rbind(cal_ws, wstmp)
+  }
+} 
+#Plot to see if it worked
+plot(cal_elev)
+plot(cal_ws, add = T)
+plot(sites, add = T, pch=20)
+```
+
+![cal-watersheds](../../../img/cal-watersheds.png)
+
+---
+
+In addition to delineating the watersheds, the loop used the `extract` function with `fun = mean` to calculate the mean of each of the layers in the RasterBrick **cal_terrain**
 
 
 
