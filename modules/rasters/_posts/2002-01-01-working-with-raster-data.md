@@ -129,10 +129,10 @@ The raster package has a function called `terrain` that can calculate a suite of
 ```r
 cal_terrain <- terrain(cal_elev, opt = c("slope","aspect", "tri",
                                           "tpi","roughness","flowdir"))
-plot(cal_terrain)`
+plot(cal_terrain)
 ```
  
- ![terrain](../../../img/terrain.png)
+![terrain](../../../img/terrain.png)
  
 As we noted, this function returns a brick of rasters which can be very convenient.
 
