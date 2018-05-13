@@ -41,7 +41,7 @@ plot(srtm, add = T)
 
 ![srtm-oregon](../../../img/srtm-oregon.png)
 
-### Excercise 2Excercise 3: : Cropping raster data
+### Excercise 2: Cropping raster data
 
 Now, let's supposed we are working in the Calapooia watershed in Oregon and we'd like to crop the elevation data to match the bounding box of the watershed. We can use the extent of our watershed to do so. 
 
