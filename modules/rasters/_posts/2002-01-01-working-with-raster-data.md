@@ -134,6 +134,7 @@ plot(cal_terrain)
  
 ![terrain](../../../img/terrain.png)
  
+<br>
 As we noted, this function returns a brick of rasters which can be very convenient.
 
 ```r
