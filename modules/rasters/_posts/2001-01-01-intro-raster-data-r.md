@@ -2,7 +2,7 @@
 title: "Introduction to Raster Data"
 ---
 
-### Goals and Motivation
+## Goals and Motivation
 
 ---
 
