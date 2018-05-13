@@ -96,17 +96,7 @@ The `raster` package can handle many different formats other than `GeoTiff` and 
 
 ### Reprojecting rasters
 
-As we noted previously, it is critical that your data all be in the same projection for analysis. Like many applications, it's useful to use an equal-area projection for rasters as well. Let's suppose we have a watershed polygon that is in the desired projection and we want our raster to match that projection. 
-
-```r
-pts2 <- spTransform(pts, CRS('+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 
-                           +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 
-                           +datum=NAD83 +units=m +no_defs '))```
-```r
-#[1] FALSE
-```
-
-Use `projectRaster` with `method = 'bilinear'` and the CRS from the 'ws' layer.
+As we noted previously, it is critical that your data all be in the same projection for analysis. Like many applications, it's useful to use an equal-area projection for rasters as well. Let's use `projectRaster` with `method = 'bilinear'` and the USGS Alber's projection: 
 
 ```r
 cal_elev <- projectRaster(cal_elev, 
@@ -134,16 +124,60 @@ quantile(cal_elev, probs = c(0.25, 0.5, 0.75))
 
 ### Terrain analysis with `raster`
 
-```r
+The raster package has a function called `terrain` that can calculate a suite of terrain metrics at once. You can read more about these metrics in with `help(terrain)`, but many of them may be familiar already (e.g., slope). This function returns a `RasterBrick`.
 
+```r
+cal_terrain <- terrain(cal_elev, opt = c("slope","aspect", "tri",
+                                          "tpi","roughness","flowdir"))
+plot(cal_terrain)`
 ```
  
+ ![terrain](../../../img/terrain.png)
+ 
+As we noted, this function returns a brick of rasters which can be very convenient.
 
+```r
+cellStats(cal_terrain, stat='mean')
+```
+```r
+#        tri         tpi   roughness       slope      aspect     flowdir 
+# 9.64157210 -0.09001769 31.13302748  0.12417778  3.29963730 34.03649593 
+```
 
+Any layer can be accessed by their name...
 
+```r
+#By name
+cal_terrain$tri
+```
+```r
+#class       : RasterLayer 
+#dimensions  : 731, 887, 648397  (nrow, ncol, ncell)
+#resolution  : 90, 90  (x, y)
+#extent      : -2136562, -2056732, 1039019, 1104809  (xmin, xmax, ymin, ymax)
+#coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs #+towgs84=0,0,0 
+#data source : in memory
+#names       : tri 
+#values      : 2.309264e-14, 61.94121  (min, max)
+```
 
+Or by their order within the brick.
 
-
+```r
+#By order with list access: [[]]
+cal_terrain[[c(1:2)]]
+```
+```r
+#class       : RasterBrick 
+#dimensions  : 731, 887, 648397, 2  (nrow, ncol, ncell, nlayers)
+#resolution  : 90, 90  (x, y)
+#extent      : -2136562, -2056732, 1039019, 1104809  (xmin, xmax, ymin, ymax)
+#coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs #+towgs84=0,0,0 
+#data source : in memory
+#names       :           tri,           tpi 
+#min values  :  2.309264e-14, -3.930978e+01 
+#max values  :      61.94121,      35.52317 
+```
 
 
 
