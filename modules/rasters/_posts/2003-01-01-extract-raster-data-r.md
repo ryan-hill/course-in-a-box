@@ -17,7 +17,7 @@ By the end of this section you will be able to:
 
 ---
 
-### Raster and RasterBrick summary stats
+### Excercise 1: Raster and RasterBrick summary stats
 
 We can also extract potentially useful information from a raster layer using several methods.
 
