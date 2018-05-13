@@ -39,7 +39,7 @@ plot(srtm, add = T)
 
 ### Cropping raster data
 
-Now,let's supposed we are working in the Calapooia watershed in Oregon and we'd like to crop the elevation data to match the bounding box of the watershed. We can use the extent of our watershed to do so. 
+Now, let's supposed we are working in the Calapooia watershed in Oregon and we'd like to crop the elevation data to match the bounding box of the watershed. We can use the extent of our watershed to do so. 
 
 ```r
 #Read in watershed layer
@@ -63,48 +63,9 @@ plot(ws, add = T)
 
 ![cal-mask](../../../img/cal-mask.png)
 
-
-
-
-
 ### Reading & writing raster data from disk
 
-Reading and writing raster data into R is as simple as...
-
-```r
-library(raster);library(rgdal)
-#Reading
-cal_elev <- raster('./data/calapooia.tif')
-#Writing
-writeRaster(cal_elev, './data/calapooia.tif', format="GTiff", overwrite=TRUE)
-```
-
-The `raster` package can handle many different formats other than `GeoTiff` and can generally interpret these formats when reading. However, you will need to specify the format when writing. 
-
-### Reprojecting rasters
-
-As we noted previously, it is critical that your data all be in the same projection for analysis. Like many applications, it's useful to use an equal-area projection for rasters as well. Let's suppose we have a watershed polygon that is in the desired projection and we want our raster to match that projection. 
-
-```r
-ws = readOGR(dsn = './data', layer = 'calapooia-ws')
-proj4string(ws) == proj4string(cal_elev)
-```
-```r
-#[1] FALSE
-```
-
-Use `projectRaster` with `method = 'bilinear'` and the CRS from the 'ws' layer.
-
-```r
-cal_elev <- projectRaster(cal_elev, crs = proj4string(ws), 
-                          res=90, method='bilinear')
-cal_elev
-plot(cal_elev)
-plot(ws, add = T)
-```
-![cal-elev-ws](../../../img/cal-elev-ws.png)
-
-Note that if we inspect cal_elev that its sources is now `in memory`. To retain this reprojected raster we would have to save it again with `writeRaster`.
+If we inspect our new raster (cal_elev), you'll notice that `data source: in memory`. 
 
 ```r
 # class       : RasterLayer 
@@ -116,6 +77,57 @@ Note that if we inspect cal_elev that its sources is now `in memory`. To retain 
 # names       : calapooia 
 # values      : 52.44468, 1546.756  (min, max)
 ```
+
+We may want to save this new raster to work with later.
+
+```r
+#Writing to GeoTiff requires the rgdal package
+library(rgdal)
+#Writing 
+writeRaster(cal_elev, './data/cal_elev.tif', format="GTiff", overwrite=TRUE)
+```
+```r
+library(raster);library(rgdal)
+#Reading
+cal_elev <- raster('./data/cal_elev.tif')
+```
+
+The `raster` package can handle many different formats other than `GeoTiff` and can generally interpret these formats when reading. However, you will need to specify the format when writing. 
+
+### Reprojecting rasters
+
+As we noted previously, it is critical that your data all be in the same projection for analysis. Like many applications, it's useful to use an equal-area projection for rasters as well. Let's suppose we have a watershed polygon that is in the desired projection and we want our raster to match that projection. 
+
+```r
+pts2 <- spTransform(pts, CRS('+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 
+                           +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 
+                           +datum=NAD83 +units=m +no_defs '))```
+```r
+#[1] FALSE
+```
+
+Use `projectRaster` with `method = 'bilinear'` and the CRS from the 'ws' layer.
+
+```r
+cal_elev <- projectRaster(cal_elev, 
+                          crs = '+proj=aea +lat_1=29.5 
+                                +lat_2=45.5 +lat_0=37.5 
+                                +lon_0=-96 +x_0=0 +y_0=0 
+                                +ellps=GRS80 
+                                +datum=NAD83 +units=m +no_defs ', 
+                          res=90, method='bilinear')
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
