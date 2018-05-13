@@ -147,7 +147,7 @@ plot(sites, add = T, pch=20)
 
 ---
 
-In addition to delineating the watersheds, the loop used the `extract` function with `fun = mean` to calculate the mean of each of the layers in the RasterBrick **cal_terrain**.
+In addition to delineating the watersheds, the loop used the `extract` function with `fun = mean` to calculate the mean of each of the layers in the RasterBrick **cal_terrain**:
 
 ```r
 cal_ws@data
