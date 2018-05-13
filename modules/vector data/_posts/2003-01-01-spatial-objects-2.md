@@ -16,7 +16,7 @@ In the previous section, we learned how to create spatial objects in R. In those
 - Clip one vector feature based on a polygon feature.
 - Snap points to the nearest line.
 
-### Reading and writing external data
+### Excercise 1: Reading and writing external data
 
 R uses the open source `gdal` C/C++ libraries to read and write vector (and raster) data. This library is extensively used by both open sources and enterprise softwares, including some ESRI applications. The R package for reading and writing spatial data is called `rgdal`. 
 
@@ -76,13 +76,7 @@ HUCs <- readOGR(dsn = './data/out_gdb.gdb', layer = 'HUCs', verbose = F)
 
 ---
 
-### Excercises
-
-We will walk through several examples of spatial operations that are more easier to do now that we can read in shapefiles of data types other than points. Most of these operations are found within the `rgeos` package.   
-
----
-
-#### Example 1: How many HUC 8s inersect Malheur county? How big are these areas in km<sup>2</sup>? 
+### Excercise 2: How many HUC 8s inersect Malheur county? How big are these areas in km<sup>2</sup>? 
 
 First, let's select out Malheur county as it's own object and plot it with the other counties and HUCs to get some context.
 
@@ -136,7 +130,7 @@ malhucs@data
 
 <br>
 
-#### Example 2: Clipping features (lines and polygons) based on a second feature
+### Excercise 3: Clipping features (lines and polygons) based on a second feature
 
 We provided you with a shapefile of a sub-basin of the S. Santiam River (ws.shp). We generated this watershed by visiting the USGS's StreamStats [website](https://streamstats.usgs.gov/ss/), navigating to the S. Santiam, and using the watershed delineation tool. Let's use this polygon to clip a set of streams ('south_santiam.shp') and calculate the drainage density (km/km<sup>2</sup>. 
 
@@ -180,7 +174,7 @@ We could spend more time exploring operations in
 
 <br>
 
-#### Example 3: Moving points to the nearest line 
+### Excercise 4: Moving points to the nearest line 
 
 Let's say that you have a colletion of sample sites ('sample1.shp' and 'sample2') and you need to combine them and then snap them to the stream layer. Here's how you can snap the points to the nearest stream line. 
 
