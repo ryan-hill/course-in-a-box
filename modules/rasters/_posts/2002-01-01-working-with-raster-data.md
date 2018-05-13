@@ -4,17 +4,21 @@ title: "Working with Rasters"
 
 ## Working with Rasters
 
+---
+
 In this section, we'll play with real data and demonstrate some of the nice features of working with the `raster` package. 
 
 ### Lesson Goals
+
 By the end of this section you will be able to: 
-- Read and write raster data from disk and from the web
-- Clip raster data
-- More...
+- Read and write raster data from the web or from disk
+- Crop raster data
+- Reproject raster data to a different coordinate system
+- Calculate a suite of potentially useful terrain metrics for watershed analysis
 
 ---
 
-### Loading raster data from the web
+### Excercise 1: Loading raster data from the web
 
 The `raster` package has a `getData` function that can be used to grab several pre-defined datasets directly from the web. These include:
 
@@ -37,7 +41,7 @@ plot(srtm, add = T)
 
 ![srtm-oregon](../../../img/srtm-oregon.png)
 
-### Cropping raster data
+### Excercise 2Excercise 3: : Cropping raster data
 
 Now, let's supposed we are working in the Calapooia watershed in Oregon and we'd like to crop the elevation data to match the bounding box of the watershed. We can use the extent of our watershed to do so. 
 
@@ -63,7 +67,7 @@ plot(ws, add = T)
 
 ![cal-mask](../../../img/cal-mask.png)
 
-### Reading & writing raster data from disk
+### Excercise 3: Reading & writing raster data from disk
 
 If we inspect our new raster (cal_elev), you'll notice that `data source: in memory`. 
 
@@ -94,7 +98,7 @@ cal_elev <- raster('./data/cal_elev.tif')
 
 The `raster` package can handle many different formats other than `GeoTiff` and can generally interpret these formats when reading. However, you will need to specify the format when writing. 
 
-### Reprojecting rasters
+### Excercise 4: Reprojecting rasters
 
 As we noted previously, it is critical that your data all be in the same projection for analysis. Like many applications, it's useful to use an equal-area projection for rasters as well. Let's use `projectRaster` with `method = 'bilinear'` and the USGS Alber's projection: 
 
@@ -108,42 +112,19 @@ cal_elev <- projectRaster(cal_elev,
                           res=90, method='bilinear')
 ```
 
-### Extracting raster stats
-
-We can also extract potentially useful information from a raster layer using several methods.
-
-```r
-cellStats(cal_elev, stat='mean')
-quantile(cal_elev, probs = c(0.25, 0.5, 0.75))
-```
-```r
-#[1] 300.048
-#    25%       50%       75% 
-#85.35121 161.22613 408.62559 
-```
-
-### Terrain analysis with `raster`
+### Excercise 5: Terrain analysis with `raster`
 
 The raster package has a function called `terrain` that can calculate a suite of terrain metrics at once. You can read more about these metrics in with `help(terrain)`, but many of them may be familiar already (e.g., slope). This function returns a `RasterBrick`.
 
 ```r
 cal_terrain <- terrain(cal_elev, opt = c("slope","aspect", "tri",
                                           "tpi","roughness","flowdir"))
-plot(cal_terrain)`
+plot(cal_terrain)
 ```
  
- ![terrain](../../../img/terrain.png)
+![terrain](../../../img/terrain.png)
  
-As we noted, this function returns a brick of rasters which can be very convenient.
-
-```r
-cellStats(cal_terrain, stat='mean')
-```
-```r
-#        tri         tpi   roughness       slope      aspect     flowdir 
-# 9.64157210 -0.09001769 31.13302748  0.12417778  3.29963730 34.03649593 
-```
-
+<br>
 Any layer can be accessed by their name...
 
 ```r
@@ -179,21 +160,4 @@ cal_terrain[[c(1:2)]]
 #max values  :      61.94121,      35.52317 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In the next section we'll learn how to extract summary statistics and other information from rasters. 

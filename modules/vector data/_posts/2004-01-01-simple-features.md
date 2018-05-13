@@ -38,7 +38,7 @@ Edzar Pebesma has extensive documentation, blog posts and vignettes available fo
 
 The best way to introduce the `sf` package and working with simple features may be to dive in with some examples.
 
-#### Excercise 1: Exploring `sf`
+### Excercise 1: Exploring `sf`
 
 To begin, let's look at the methods (specific functions) that are available with `sf`. 
 
@@ -112,7 +112,7 @@ plot(wsa_plains$geometry, col='red', add=T)
 ![](../../../img/wsa-red-plains.png)
 
 
-#### Excercise 2: Spatial Subsetting & Intersecting
+### Excercise 2: Spatial Subsetting & Intersecting
 
 Now let's grab some administrative boundary data, for instance US states.  After bringing in, let's examine the coordinate system and compare with the coordinate system of the WSA data we already have loaded.  Remember, in `sf`, as with `sp`, we need to have data in the same CRS in order to do any kind of spatial operations involving both datasets.
 
@@ -163,7 +163,7 @@ plot(iowa_sites$geometry, col='red', add = T)
 
 ![](../../../img/iowa-sites.png)
 
-#### Excercise 3: Joins
+### Excercise 3: Joins
 
 Spatial joining in R is an incredibly handy thing and is simple with `st_joins`. Many of us are likely old hands at doing attribute joins of shapefiles with other tabular data in GIS software like ArcGIS or QGis.
 By default `st_joins` will perform a left join (return all rows in the left, 'joined to' table regardless of whether there are matches in the right, 'joined' table). `st_joins` also uses st_intersect for the spatial operation.  Note that you can also do an inner join (a match in both tables) as well as use other topological operations for the join such as `st_touches`, `st_disjoint`, `st_equals`, etc.
@@ -183,7 +183,7 @@ plot(wsa_plains['state_abbr'], add = T, pch=19)
 
 <br>
 
-#### Excercise 4: `dplyr` and `sf`
+### Excercise 4: `dplyr` and `sf`
 
 Remember we said one of the advantages of `sf` is that it fits into the `tidyverse` way of operating that streamlines our ability to work with spatial data in R.  One concrete example, which we'll build on in this section, is that we can manipulate and reshape `sf` spatial data directly using `dplyr` and `tidyr` verbs.  
 
@@ -205,7 +205,7 @@ The `dply` package has methods to summarize and manipulate data:
 * slice() selects rows based on row number
 * sample_n() samples n features randomly
 
-#### Excercise 5: Dissolve
+### Excercise 5: Dissolve
 
 Dissolve is a common task in GIS. Let's dissolve the states boundaries of the US. You can use the `st_union` function to dissolve borders of polygons.
 
@@ -215,7 +215,7 @@ plot(st_union(states))
 
 ![](../../../img/us-border.png)
 
-#### Excercise 6: Aggregation
+### Excercise 6: Aggregation
 
 Now that we've joined water quality data based on proximity to our WSA sample sites, we can aggregate the results for each WSA site.  
 
