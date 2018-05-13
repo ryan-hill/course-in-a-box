@@ -118,6 +118,26 @@ cal_elev <- projectRaster(cal_elev,
                           res=90, method='bilinear')
 ```
 
+### Extracting raster stats
+
+We can also extract potentially useful information from a raster layer using several methods.
+
+```r
+cellStats(cal_elev, stat='mean')
+quantile(cal_elev, probs = c(0.25, 0.5, 0.75))
+```
+```r
+#[1] 300.048
+#    25%       50%       75% 
+#85.35121 161.22613 408.62559 
+```
+
+### Terrain analysis with `raster`
+
+```r
+
+```
+ 
 
 
 
