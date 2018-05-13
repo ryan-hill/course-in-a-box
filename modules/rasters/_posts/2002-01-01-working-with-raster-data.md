@@ -4,6 +4,8 @@ title: "Working with Rasters"
 
 ## Working with Rasters
 
+---
+
 In this section, we'll play with real data and demonstrate some of the nice features of working with the `raster` package. 
 
 ### Lesson Goals
@@ -108,20 +110,6 @@ cal_elev <- projectRaster(cal_elev,
                           res=90, method='bilinear')
 ```
 
-### Extracting raster stats
-
-We can also extract potentially useful information from a raster layer using several methods.
-
-```r
-cellStats(cal_elev, stat='mean')
-quantile(cal_elev, probs = c(0.25, 0.5, 0.75))
-```
-```r
-#[1] 300.048
-#    25%       50%       75% 
-#85.35121 161.22613 408.62559 
-```
-
 ### Terrain analysis with `raster`
 
 The raster package has a function called `terrain` that can calculate a suite of terrain metrics at once. You can read more about these metrics in with `help(terrain)`, but many of them may be familiar already (e.g., slope). This function returns a `RasterBrick`.
@@ -135,16 +123,6 @@ plot(cal_terrain)
 ![terrain](../../../img/terrain.png)
  
 <br>
-As we noted, this function returns a brick of rasters which can be very convenient.
-
-```r
-cellStats(cal_terrain, stat='mean')
-```
-```r
-#        tri         tpi   roughness       slope      aspect     flowdir 
-# 9.64157210 -0.09001769 31.13302748  0.12417778  3.29963730 34.03649593 
-```
-
 Any layer can be accessed by their name...
 
 ```r
@@ -180,21 +158,4 @@ cal_terrain[[c(1:2)]]
 #max values  :      61.94121,      35.52317 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In the next section we'll learn how to extract summary statistics and other information from rasters. 
