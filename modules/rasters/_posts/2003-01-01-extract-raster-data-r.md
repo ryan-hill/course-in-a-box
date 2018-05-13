@@ -4,6 +4,18 @@ title: "Extracting Data from Rasters"
 
 ## Extracting Data from Rasters
 
+---
+
+In this section, we'll learn how to pull useful information from raster datasets. These will include generic functions to summarize rasters as a whole or to extract information based on the boundaries of a second layer. 
+
+### Lesson Goals
+
+By the end of this section you will be able to: 
+- Read and write raster data from disk and from the web
+- Clip raster data
+- More...
+
+---
 
 ### Raster and RasterBrick summary stats
 
