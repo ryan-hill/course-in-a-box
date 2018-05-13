@@ -48,6 +48,7 @@ quantile(cal_terrain, probs = c(0.25, 0.5, 0.75))
 #aspect     1.442969122  3.60642750  5.0135436
 #flowdir    4.000000000 16.00000000 64.0000000
 ```
+---
 
 ### Excercise 2: Extracting raster data at points
 
@@ -70,6 +71,8 @@ pointLabel(coordinates(sites),labels=sites$SampleID)
 ```
 
 ![cal-samp-sites](../../../img/cal-samp-sites.png)
+
+---
 
 We can use `extract` to get elevations at out sample sites. This function returns a vector, so we can simply add the results on as a new column in **sites**.
 
