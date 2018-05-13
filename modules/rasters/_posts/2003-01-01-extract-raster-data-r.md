@@ -97,7 +97,7 @@ To start, we wrote a custion R function that takes advantage of the USGS [Stream
 
 ```r
 library(jsonlite);library(sf);library(sp);library(geojsonio)
-#Defin function - watershed
+#Define function - watershed
 watershed = function(state, lon, lat){
   p1 = 'https://streamstats.usgs.gov/streamstatsservices/watershed.geojson?rcode='
   p2 = '&xlocation='
@@ -113,7 +113,8 @@ watershed = function(state, lon, lat){
 
 Now that the function is defined, we can read in our table with coordinates and run the function on them, each in turn. Doing so requires a `for` loop in which we select out each point at a time, submit its coordinates to the online service.
 
-```r#Read in the points table
+```r
+#Read in the points table
 pts <- read.csv('./data/calapooia-samples.csv')
 #Loop through each point where each point is a in the table
 for(i in 1:nrow(pts)){
@@ -146,8 +147,19 @@ plot(sites, add = T, pch=20)
 
 ---
 
-In addition to delineating the watersheds, the loop used the `extract` function with `fun = mean` to calculate the mean of each of the layers in the RasterBrick **cal_terrain**
+In addition to delineating the watersheds, the loop used the `extract` function with `fun = mean` to calculate the mean of each of the layers in the RasterBrick **cal_terrain**.
 
+```r
+cal_ws@data
+```
+```r
+#  SampleID      tri        tpi roughness     slope   aspect  flowdir
+#1    Site1 13.66916 -0.1562616  44.41507 0.1829341 3.616169 16.92290
+#2    Site2 23.77488 -0.2711316  76.93438 0.3058251 3.055297 35.13301
+#3    Site3 33.14047 -0.4726615 109.41227 0.4170104 3.682443 10.22483
+#4    Site4 32.54499 -1.2240693 103.42906 0.4042515 2.562071 41.04296
+#5    Site5 26.20215 -0.5688954  84.08578 0.3346428 3.625224 21.49765
+```
 
 
 
