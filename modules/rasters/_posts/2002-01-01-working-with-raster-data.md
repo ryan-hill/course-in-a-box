@@ -9,10 +9,12 @@ title: "Working with Rasters"
 In this section, we'll play with real data and demonstrate some of the nice features of working with the `raster` package. 
 
 ### Lesson Goals
+
 By the end of this section you will be able to: 
-- Read and write raster data from disk and from the web
-- Clip raster data
-- More...
+- Read and write raster data from the web or from disk
+- Crop raster data
+- Reproject raster data to a different coordinate system
+- Calculate a suite of potentially useful terrain metrics for watershed analysis
 
 ---
 
