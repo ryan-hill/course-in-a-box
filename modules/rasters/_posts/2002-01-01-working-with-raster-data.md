@@ -18,7 +18,7 @@ By the end of this section you will be able to:
 
 ---
 
-### Loading raster data from the web
+### Excercise 1: Loading raster data from the web
 
 The `raster` package has a `getData` function that can be used to grab several pre-defined datasets directly from the web. These include:
 
@@ -41,7 +41,7 @@ plot(srtm, add = T)
 
 ![srtm-oregon](../../../img/srtm-oregon.png)
 
-### Cropping raster data
+### Excercise 2Excercise 3: : Cropping raster data
 
 Now, let's supposed we are working in the Calapooia watershed in Oregon and we'd like to crop the elevation data to match the bounding box of the watershed. We can use the extent of our watershed to do so. 
 
@@ -67,7 +67,7 @@ plot(ws, add = T)
 
 ![cal-mask](../../../img/cal-mask.png)
 
-### Reading & writing raster data from disk
+### Excercise 3: Reading & writing raster data from disk
 
 If we inspect our new raster (cal_elev), you'll notice that `data source: in memory`. 
 
@@ -98,7 +98,7 @@ cal_elev <- raster('./data/cal_elev.tif')
 
 The `raster` package can handle many different formats other than `GeoTiff` and can generally interpret these formats when reading. However, you will need to specify the format when writing. 
 
-### Reprojecting rasters
+### Excercise 4: Reprojecting rasters
 
 As we noted previously, it is critical that your data all be in the same projection for analysis. Like many applications, it's useful to use an equal-area projection for rasters as well. Let's use `projectRaster` with `method = 'bilinear'` and the USGS Alber's projection: 
 
@@ -112,7 +112,7 @@ cal_elev <- projectRaster(cal_elev,
                           res=90, method='bilinear')
 ```
 
-### Terrain analysis with `raster`
+### Excercise 5: Terrain analysis with `raster`
 
 The raster package has a function called `terrain` that can calculate a suite of terrain metrics at once. You can read more about these metrics in with `help(terrain)`, but many of them may be familiar already (e.g., slope). This function returns a `RasterBrick`.
 
