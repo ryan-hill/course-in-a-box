@@ -144,7 +144,7 @@ Spatial subsetting is an essential spatial task and it can be performed just lik
 
 ```r
 plains_states <- states[wsa_plains,] #Yes!!!
-plot(plains_states$geometry)
+plot(plains_states$geometry, axes=T)
 ```
 
 There are actually several ways to achieve the same thing - here's another:
