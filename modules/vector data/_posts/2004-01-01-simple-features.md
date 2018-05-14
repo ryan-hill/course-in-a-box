@@ -83,7 +83,19 @@ str(wsa)
 plot(wsa$geometry)
 ```
 
-![](../../../img/wsa-usa.jpg)
+![](../../../img/wsa-usa.png)
+
+---
+
+As a side note, it is easy to convert from simple features to spatial objects. In the code below, we convert the **wsa** `sf` object to an `sp` object and back again. 
+
+```r
+# Convert to sp
+wsa <- as(wsa, 'Spatial')
+# Convert back to sf
+wsa <- st_as_sf(wsa)
+```
+---
 
 Notice that in the plot we used `wsa$geometry`. By default, `sf` will create a multi-pane plot, one for each column in the data frame, which can take a long time if you have many columns. However, it can be convenient if you want to plot several columns.
 
