@@ -35,11 +35,6 @@ This type of feature is called an [S4](http://adv-r.had.co.nz/S4.html) object. T
 
 ### Exploring `sp`
 
-We will explore `sp` objects in R by first starting a new R Markdown. 
-
-- In the project you created for this workshop, open a fresh R Markdown file (File > New File > R Markdown). 
-- Name it 'Vector data' and save it in your project.
-
 We will take the simple example we used in the previous section and convert it into an `sp` object. We'll print the data frame and the new points object and compare them.
 
 ```r
