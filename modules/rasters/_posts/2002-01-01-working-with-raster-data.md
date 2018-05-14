@@ -46,6 +46,7 @@ plot(srtm, add = T)
 Now, let's supposed we are working in the Calapooia watershed in Oregon and we'd like to crop the elevation data to match the bounding box of the watershed. We can use the extent of our watershed to do so. 
 
 ```r
+library(rgdal)
 #Read in watershed layer
 ws <- readOGR(dsn = './data', layer = 'calapooia-ws')
 proj4string(ws) == proj4string(srtm)
@@ -91,7 +92,6 @@ library(rgdal)
 writeRaster(cal_elev, './data/cal_elev.tif', format="GTiff", overwrite=TRUE)
 ```
 ```r
-library(raster);library(rgdal)
 #Reading
 cal_elev <- raster('./data/cal_elev.tif')
 ```
