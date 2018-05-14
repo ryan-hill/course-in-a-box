@@ -76,7 +76,7 @@ HUCs <- readOGR(dsn = './data/out_gdb.gdb', layer = 'HUCs', verbose = F)
 
 ---
 
-### Excercise 2: How many HUC 8s inersect Malheur county? How big are these areas in km<sup>2</sup>? 
+### Excercise 2: How many HUC 8s inersect Malheur County? How big are these areas in km<sup>2</sup>? 
 
 First, let's select out Malheur county as it's own object and plot it with the other counties and HUCs to get some context.
 
