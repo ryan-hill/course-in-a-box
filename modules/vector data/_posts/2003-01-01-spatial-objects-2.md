@@ -53,7 +53,7 @@ library(rgeos); library(zoom)
 hucs_simple <- gSimplify(hucs, tol = 500, topologyPreserve = T)
 # gSimplify strips the attribute table and writeOGR will give us an error if we try to write a shapefile without a table. 
 hucs_simple <- SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
-writeOGR(hucs_simple, dsn = './data', layer = 'HUCs_simple', driver="ESRI Shapefile")
+writeOGR(hucs_simple, dsn = './data', layer = 'HUCs_simple', driver="ESRI Shapefile", overwrite_layer = T)
 plot(hucs_simple, border="red", add=T)
 zm()
 ```
