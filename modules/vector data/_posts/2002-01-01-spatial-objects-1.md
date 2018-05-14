@@ -288,6 +288,8 @@ ashland <- pts2[pts2$cities == 'Ashland', ]
 #Select cities with a population < 50,000
 towns <- pts2[pts2$population < 50000, ]
 #Add these towns to our plot of buffers
+plot(buff, col = buff$cities)
+plot(gBuffer(buff, width = -10000), add = T)
 plot(towns, add = T, col = 'green', pch = 21)
 #Plot horizontal and vertical lines at the mean lat/lon
 abline(h = mean(coordinates(pts2)[,2]))
