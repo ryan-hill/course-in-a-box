@@ -66,7 +66,6 @@ Let's read in a set of point coordinates. For this example, we'll use data from 
 
 ```r
 library(RCurl)
-library(sf)
 
 download <- getURL("https://www.epa.gov/sites/production/files/2014-10/wsa_siteinfo_ts_final.csv")
 wsa <- read.csv(text = download)
