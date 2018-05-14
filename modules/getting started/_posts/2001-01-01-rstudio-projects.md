@@ -89,5 +89,6 @@ We'll create an RStudio project in this exercise that we'll continue to use for 
 
 1. Create a new project from the File menu. Select the option for a new directory. Find a suitable location on your computer and name the folder "sfs_spatialr_workshop".  We will use this for the rest of the workshop.
 
+1. In the bottom-right corner of RStudio, click Files > New Folder. Name the folder 'data' and click 'Ok'. Unzip the workshop data that you downloaded to this folder.
 
 
