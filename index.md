@@ -23,9 +23,9 @@ By the end of the course you should be able to do the following in R:
 * **1100 - 1200** [Working with vector data](/sfs-r-gis-2018/modules/vector%20data/intro-vector-data-r/) (continued)
 * **12:00 - 1:00** Lunch on your own
 * **1:00 - 2:00** [Working with rasters](/sfs-r-gis-2018/modules/rasters/introduction/)
-* **2:00 - 3:00** [Spatial operations and analysis](/sfs-r-gis-2018/modules/spatial%20operations/Introduction/)
+* **2:00 - 3:00** [Viewing and mapping spatial data](/sfs-r-gis-2018/modules/mapping/basic-mapping/) 
 * **3:00 - 3:15** Break
-* **3:15 - 4:00** [Viewing and mapping spatial data](/sfs-r-gis-2018/modules/mapping/basic-mapping/)
+* **3:15 - 4:00** [Viewing and mapping spatial data](/sfs-r-gis-2018/modules/mapping/basic-mapping/) (continued)
 * **4:15 - 4:45** Accessing open spatial data
 
 ## Instructors & Assistants
