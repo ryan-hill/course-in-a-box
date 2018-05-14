@@ -166,6 +166,7 @@ So we're asking, in code below, "what state is each WSA site in?", based on wher
 wsa_plains <- wsa_plains[c(1:4,60)]
 wsa_plains <- st_join(wsa_plains, plains_states)
 # verify your results
+plot(plains_states$geometry, axes=T)
 plot(wsa_plains['state_abbr'], add = T, pch=19)
 ```
 
