@@ -105,7 +105,7 @@ Let's subset our feature to just the US plains ecoregions using the 'ECOWSA9' va
 ```r
 levels(wsa$ECOWSA9)
 wsa_plains <- wsa[wsa$ECOWSA9 %in% c("TPL","NPL","SPL"), ]
-plot(wsa)
+plot(wsa$geometry)
 plot(wsa_plains$geometry, col='red', add=T)
 ```
 
@@ -152,16 +152,6 @@ There are actually several ways to achieve the same thing - here's another:
 ```r
 plains_states <- states[wsa_plains,op = st_intersects]
 ```
-
-And we can do another attribute subset and then apply a spatial subset yet another way - verify this works for you by plotting results together.
-
-```r
-iowa = states[states$state_abbr=='IA',]
-iowa_sites <- st_intersection(wsa_plains, iowa)
-plot(iowa_sites$geometry, col='red', add = T)
-```
-
-![](../../../img/iowa-sites.png)
 
 ### Excercise 3: Joins
 
