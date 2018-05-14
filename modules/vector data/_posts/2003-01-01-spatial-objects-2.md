@@ -16,7 +16,7 @@ In the previous section, we learned how to create spatial objects in R. In those
 - Clip one vector feature based on a polygon feature.
 - Snap points to the nearest line.
 
-### Excercise 1: Reading and writing external data
+### Excercise 1: Reading, simplifying, and writing external data
 
 R uses the open source `gdal` C/C++ libraries to read and write vector (and raster) data. This library is extensively used by both open sources and enterprise softwares, including some ESRI applications. The R package for reading and writing spatial data is called `rgdal`. 
 
