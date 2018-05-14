@@ -27,6 +27,11 @@ These data are a way of representing real-world features on a landscape in a hig
 
 ### Excercise
 
+We will explore vector data objects in R by first starting a new R Markdown. 
+
+- In the project you created for this workshop, open a fresh R Markdown file (File > New File > R Markdown). 
+- Name it 'Vector data' and save it in your project.
+
 We can represent these features in R without actually using GIS packages. In this example, we'll represent several cities in Oregon with common R data structures that you are probably already familiar with.
 
 ```r
