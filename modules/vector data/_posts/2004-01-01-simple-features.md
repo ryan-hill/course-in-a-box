@@ -43,6 +43,7 @@ The best way to introduce the `sf` package and working with simple features may 
 To begin, let's look at the methods (specific functions) that are available with `sf`. 
 
 ```r
+library(sf)
 methods(class = "sf")
 ```
 ```
