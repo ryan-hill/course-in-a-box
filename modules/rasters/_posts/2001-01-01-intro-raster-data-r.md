@@ -23,6 +23,11 @@ By the end of this module, you will:
 - Understand basic structure of rasters in R and how to manipulate
 - Be able to conduct operations on raster data, such as zonal statistics
 
+We will explore `raster` objects in R by first starting a new R Markdown.
+
+In the project you created for this workshop, open a fresh R Markdown file (File > New File > R Markdown).
+Name it ‘raster data’ and save it in your project.
+
 ---
 
 ### Rasters
