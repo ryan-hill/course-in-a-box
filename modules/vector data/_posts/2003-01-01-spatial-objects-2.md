@@ -48,23 +48,14 @@ If you look at the shapefile, you'll notice that it is ~12MB on file. This isn't
 We will simplify the HUCs layer and write it out to compare how simplification affects the size on disk.
 
 ```r
-library(rgeos); library(zoom)
+library(rgeos)
 # tol=tolerance
 hucs_simple <- gSimplify(hucs, tol = 500, topologyPreserve = T)
 # gSimplify strips the attribute table and writeOGR will give us an error if we try to write a shapefile without a table. 
 hucs_simple <- SpatialPolygonsDataFrame(hucs_simple, data = hucs@data)
 writeOGR(hucs_simple, dsn = './data', layer = 'HUCs_simple', driver="ESRI Shapefile", overwrite_layer = T)
 plot(hucs_simple, border="red", add=T)
-zm()
 ```
-
-The `zoom` package provides a very simple way to navigate around plot windows using the `zm()` method. The keyboard options to navigate are:
-
-- l/r: move left/right
-- Up/Down: k/j
-- <span>&#43;</span> or i/- or o: zoom in/out
-- r: reset view
-- q: quit graphics window
 
 We can see from the plot that the simplified geometry is very similar to the original. However, on disk the new shapefile has been reduced to ~1.5MB. 
 
