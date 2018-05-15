@@ -60,7 +60,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 There are three basic elements in any R Markdown document:
 
-1. The __YAML header__ at the top that defines the output type
+1. The __YAML header__ at the top that defines the output type and other "meta" information
 1. The __code chunks__ for R code
 1. Text __content__ in between the code chunks that can be modified with Markdown
 
@@ -73,9 +73,9 @@ Effective use of an RMarkdown file generally requires basic understanding of mar
 
 ### Text formatting with markdown
 
-Text that is not included in the __YAML header__ or a __code chunk__ can be stylized with Markdown.  Using markdown to stylize is not a requirement to create an R Markdown document but it certainly helps to differentiate parts of the text, such as headers, bold, italic, or lists.  
+Text that is not included in the __YAML header__ or a __code chunk__ can be stylized with Markdown.  Using Markdown to stylize is not a requirement to create an R Markdown document.  You can just write any text you want in between the code chunks, but it certainly helps to use Markdown to differentiate parts of the text, such as headers, bold, italic, or lists.  
 
-The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheatsheets) will show you most of these options.  Here are some common examples:
+The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheatsheets) will show you most of these options (also available [online](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)).  Here are some common examples:
 
 <pre>
 # Header 1
@@ -96,9 +96,9 @@ The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheat
 
 ### Basics of code chunks
 
-Code chunks in an R Markdown document will include code that is executed when the document is compiled.  It's best to think about all of the individual code chunks in a document as a continuous script.  All code chunks are run in sequence from first to last for everything to work properly when the document is compiled.  You can run the code chunks all at once without compiling the document or individually if you want to inspect the output of an individual chunk.  Just remember that a code chunk may not work properly by itself if it depends on information from another code chunk that hasn't already been run.  
+Code chunks in an R Markdown document will include code that is executed when the document is compiled.  It's best to think about all of the individual code chunks in a document as a continuous script that broken into pieces.  All code chunks are run in sequence from first to last when the document is compiled.  You can run the code chunks all at once without compiling the document or individually if you want to inspect the output of an individual chunk.  Just remember that a code chunk may not work properly by itself if it depends on information from another code chunk that hasn't already been run.  
 
-The easiest way to include a new code chunk in your R Markdown file is to use the shortcut keys: `Cmd/Ctrl + Alt + I`.  Alternatively, you can just type the code chunks or ust the insert button at the top of the script window, but the shortcut is much faster.  Once the code chunk is added, all R code can then be entered between the delimiters. 
+The easiest way to include a new code chunk in your R Markdown file is to use the shortcut keys: `Cmd/Ctrl + Alt + I`.  Alternatively, you can manualy type the code chunks or use the insert button at the top of the script window.  Once the code chunk is added, all R code can then be entered between the delimiters. 
 
 How the code is executed and how the output is formatted can be controlled using the options for each code chunk.  There are several options that are all worth considering (see [http://yihui.name/knitr/](http://yihui.name/knitr/)), but there are only a handful that you will use repeatedly (from the cheatsheet):
 
@@ -110,7 +110,7 @@ The options are included within the braces after the first comma. It will look s
 1 + 1
 ```</pre>
 
-The above example will run the code chunk, but the results are not included in the compiled document (i.e., `2` is not printed in the output).  This example will include the results in the document but the code chunk is not included. 
+The above example will run the code chunk, but the results are not included in the compiled document (i.e., `2` is not printed in the output).  This next example will include the results in the document but the code chunk is not included. 
 <pre>```{r, echo = F}
 1 + 1
 ```</pre>
@@ -153,17 +153,36 @@ Now that we have an idea what R Markdown is and how to use it, we're going to cr
 
 1. In your RStudio project that you created in the last exercise, open a new R Markdown template from the File menu (File > New File > R Markdown).  Give the file a title like "SFS R Spatial workshop", enter your name as the author, and select HTML as the output.
 
-1. Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learnred."
+1. Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learned."
 
-1. Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`.
+1. Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`. Your chunk should look like this:
+<pre>```{r setup, warning = F, message = F}
+```</pre>
 
-1. In the code chunk, enter some code to import the libraries we'll be using for our exercises (e.g., `library(sf)`).  We'll be using the following libraries: `sf`, `raster`, `maptools`, `rgeos`, `rgdal`, and `mapview`.  You'll need to install these libraries if you don't have them already (e.g., `install. packages('sf')`).
+1. Add some lines to the code chunk between the delimiters to add some R code (just press enter a few times). Copy the code below to the code chunk. These are all the libraries we'll be using in our workshop.
 
-1. In the same code chunk and below the library commands, enter the following code to import our example data. 
 
-1. When you're done, save the new file in the root directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
+```r
+library(sp)
+library(maptools)
+library(rgeos)
+library(rgdal)
+library(raster)
+library(RCurl)
+library(USAboundaries)
+library(jsonlite)
+library(geojsonio)
+library(maps)
+library(tmap)
+library(micromap)
+library(ggrepel)
+library(ggmap)
+library(mapview)
+library(sf)
+library(ggplot2)
+library(plotly)
+```
+
+1. When you're done, save the new file in the root/home directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
 
 1. Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
-
-
-

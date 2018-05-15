@@ -8,13 +8,11 @@ self_contained: yes
 
 ## Goals and Motivation
 
----
-
 [R](https://www.r-project.org/) is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences. 
 
 We have a limited amount time in this workshop. As such, the goals of this training are to expose you to spatial data fundamentals in R and to develop an appreciation of what's possible with this software.  We also want to provide resources that you can use for follow-up learning on your own. 
 
-We will use this first lesson to show you how to setup an RStudio project with an RMarkdown file that we'll use for the rest of the worshop.  Specifically, you should be able to answer these questions at the end of this session:
+We will use this first lesson to show you how to setup an RStudio project with an RMarkdown file that we'll use for the rest of the workshop.  Specifically, you should be able to answer these questions at the end of this session:
 
 * Why would I use RStudio and RStudio projects?
 * How can I setup an RStudio project?
@@ -48,13 +46,14 @@ Here are the most important reasons to use RStudio projects:
 
 * Relative file paths (no messing with `setwd()`)
 * Centralized location for data, scripts, and content
+* History of commands and data objects
 * Shareable, reproducible, and transparent
 
 To create a new project, click on the File menu at the top and select 'New project...'
 
 ![](../../../img/rstudio_proj.jpg)
 
-It's ofen hard to determine the scope of a project. When should a new project be created? Should one project be used for a dissertation?  Probably not.  What about one project for manipulating one data file?  Probably not.  To help you determine the scope of each project, think about these questions:
+It's often hard to determine the scope of a project. When should a new project be created? Should one project be used for a dissertation?  Probably not.  What about one project for manipulating one data file?  Probably not.  To help you determine the scope of each project, think about these questions:
 
 * What is the purpose of using R right now?  
 * Am I manipulating multiple files?
@@ -73,13 +72,15 @@ Open a new script from the File menu...
 
 ### Executing code in RStudio
 
-After you write your script it can be sent to the Console to run the code in R.  Any variables you create in your script will not be available in your working environment until this is done.  There are two ways to sent code the console.  First, you can hit the `Run` button at the top right of the scripting window.  Second, and preferred, you can use `ctrl+enter`.  Both approaches will send the selected line to the console, then move to the next line.  You can also highlight and send an entire block of code.
+After you write your script it can be sent to the Console to run the code in R.  Any variables you create in your script will not be available in your working environment until this is done.  
+
+There are two ways to sent code the console.  First, you can hit the `Run` button at the top right of the scripting window.  Second, and preferred, you can use `ctrl+enter` (`cmd+enter` on a Mac).  Both approaches will send the selected line to the console, then move to the next line.  You can also highlight and send an entire block of code.
 
 ![](../../../img/rstudio_run.jpg)
 
 ### What is the environment?
 
-There are two outcomes when you run code.  First, the code will simply print output directly in the console.  Second, there is no output because you have stored it as a variable (we'll talk about variable assignment later).  Output that is stored is actually saved in the `environment`.  The environment is the collection of named objects that are stored in memory for your current R session.  Anything stored in memory will be accessible by its name without running the original script that was used to create it.  
+There are two outcomes when you run code.  First, the code will simply print output directly in the console.  Second, there is no output because you have stored it as a variable (e.g., `x <- 1` assigns the value `1` to variable `x`).  Output that is stored is actually saved in the `environment`.  The environment is the collection of named objects that are stored in memory for your current R session.  Anything stored in memory will be accessible by its name without running the original script that was used to create it.  
 
 ## Exercise
 
@@ -91,6 +92,5 @@ We'll create an RStudio project in this exercise that we'll continue to use for 
 
 1. Create a new project from the File menu. Select the option for a new directory. Find a suitable location on your computer and name the folder "sfs_spatialr_workshop".  We will use this for the rest of the workshop.
 
-1. In the bottom-right corner of RStudio, click Files > New Folder. Name the folder 'data' and click 'Ok'. Unzip the workshop data that you downloaded to this folder.
 
 
