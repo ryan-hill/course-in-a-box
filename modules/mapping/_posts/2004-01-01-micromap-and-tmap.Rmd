@@ -17,8 +17,6 @@ library(tmap)
 library(micromap)
 library(ggrepel)
 library(plotly)
-library(tmap)
-library(micromap)
 
 ```
 In this final module we'll cover some useful packages for exploratory spatial data analysis, as well as general mapping.  There are other packages available for R that can accomplish these tasks but we don't have time to cover them all.  We'll focus specifically on the micromap and tmap packages because of their unique functionality relative to more generic packages.

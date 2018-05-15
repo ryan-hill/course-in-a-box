@@ -125,7 +125,18 @@ This is kind of tedious.  We can alternatively make the same plot using ggplot2 
 state <- st_as_sf(map('county', region = 'oregon', plot = F, fill = T))
 ```
 
-Now we make the plot with the `geom_sf` function for both `sf` objects.
+ __Before we proceed, we need to make sure we have the develoment version of ggplot2.__ This version includes the `geom_sf` function, which is included with the stable release on CRAN.  Run the following code if you haven't done this already.  The devtools package is needed to install development packages from GitHub.
+
+
+```r
+install.packages("devtools")
+library(devtools)
+install_github("ggplot2")
+library(ggplot2)
+```
+
+Now we make the plot with the `geom_sf` function from ggplot2 for both `sf` objects. 
+
 
 ```r
 ggplot() +

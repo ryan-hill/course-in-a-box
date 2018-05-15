@@ -10,7 +10,6 @@ output:
 ```{r echo = F, message = F, warning = F}
 knitr::opts_chunk$set(fig.path = '../../../img/', message = F, warning = F)
 
-library(tidyverse)
 library(maps)
 library(sf)
 library(raster)

@@ -2,6 +2,8 @@
 
 ---
 
+Please also make sure you have the latest version of RStudio installed, which is version 1.1.447 as of 2018-04-18.  
+
 - [General Info](http://www.rstudio.com/products/rstudio/download/)
 - [Windows](https://download1.rstudio.org/RStudio-1.1.442.exe)
 - [Mac](https://download1.rstudio.org/RStudio-1.1.442.dmg)
