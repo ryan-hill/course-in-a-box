@@ -8,7 +8,7 @@ There are two options to download the data - right-click the link or run the R c
 
 **Link**
 
-[data.zip](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/data.zip?raw=true){:target="_blank"}
+[data.zip](https://github.com/ryan-hill/sfs-r-gis-2018/raw/gh-pages/files/data.zip){:target="_blank"}
 
 **R Code**
 
