@@ -164,10 +164,13 @@ for(i in 1:nrow(pts)){
   wstmp <- wstmp[, 'SampleID']
   #Use extract on raster brick
   metrics <- extract(cal_terrain, wstmp, fun = 'mean', na.rm = T, small = T)
+  #Use cbind to attach new data to the watershed attribute table
   wstmp@data <- cbind(wstmp@data, metrics)
+  #If it's the first time in loop, create the final output
   if(i == 1){
     cal_ws <- wstmp
   }else{
+    #Otherwise, append the new watershed to previous watershed
     cal_ws <- rbind(cal_ws, wstmp)
   }
 } 
