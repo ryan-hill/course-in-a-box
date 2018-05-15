@@ -2,7 +2,7 @@
 
 ---
 
-Now that we have our workshop project set up, we will download the data we will use today. Once downloaded, extract (unzip) the files into the workshop directory. Since we have created an R project and are currently working under this project, the zip file will automatically download the main level of the project folder - this is what we want.
+Now that we have our workshop project set up, we will download the data we will use today. Once downloaded, extract (unzip) the files into the workshop directory. Since we have created an R project and are currently working under this project, the zip file will automatically download to the main level of the project folder - this is what we want.
 
 There are two options to download the data - right-click the link or run the R code below.
 
