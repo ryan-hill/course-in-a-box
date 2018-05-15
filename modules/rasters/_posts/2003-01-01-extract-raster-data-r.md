@@ -95,7 +95,7 @@ sites@data
 
 ### Excercise 3: Extracting data by polygon 
 
-Creating summaries within a polygon is a common and important analysis in GIS, especially in water resources where watershed summaries are often used to understand why freshwater environments differ from one another. Let's pretend you have a sample site in Oregon somewhere in the Calapooia River watershed. The USGS has an online tool that can delineate the watershed for this point called [StreamStats](https://streamstats.usgs.gov/ss/). It is worth exploring the point-and-click version. The StreamStat Service API is exposed, meaning  we can build simple text URLs that can be submitted to the server as a query. We won't go into detail for this excercise. First, we need to import the custom function
+Creating summaries within a polygon is a common and important analysis in GIS, especially in water resources where watershed summaries are often used to understand why freshwater environments differ from one another. Let's say you want to get the watershed for **site 1** from and calculate watershed metrics for it. The USGS has an online tool that can delineate the watershed for this point called [StreamStats](https://streamstats.usgs.gov/ss/). It is worth exploring the point-and-click version. The StreamStat Service API is exposed, meaning  we can build simple text URLs that can be submitted to the server as a query. We won't go into detail for this excercise. First, we need to import the custom function
 
 ```r
 library(jsonlite);library(sf);library(sp);library(geojsonio)
