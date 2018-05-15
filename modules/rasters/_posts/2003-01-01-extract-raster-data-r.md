@@ -15,6 +15,7 @@ By the end of this section you will be able to:
 - Extract raster values at sample points
 - Delineate a watershed and extract a summary of raster values within the boundary 
 - Bonus: Delineate watersheds and extract raster metrics within watershed boundaries
+
 ---
 
 ### Excercise 1: Raster and RasterBrick summary stats
