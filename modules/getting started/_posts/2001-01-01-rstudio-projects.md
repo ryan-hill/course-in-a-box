@@ -8,6 +8,8 @@ self_contained: yes
 
 ## Goals and Motivation
 
+---
+
 [R](https://www.r-project.org/) is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences. 
 
 We have a limited amount time in this workshop. As such, the goals of this training are to expose you to spatial data fundamentals in R and to develop an appreciation of what's possible with this software.  We also want to provide resources that you can use for follow-up learning on your own. 
