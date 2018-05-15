@@ -2,16 +2,13 @@
 
 ---
 
-For convenience, please download the data before the day of the workshop. Once downloaded, extract (unzip) the files into the directory you will be using for the workshop.
+For convenience, please download the data before the day of the workshop. 
 
-There are two options to download the data - right-click each link or run the R code below.
+There are two options to download the data - right-click the link or run the R code below.
 
-**Links**
+**Link**
 
-- [ESDA.zip](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/ESDA.zip?raw=true){:target="_blank"}
-- [HUCs.RData](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/HUCs.RData?raw=true){:target="_blank"}
-- [NLCD_OR_2011.RData](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/NLCD_OR_2011.RData?raw=true){:target="_blank"}
-- [WorkshopData.zip](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/WorkshopData.zip?raw=true){:target="_blank"}
+[data.zip](https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/data.zip?raw=true){:target="_blank"}
 
 **R Code**
 
@@ -22,32 +19,14 @@ In the code below, replace `your-directory-here` with the folder location where 
 setwd(your-directory-here)
 
 download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/ESDA.zip?raw=true",
-              "ESDA.zip",
+              "data.zip",
               method="auto",
-              mode="wb")
-
-download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/HUCs.RData?raw=true",
-              "HUCs.RData",
-              method="auto",
-              mode="wb")
-
-download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/NLCD_OR_2011.RData?raw=true",
-              "NLCD_OR_2011.RData",
-              method="auto",
-              mode="wb")
-
-download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/WorkshopData.zip?raw=true",
-              "WorkshopData.zip",
-              method="auto",
-              mode="wb")
-              
+              mode="wb")           
 ```
 
-Once downloaded, extract the files with the `unzip` function.
+On the day of the workshop, we'll extract the files with the `unzip` function into a project that we will create together.
 
 ```r
-unzip("WorkshopData.zip")
-unzip("ESDA.zip")
-
-#Or unzip("WorkshopData.zip", exdir = "your-directory-here") 
+unzip("data.zip")
+#Or unzip("data.zip", exdir = "your-directory-here") 
 ```
