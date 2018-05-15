@@ -11,12 +11,12 @@ output:
 
 __The plots on this submodule are not interactive, please visit the page [here](https://fawda123.github.io/sfs-r-gis-2018-supp/modules/plotly-and-mapview.html) for the full experience!__
 
-We've seen how to use some of the basic plotting features in R to create static maps in the last two sub-modules.  Although static maps are still the de facto format for publications, interacting with the plot data can be much more informative.  R is no longer limited to static plotting since several new package have been introduced in the last few years.  Most of these packages link R code to existing plotting libraries that were developed in other languages (e.g., JavaScript).  Many of these new packages also work well with web integration, adding a new level of experience and collaboration to your owrk.  These are not new packages in the computing world, just new to the R universe.  They are insanely easy to use if you know just a bit of R code and they interface really well with R Markdown.  
+We've seen how to use some of the basic plotting features in R to create static maps in the last two sub-modules.  Although static maps are still the de facto format for publications, interacting with the plot data can be much more informative.  R is no longer limited to static plotting since several new packages have been introduced in the last few years.  Most of these packages link R code to existing plotting libraries that were developed in other languages (e.g., JavaScript).  These new packages also work well with web integration, adding a new level of experience and collaboration to your work.  These are not new packages in the computing world, just new to the R universe.  They are insanely easy to use if you know just a bit of R code.
 
 We'll introduce the following packages in this submodule:
 
 * [plotly](https://plot.ly/r/): interactive graphs in R, not limited to maps
-* [mapview](https://github.com/r-spatial/mapview): quick interactive maps to examine eand visually investigate geometries and attributes of spatial data
+* [mapview](https://github.com/r-spatial/mapview): quick interactive maps to visually investigate geometries and attributes of spatial data
 
 <!-- https://moderndata.plot.ly/visualizing-geo-spatial-data-with-sf-and-plotly/ -->
 
@@ -26,12 +26,12 @@ The plotly library lets you easily create interactive plots in R.  We'll need th
 
 
 ```r
-install.packages("devtool")
+install.packages("devtools")
 library(devtools)
 install_github("ropensci/plotly")
 ```
 
-Now can load the plotly library and create a simple scatterplot. 
+Now you can load the plotly library and create a simple scatterplot. Here we use the iris dataset that comes with the package. 
 
 
 ```r
@@ -43,7 +43,7 @@ p
 
 We can see in this simple scatter plot many of the added features that are provided with plotly.  Mouse over any of the points and you can see the corresponding values on the x and y axes.  Different subsets of the data can also be emphasized with the zooming options.    
 
-A nice feature of the plotly library is the seamless integration with ggplot.  The `ggplotly` function can be appended to any ggplot object to convert it to an interactive plotly chart. If you know how to use ggplot, you can use plotly. 
+A nice feature of the plotly library is the seamless integration with ggplot.  The `ggplotly` function from plotly can be appended to any ggplot object to convert it to an interactive plotly chart. In other words, if you know how to use ggplot, you can use plotly. 
 
 
 ```r
@@ -53,7 +53,7 @@ ggplotly(p)
 ```
 ![](../../../img/plotlyex2-1.png)<!-- -->
 
-Plotly is also very adept at creating three-dimensional plots, which of course requires three-dimensional data.
+Plotly is also very adept at creating three-dimensional plots, which of course requires three-dimensional data.  Here's an example of the elevation surface of a volcano.
 
 
 ```r
@@ -101,7 +101,7 @@ plot_ly(states, split = ~ID, color = ~ area, colors = 'PiYG', showlegend = F, al
 ```
 ![](../../../img/plotlysts3-1.png)<!-- -->
 
-As a side note, this same code works for the counties data we used in the last sub-module.  It just takes a while render... try this code on your own. 
+As a side note, this same code works for the counties data we used in the last sub-module.  It just takes a while to render... try this code on your own. 
 
 
 ```r
@@ -117,15 +117,15 @@ counties$area <- area
 plot_ly(counties, split = ~ID, color = ~ area, colors = 'PiYG', showlegend = F, alpha = 1)
 ```
 
-Now let's put some of these javascript tools to use.  A really cool feature of plotly is the ability to link plots through interactive brushing, such as highligtings parts of one plot and seeing where they correspond on another plot.  For example, it's clear to see from our chloropleth map of state area which one is the biggest.  But what are the top ten largest states?  Can we setup the plots in a way to help us view this information?  
+Now let's put some of these javascript tools to use.  A really cool feature of plotly is the ability to link plots through interactive brushing, such as highligtings parts of one plot and seeing where they correspond on another plot.  For example, it's clear to see from our chloropleth map of state area which one is the biggest.  But what are the top ten largest states?  Where are the smallest states? Can we setup the plots in a way to help us view this information?  
 
-The crosstalk package lets you link plotly objects.  This package is installed automatically when you install plotly, but you'll have to load it to use its features. There are a couple steps that need to happen to link the plots.  
+The crosstalk package lets you link plotly objects.  This package is installed automatically when you install plotly, but you'll have to load it to use its features. There are a couple steps that need to happen to link the plots ater loading crosstalk.  
 
 1. Create a `SharedData` object for the data you're using in both plots
 
-1. Create both plots from the `SharedData` object by specifying how higlighing or brushing happens to select the plot elements
+1. Create both plots from the `SharedData` object by specifying how highlighting or brushing is used to select the plot elements
 
-1. Link the two plots using the `bscols` function.
+1. Show the two plots together using the `bscols` function.
 
 We'll make this example using our states area dataset by creating a map as we've done before and also creating a histogram of all the areas.  Step by step it looks like this:
 
@@ -141,7 +141,7 @@ sts <- SharedData$new(states)
 Then we can create our separate plots, the first is the histogram and the second is the map.  There are two things to point out:
 
 * First is use of the pipe operator, `%>%`, from the magrittr package that chains several functions together.  This package is a common dependency and was loaded when you loaded crosstalk. It's there simply for convenience.
-* The second point is the `highlight` function and the arguments for each plot.  Without using highlight, we would only be able to zoom and pan in these plots.  The highlight function lets us actually select features.  We've also chosen different arguments for each plot. These are described in more detail in the help file (`?highlight`), but briefly:
+* The second point is the `highlight` function and the arguments for each plot.  Without using highlight, we would only be able to zoom and pan in these plots.  The highlight function lets us actually select features.  We've also chosen different highlight arguments for each plot. These are described in more detail in the help file (`?highlight`), but briefly:
      * The `on` argument defines how a user makes a selection on the plot, e.g., on click, hover, etc. Here we've specified using a rectangular box for selection.
      * The `persistent` argument defines whether or not the selections accumulate, i.e., a new selection is added to the previous.
      * The `dynamic` argument lets us add a widget for changing selection colors, i.e., if we want different colors for different selections.
@@ -171,7 +171,7 @@ bscols(
 
 Linked scatterplots can also be created.  These can add an entirely new level of insight into spatial relationships among variables by showing you not only where observations occur on the landscape but also how they co-vary.  
 
-We can repurpose our code from the last example to create a linked scatterplot using the `meuse` dataset from the `sp` package.  We'll create a scatterplot of cadmium vs. elevation and a simple map of the sample sites.  Note that we have to include the `add_markers()` function to create the scatterplot for an `sf` object.
+We can repurpose our code from the last exercise to create a linked scatterplot using the `meuse` dataset from the `sp` package.  We'll create a scatterplot of cadmium vs. elevation and a simple map of the sample sites.  Note that we have to include the `add_markers()` function to create the scatterplot for an `sf` object.
 
 
 ```r
@@ -220,7 +220,7 @@ You'll notice a couple features on the map that are worth pointing out.
 * An option for choosing the basemap, which I think is the coolest option.
 * A scale bar on the bottom left that changes with zoom. 
 * A button on the bottom-right that will snap zoom to the plotted layer.
-* Clicking on a features brings up a table with detaield information.
+* Clicking on a feature brings up a table with detailed information.
 
 Mapview will recognize the type of features in the input data to make the correct plot.  Here's an example using our states dataset where polygons are automatically plotted.
 
@@ -241,6 +241,10 @@ For this exercise we'll download the US EPA's Wadeable Streams Assessment (WSA) 
 1. Make a new code chunk in your R Markdown file and load the `sf`, `plotly`, and `mapview` packages.
 
 1. Run the following code to download the data: 
+
+```r
+wsa <- read.csv("https://www.epa.gov/sites/production/files/2014-10/wsa_siteinfo_ts_final.csv")
+```
 
 1. Convert the wsa data to an `sf` object with the following: `wsa <- st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")`
 

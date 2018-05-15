@@ -22,12 +22,12 @@ library(ggmap)
 
 ### Goals and Motivation
 
-Now that we've covered vectors, rasters, and geoprocessing in R, it's time to discuss how we can make some nice plots and maps of these data.  The distributed network of R packages has continued to grow over the years and now offers many easy options for mapping.  In addition, base R graphics and those provided by the powerful ggplot2 package can also be used to plot spatial data.  We'll discuss how we can leverage generic plotting functions in R and more specific packages to help us explore spatial data in more detail. 
+Now that we've covered vectors and rasters in R, it's time to discuss how we can make some nice plots and maps of these data.  The distributed network of R packages has continued to grow over the years and now offers many easy options for mapping.  In addition, base R graphics and those provided by the powerful [ggplot2](http://ggplot2.tidyverse.org/) package can also be used to plot spatial data.  We'll discuss how we can leverage generic plotting functions in R and more specific packages to help us explore spatial data in more detail. 
 
 By the end of this lesson, you should be able to answer these questions:
 
-* How can I use base graphics to create simple vector and raster plots?
-* How can I use ggplot2 to create simple vector and raster plots?
+* How can I use base graphics to create simple maps?
+* How can I use ggplot2 to create simple maps?
 * How and when would I use plotly?
 * How and when would I use mapview?
 * How and when would I use micromap?
@@ -39,11 +39,20 @@ Let's first make sure we have an R Markdown file setup and the correct packages 
 
 1. In the project you created for this workshop, open a fresh R Markdown file from the File menu.  Name it "Basic mapping" and save it in your project.
 
-1. Remove all the template content below the YAML header.  Add some descriptive text using Markdown below the YAML header that briefly describes the lesson plan (e.g., "This lessons covers base graphics, ggplot, and other R packags for mapping spatial data.")
+1. Remove all the template content below the YAML header.  Add some descriptive text using Markdown below the YAML header that briefly describes the lesson plan (e.g., "This lessons covers base graphics, ggplot, and other R packages for mapping spatial data.")
 
-1. Below this text, add a code chunk and write some script to load the following packages: `tidyverse`, `maps`, `sf`, `ggmap`, `plotly`, `mapview`, `micromap`, `tmap`.
+1. Below this text, add a code chunk and write some script to load the following packages: `ggplot2`, `maps`, `sf`, `ggmap`, `ggrepel`, `plotly`, `mapview`, `micromap`, `tmap`. It should look like this inside your code chunk:
+```{r eval = F}
+library(maps)
+library(sf)
+library(raster)
+library(tmap)
+library(micromap)
+library(ggrepel)
+library(ggmap)
+```
 
-1. When you're done, compile the document by pressing the knit button at the top.
+1. When you're done, compile the document by pressing the knit button at the top. Did it work?
 
 <details> 
   <summary>Click here to cheat!</summary>
@@ -52,7 +61,7 @@ Let's first make sure we have an R Markdown file setup and the correct packages 
 
 ### A primer on mapping
 
-Mapping spatial data can be generically described as simple data vizualization.  The same motivation for creating a simple scatterplot can apply to creating a map.  The overall goal is to develop insight into your data by visualizing patterns that cannot be seen in tabular format.  Of course the added complication with spatial data is the inclusion of a location.  How you handle this spatial component is up to you and depends on whether location is relevant for the plot or map.  
+Mapping spatial data falls under the broad category of data vizualization.  The same motivation for creating a simple scatterplot can apply to creating a map.  The overall goal is to develop insight into your data by visualizing patterns that cannot be seen in tabular format.  Of course the added complication with spatial data is the inclusion of a location.  How you handle this spatial component is up to you and depends on whether location is relevant for the plot or map.  
 
 Spatial data by definition always include a reference location for each observation.  More often than not, additional variables not related to space may be collected for each observation.  For example, multiple measurements of water quality taken at different locations in a lake can be indexed by latitude, longitude, and whatever water quality data were taken at a sample site.  The only piece of information that makes the water quality data spatial is the location. Whatever your data look like, you have to choose if space is an important variable to consider given your question.  For mapping spatial data, consider the following:
 
@@ -60,7 +69,7 @@ Spatial data by definition always include a reference location for each observat
 * Would I expect my non-spatial data to vary by space?  
 * Are there other spatial units for aggregating my data that can help understand patterns?
 
-The answer to these questions can help you decide what type of visualization is important for the data.  We'll explore different approaches to mapping spatial in this lesson that will be guided by the answers to these questions.
+The answer to these questions can help you decide what type of visualization is important for the data.  On the other hand, mapping the data can also give you answers to these questions.  We'll explore different mapping approaches in this lesson that will help us address these questions.
 
 ### Basic maps
 
@@ -100,7 +109,9 @@ map('county', region = 'oregon')
 plot(st_geometry(dat_sf), add = T, pch = 16, cex = sqrt(dat_sf$population * 0.0002))
 ```
 
-This is kind of tedious.  We can alternatively make the same plot using ggplot2 to map some of the data attributes to the plot aesthetics.  We'll take advantage of the `geom_sf` function to plot the `sf` object.  This will be much easier once we have all of our map objects the correct format for `sf`.  Our cities dataset is already an `sf` object, so all we have to do is convert our base state map to an `sf` object.
+This is kind of tedious.  We can alternatively make the same plot using ggplot2 to map some of the data attributes to the plot aesthetics.  We'll take advantage of the `geom_sf` function to plot the `sf` object.  
+
+First, we have to have all of our map objects in the correct format for `sf`.  Our cities dataset is already an `sf` object, so all we have to do is convert our base state map to an `sf` object.
 
 ```{r}
 state <- st_as_sf(map('county', region = 'oregon', plot = F, fill = T))
@@ -123,14 +134,14 @@ ggplot() +
   geom_sf(data = dat_sf)
 ```
 
-We can also map population to size and colour easily and add some text labels.
+We can also map population to size and colour.
 ```{r citygg2}
 ggplot(dat_sf) +
   geom_sf(data = state) +
   geom_sf(aes(size = population, colour = population))
 ```
 
-There are a few things we might want to modify with this plot, so let's assign it to a variable in our workspace that we can easily modify.
+There are a few things we might want to modify with this plot, so let's assign it to a variable in our workspace that we can easily modify (using the handy `last_plot()` function from ggplot2).
 ```{r}
 p <- last_plot()
 ```
@@ -148,16 +159,16 @@ We can also add labels using `geom_text`.  Let's plot the city names over the po
 p + geom_text(aes(x = longitude, y = latitude, label = cities))
 ```
 
-If we want to prevent the labels from overlapping the points, we can use the `geom_text_repel` function from the ggrepel package. You'll have to play around with the values for `point.padding` to get the distances you like. The `segment.alpha` value will also remove the lines joining the points to the labels.
+If we want to prevent the labels from overlapping the points, we can use the `geom_text_repel` function from the [ggrepel](https://github.com/slowkow/ggrepel) package. You'll have to play around with the values for `point.padding` to get the distances you like. The `segment.alpha` value will also remove the lines joining the points to the labels.
 ```{r citygg5}
 p + geom_text_repel(aes(x = longitude, y = latitude, label = cities), point.padding = grid::unit(0.5, 'lines'), segment.alpha = 0)
 ```
 
 ### ggmap
 
-As an alternative basemap, we can leverage the `ggmap` package to download a static image of our plot region.  This often works well for plotting points where the mapping unit of interest is relatively simple (i.e., not a line or polygon).  It's also useful for arbitrary areas of interest that aren't easily captured by the geopolitical boundaries in the `maps` package. 
+As an alternative basemap, we can leverage the `ggmap` package to download a static image of our plot region.  This often works well for plotting points where the mapping unit of interest is relatively simple (i.e., not a line or polygon).  It's also useful for arbitrary areas of interest that aren't easily captured by the geopolitical boundaries. 
 
-To use `ggmap`, you have to first download the image based on the extent of the plotting area.  This requires pulling the extent from our existing data object that we want to plot.  Then, we can choose from many types of basemaps, such as Google basemaps, terrain maps, and satellite images.  For this example we'll download a satellite image our area.  One thing to keep in mind is the zoom option.  This is used to specify the level of detail in your downloaded image and can take quite some to download depending on the area and level of specificity.  We'll follow these steps to download the basemap:
+To use `ggmap`, you have to first download the image with the `get_map` function based on the extent of the plotting area.  This requires pulling the extent from our existing data object that we want to plot.  Then, we can choose from different basemaps, such as Google basemaps, terrain maps, and satellite images.  For this example we'll download a satellite image of our area.  One thing to keep in mind is the zoom option.  This is used to specify the level of detail in your downloaded image and can take quite some to download depending on the area and level of specificity.  We'll follow these steps to download the basemap:
 
 * Get the extent from our `dat_sf` object using `st_bbox` and `unname` to remove the name attributes (ggmap will fuss otherwise)
 * Download a satellite image using the `get_map` function in the ggmap package with the extent, pick the right `zoom` level and specify `maptype = "satellite"`
@@ -174,7 +185,7 @@ bsmap <-  get_map(location = dat_ext, maptype = 'satellite', zoom = 7)
 ggmap(bsmap)
 ```
 
-Now that we've got the base map in order, we can simply add the locations of our cities with the `geom_sf` geometry as before.  The `ggmap` function returns a `ggplot2` object so we can just add geoms and other ggplot options as we normally would.  We'll have to tell ggplot to ignore the aesthetics from ggmap for the plot to work correctly.
+Now that we've got the base map in order, we can simply add the locations of our cities with the `geom_sf` function from the `ggplot2` package as before.  The `ggmap` function returns a `ggplot2` object so we can just add geoms and other ggplot options as we normally would.  We'll have to tell ggplot to ignore the aesthetics from ggmap for the plot to work correctly (`inherit.aes = F`).
 ```{r ggmap2}
 ggmap(bsmap) +
   geom_sf(data = dat_sf, inherit.aes = F, color = 'red')
@@ -200,7 +211,7 @@ This might seem incredibly tedious but most of the coding has to do with formatt
 
 ### Exercise
 
-In this exercise we'll recreate the steps we learned in this module but on a different dataset.  The `meuse` dataset comes with the `sp` package and describes the locations and topsoil heavy metal concentrations collected in a flood plain of the river Meuse, Netherlands.  The data are in raw format so you'll have to import and convert it to an `sf` object with the correct reference system. Once we have the object created, you can map it with `geom_sf` and link any of the other dataset variables to additional aesthetics.  We'll also want to pick an appropriate basemap for the region using `ggmap`. This is a long exercise so feel free to use the code in the cheat box below.
+In this exercise we'll recreate the steps we learned in this module but on a different dataset.  The `meuse` dataset comes with the `sp` package and describes the locations and topsoil heavy metal concentrations collected in a flood plain of the river Meuse, Netherlands.  The data are in raw format so you'll have to import and convert it to an `sf` object with the correct reference system. Once we have the object created, you can map it with `geom_sf` and link any of the other dataset variables to additional plot aesthetics.  We'll also want to pick an appropriate basemap for the region using `ggmap`. This is a long exercise so feel free to use the code in the cheat box below.
 
 1. Create a new code chunk in your R markdown file and load the `sp`, `sf`, `maps`, and `gglot2` libraries.
 
@@ -208,13 +219,13 @@ In this exercise we'll recreate the steps we learned in this module but on a dif
 
 1. What is the structure of the data (Hint: `class(meuse)` or `str(meuse)`)? Which columns contain the sample coordinates?  
 
-1. Convert the data frame to an `sf` object using the `st_as_sf` function. Check the help file to see what required arguments are needed for converting a data frame with `st_as_sf`.  You'll need to specify the `coords` and `crs` argument (hint: `coords = c("x, y"), crs = "+init=epsg:28992").  Don't worry about which coordinate system we used, we can find this info in the help file for meuse. 
+1. Convert the meuse data frame to an `sf` object using the `st_as_sf` function. The help file tells you what required arguments are needed for converting a data frame with `st_as_sf` (run `?st_as_sf` to open).  Specifically, you'll need to specify the `coords` and `crs` argument (hint: `coords = c("x, y"), crs = "+init=epsg:28992")`.  Don't worry about which coordinate system to use, this info in the help file for meuse (`?meuse`). The conservsion should look something like this: `dat <- st_as_sf(meuse, coords = c('x', 'y'), crs = "+init=epsg:28992")`.
 
-1. The native coordinate system for meuse is projected.  We'll want to convert the `sf` object to a geographic coordinate system to work with `ggmap`.  You can use the `st_transform` and the argument `crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"`.
+1. The native coordinate system for meuse is projected.  We'll want to convert the `sf` object to a geographic coordinate system as a requirement for `ggmap`.  You can use the `st_transform` and the argument `crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"`.  Don't forget to assign the transformed object to a new variable in your environment (e.g., `newdat <- st_transform(...)`).
 
-1. Now get an appropriate basemap for the region from `ggmap`. Remember, you have to first get the extent from the `sf` object (hint: `unname(st_bbox(dat))` where `dat` is your transformed meuse data). Then download the map using the extent with `get_map` using `maptype = "satelitte"` and `zoom = 13`.
+1. Now get an appropriate basemap for the region from `ggmap`. Remember, you have to first get the extent from the `sf` object (hint: `unname(st_bbox(dat))` where `dat` is your transformed meuse data). Then download the map using the extent with `get_map` using `maptype = "satelitte"` and `zoom = 13`.  Assign the basemap to an object. 
 
-1. Plot the map with `ggmap` and add the meuse data with `geom_sf`.  Don't forget to use the argument `inherit.aes = F` in `geom_sf`.  It should look something like this: `ggmap(bsmap) + geom_sf(data = dat, inherit.aes = F)` if your base map is called   `bsmap` and your meuse data is `dat`. 
+1. Plot the basemap with `ggmap` and then add the meuse data with `geom_sf`.  Don't forget to use the argument `inherit.aes = F` in `geom_sf`.  It should look something like this: `ggmap(bsmap) + geom_sf(data = dat, inherit.aes = F)` if your base map is called   `bsmap` and your projected meuse data is `dat`. 
 
 1. When you're satisified, try mapping some of the attributes in the meuse dataset to some of the ggplot aesthetics, e.g., `geom_sf(data = dat, inherit.aes = F, aes(colour = cadmium))`
 

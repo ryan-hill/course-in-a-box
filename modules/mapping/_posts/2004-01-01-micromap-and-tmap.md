@@ -7,28 +7,22 @@ self_contained: yes
 ---
 
 
-In this final module we'll cover some useful packages for exploratory spatial data analysis, as well as general mapping.  There are other packages available for R that can accomplish these tasks but we don't have time to cover them all.  We'll focus specifically on the micromap and tmap packages because of their unique functionality relative to more generic packages.
+In this final module we'll cover some useful packages for exploratory spatial data analysis, as well as general mapping.  There are other packages available for R that can accomplish these tasks but we don't have time to cover them all.  We'll focus specifically on the micromap and tmap packages because of their unique functionality relative to more generic mapping packages.
 
 ## micromap
 
-A linked micromap is a graphic that simultaneously summarizes and displays both statistical and geographic distributions by a color-coded link between statistical summaries of polygons to a series of small maps. This  figure shows the four elements of a linked micromap. The package is described in full in an [article](https://www.jstatsoft.org/article/view/v063i02) published in the Journal of Statistical Software.
+A linked micromap is a graphic that simultaneously summarizes and displays statistical and geographic distributions by a color-coded link between statistical summaries of polygons to a series of small maps. The package is described in full in an [article](https://www.jstatsoft.org/article/view/v063i02) published in the Journal of Statistical Software. This figure shows the four elements of a linked micromap. 
 
-![Linked Micromap Elements](../../../img/Linked Micromap Elements.png)
+![](../../../img/Linked Micromap Elements.png)
 
-A recent study by [McManus et al. (2016)](https://onlinelibrary.wiley.com/doi/full/10.1111/1752-1688.12399) used linked micromaps to summarize water quality data collected from a spatially, balanced probabilistic stream survey of 25 watersheds done by West Virginia Department of Environmental Protection.  That visualization led to a multivariate spatial analysis based on the contiguity of the watersheds, which was based work done in R by [Dray and Jombart (2011)](https://www.jstor.org/stable/23069330?seq=1#page_scan_tab_contents) and [Dray et al. (2012)](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/11-1183.1).
+A recent study by [McManus et al. (2016)](https://onlinelibrary.wiley.com/doi/full/10.1111/1752-1688.12399) used linked micromaps to summarize water quality data collected from a spatially balanced, probabilistic stream survey of 25 watersheds done by West Virginia Department of Environmental Protection.  That visualization led to a multivariate spatial analysis based on the contiguity of the watersheds, which was based on work done in R by [Dray and Jombart (2011)](https://www.jstor.org/stable/23069330?seq=1#page_scan_tab_contents) and [Dray et al. (2012)](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/11-1183.1).
 
-The dataset was created by summarizing watershed land use from NLCD data and appending the information to a shapefile of waterbody IDs. We've included the shapefile with the workshop data.
+The dataset was created by summarizing watershed land use from NLCD data and appending the information to a shapefile of waterbody IDs. We've included the shapefile with the workshop data, which should be in your data folder.  Since micromap does not work with `sf` objects, we'll import it as a `SpatialPolygonsDataFrame` object using the `readOGR` function from the rgdal package.
 
 ```r
 shp <- readOGR(dsn = './data', layer = "micromap_dat")
 ```
 
-```
-## OGR data source with driver: ESRI Shapefile 
-## Source: "C:\proj\sfs-r-gis-2018\files", layer: "micromap_dat"
-## with 18 features
-## It has 16 fields
-```
 
 ```r
 class(shp)
@@ -72,15 +66,15 @@ head(shp@data)
 plot(shp)
 ```
 
-![](../../../img/unnamed-chunk-2-1.png)<!-- -->
+![](../../../img/unnamed-chunk-6-1.png)<!-- -->
 
-The latest release of micromap can plot a SpatialPolygonsDataFrame object directly (there are plans to further develop the package to work with `sf` objects).  There are few required pieces of information:
+The minimal requirements to create a micromap are defined using these arguments for the `mmplot` function:
 
-* `map.data`The input data object.
+* `map.data` The input data object.
 * `panel.types` The types of panels to include in the micromap.
-* `panel.data` The data in `map.data` that are linked to the panels.
+* `panel.data` The data (columns) in `map.data` to use for each panel type.
 
-The rest is optional and defines which varialbe defines the plot ranking (`ord.by`), if the axes are flipped (`rev.ord`), how many observations are in each perceptual group (`grouping`), and whether or not to include a median row (`median.row`).
+The rest of the arugments below are optional.  These define which variable the plot is sorted by (`ord.by`), if the axes are flipped (`rev.ord`), how many observations are in each perceptual group (`grouping`), and whether or not to include a median row (`median.row`).
 
 ```r
 mmplot(map.data = shp,
@@ -99,18 +93,17 @@ mmplot(map.data = shp,
 
 ![](../../../img/micromap1-1.png)<!-- -->
 
-There are a staggering array of options to customize the elements of the micromap. These are passed as a list of lists that correspond to the order of the `panel.types`.  You can view the vignette for micromap to see the entire range of options (run `vignette('Introduction_Guide', package = 'micromap')` in the console to open the pdf).  
+There are also a staggering array of options to customize the elements of the micromap. These are passed as a list of lists that correspond to the order of the `panel.types`.  You can view the vignette for micromap to see the entire range of options (run `vignette('Introduction_Guide', package = 'micromap')` in the console to open the pdf).  
 
 
 ```r
 mmplot(map.data = shp,
   panel.types = c('dot_legend', 'labels', 'box_summary', 'box_summary', 'map'),
-  panel.data=list(
-    NA,
-   'huc12name',
-   list('cropmin', 'cropq1', 'cropmed', 'cropq3', 'cropmax'),
-   list('decidmin', 'decidq1', 'decidmed', 'decidq3', 'decidmax'),
-   NA),
+  panel.data=list(NA,
+                  'huc12name',
+                  list('cropmin', 'cropq1', 'cropmed', 'cropq3', 'cropmax'),
+                  list('decidmin', 'decidq1', 'decidmed', 'decidq3', 'decidmax'),
+                  NA),
   ord.by = 'cropmed',
   rev.ord = TRUE,
   grouping = 6,
@@ -134,18 +127,19 @@ mmplot(map.data = shp,
                     graph.bar.size = .6),
                  list(5, header='Micromaps',
                     inactive.border.color=gray(.7),
-                    inactive.border.size=2))
+                    inactive.border.size=2)
+                 )
   )
 ```
 
 ![](../../../img/micromap2-1.png)<!-- -->
 
-Now compare the linked micromap with two choropleth maps.  We get a similer conclusion but the micromap adds much more context.  
+Now compare the linked micromap with two choropleth maps that represent similar information.  We get the same conclusion but the micromap adds much more context and has a higher information to ink ratio.  
 ![](../../../img/chlorocntrst-1.png)<!-- -->
 
 ## tmap 
 
-tmap is a newish R package for creating thematic maps and based on the layered grammar of graphics approach Hadley Wickham uses with ggplot2. An [article](https://www.jstatsoft.org/article/view/v084i06) was recently published in the Journal of Statistical Software that describes the package in detail. 
+tmap is a newish R package for creating thematic maps based on the grammar of graphics (gg) approach used with ggplot2. An [article](https://www.jstatsoft.org/article/view/v084i06) was recently published in the Journal of Statistical Software that describes the package in detail. 
 
 The chloropleth map we just saw was created with tmap:
 
@@ -191,7 +185,7 @@ qtm(Europe, fill="well_being", text="iso_a3", text.size="AREA", format="Europe",
     text.root=5, fill.title="Well-Being Index", fill.textNA="Non-European countries")
 ```
 
-![](../../../img/unnamed-chunk-4-1.png)<!-- -->
+![](../../../img/unnamed-chunk-8-1.png)<!-- -->
 
 Raster and bubble plots:
 
@@ -215,7 +209,7 @@ tm_format_Europe() +
 tm_style_natural()
 ```
 
-![](../../../img/unnamed-chunk-5-1.png)<!-- -->
+![](../../../img/unnamed-chunk-9-1.png)<!-- -->
 
 Facets:
 
@@ -226,7 +220,7 @@ tm_shape(Europe) +
 tm_style_grey()
 ```
 
-![](../../../img/unnamed-chunk-6-1.png)<!-- -->
+![](../../../img/unnamed-chunk-10-1.png)<!-- -->
 
 ## Exercise
 
@@ -238,7 +232,7 @@ This is our last exercise of the workshop.  We'll make a quick chloropleth map o
 
 1. Use the `st_area` function to estimate the area of each state.  Make this a numeric object (`as.numeric`), convert it to square kilometers (divide by `1e6`), and bind it to the states object you just created (`states$area <- area`).
 
-1. Use the `qtm` function to plot the `states` object.  Use the arguments `fill = "area"`, `text = "ID"`, `fill.title = "State area (km2)"`, and `text.size = "area".
+1. Use the `qtm` function from tmap to plot the `states` object.  Use the arguments `fill = "area"`, `text = "ID"`, `fill.title = "State area (km2)"`, and `text.size = "area"`.
 
 1. We can place the legend outside of the plot by using `tm_layout(legend.outside = T)`.  Just add this code to the plot using the `+` sign as you would for ggplot.  
 
