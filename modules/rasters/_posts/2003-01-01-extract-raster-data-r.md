@@ -126,21 +126,25 @@ plot(cal_ws)
 plot(ws, add = T, border='red')
 ```
 
-We need to make sure that the watershed boundary and our raster data are in the same CRS.
+Let's generate watershed summaries for the terrain stack we generated before. First, we'll need to read it in and then make sure that the watershed boundary and our raster data are in the same CRS. Finally, we'll generate summary stats for the watershed.
 
 ```r
-
-
+cal_terrain <-  readRDS('./data/cal_terrain.rds')
+proj4string(ws) == proj4string(cal_terrain)
+#Project to match cal_terrain
+ws <- spTransform(ws, CRS(proj4string(cal_terrain)))
+metrics <- extract(cal_terrain, ws, fun = 'mean', na.rm = T, small = T)
+print(metrics)
 ```
 
+```r
+#          tri        tpi roughness     slope   aspect flowdir
+#[1,] 13.66916 -0.1562615  44.41507 0.1829341 3.616169 16.9229
+```
 
-Here, we'll walk through an example of delineating watersheds from our points and in **Excercise 2**. We'll then use these watersheds to extract summaries of some of the terrain metrics we calculated for the Calapooia River basin.
+## Bonus Excercise: Multi-watershed delineation and metric calculation
 
-It is worth exploring the point-and-click version. The StreamStat Service API is exposed, meaning  we can build simple text URLs that can be submitted to the server as a query. We won't go into detail for this excercise. First, we need to import the custom function
-
-
-
-Now that the function is defined, we can read in our table with coordinates and run the function on them, each in turn. Doing so requires a `for` loop in which we select out each point at a time, submit its coordinates to the online service.
+We may not have time to cover this section. However, we thought it would be useful to at least provide the code to delineate multiple watersheds at once and calculate summary metrics. Doing so requires a `for` loop in which we select out each point at a time, submit its coordinates to the online service, and extract the summary metrics for the returned watershed boundary.
 
 ```r
 #Read in the points table
