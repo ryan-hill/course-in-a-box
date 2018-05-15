@@ -18,7 +18,7 @@ In the code below, replace `your-directory-here` with the folder location where 
 #Set your working directory
 setwd(your-directory-here)
 
-download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/ESDA.zip?raw=true",
+download.file("https://github.com/ryan-hill/sfs-r-gis-2018/blob/a98da93ec97ce303507e4731ddda5d8055590f39/files/data.zip?raw=true",
               "data.zip",
               method="auto",
               mode="wb")           
