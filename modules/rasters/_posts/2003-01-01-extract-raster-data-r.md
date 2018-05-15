@@ -11,10 +11,10 @@ In this section, we'll learn how to pull useful information from raster datasets
 ### Lesson Goals
 
 By the end of this section you will be able to: 
-- Read and write raster data from disk and from the web
-- Clip raster data
-- More...
-
+- Extract summary stats for a raster or stack of rasters
+- Extract raster values at sample points
+- Delineate a watershed and extract a summary of raster values within the boundary 
+- Bonus: Delineate watersheds and extract raster metrics within watershed boundaries
 ---
 
 ### Excercise 1: Raster and RasterBrick summary stats
@@ -22,6 +22,9 @@ By the end of this section you will be able to:
 We can also extract potentially useful information from a raster layer using several methods.
 
 ```r
+library(raster)
+#Reading
+cal_elev <- raster('./data/cal_elev.tif')
 cellStats(cal_elev, stat='mean')
 quantile(cal_elev, probs = c(0.25, 0.5, 0.75))
 ```
@@ -91,9 +94,7 @@ sites@data
 
 ### Excercise 3: Extracting data by polygon 
 
-Creating summaries within a polygon is a common and important analysis in GIS, especially in water resources where watershed summaries are often used to understand why freshwater environments differ from one another. Here, we'll walk through an example of delineating watersheds from our points and in **Excercise 2**. We'll then use these watersheds to extract summaries of some of the terrain metrics we calculated for the Calapooia River basin.
-
-To start, we wrote a custion R function that takes advantage of the USGS [StreamStats](https://streamstats.usgs.gov/ss/) online watershed delineation tool. It is worth exploring the point-and-click version. The StreamStat Service API is exposed, meaning  we can build simple text URLs that can be submitted to the server as a query. We won't go into detail for this excercise. First, we need to import the custom function
+Creating summaries within a polygon is a common and important analysis in GIS, especially in water resources where watershed summaries are often used to understand why freshwater environments differ from one another. Let's pretend you have a sample site in Oregon somewhere in the Calapooia River watershed. The USGS has an online tool that can delineate the watershed for this point called [StreamStats](https://streamstats.usgs.gov/ss/). It is worth exploring the point-and-click version. The StreamStat Service API is exposed, meaning  we can build simple text URLs that can be submitted to the server as a query. We won't go into detail for this excercise. First, we need to import the custom function
 
 ```r
 library(jsonlite);library(sf);library(sp);library(geojsonio)
@@ -110,6 +111,34 @@ watershed = function(state, lon, lat){
   poly
 }
 ```
+
+Now that the function is defined, we can provide it with the information about our site to delineate its watershed.
+
+```r
+state <- 'OR'
+latitude <- 44.39460
+longitude <- -122.9248
+# Delineate the watershed
+ws <- watershed('OR', longitude, latitude)
+# Plot on top of Calapooia basin for context
+cal_ws <- readOGR(dsn = './data', layer = 'calapooia-ws')
+plot(cal_ws)
+plot(ws, add = T, border='red')
+```
+
+We need to make sure that the watershed boundary and our raster data are in the same CRS.
+
+```r
+
+
+```
+
+
+Here, we'll walk through an example of delineating watersheds from our points and in **Excercise 2**. We'll then use these watersheds to extract summaries of some of the terrain metrics we calculated for the Calapooia River basin.
+
+It is worth exploring the point-and-click version. The StreamStat Service API is exposed, meaning  we can build simple text URLs that can be submitted to the server as a query. We won't go into detail for this excercise. First, we need to import the custom function
+
+
 
 Now that the function is defined, we can read in our table with coordinates and run the function on them, each in turn. Doing so requires a `for` loop in which we select out each point at a time, submit its coordinates to the online service.
 
