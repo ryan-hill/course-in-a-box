@@ -14,7 +14,7 @@ By the end of this section you will be able to:
 - Extract summary stats for a raster or stack of rasters
 - Extract raster values at sample points
 - Delineate a watershed and extract a summary of raster values within the boundary 
-- Bonus: Delineate watersheds and extract raster metrics within watershed boundaries
+- Bonus Excercise - Delineate several watersheds and extract raster metrics within watershed boundaries
 
 ---
 
@@ -143,7 +143,7 @@ print(metrics)
 #[1,] 13.66916 -0.1562615  44.41507 0.1829341 3.616169 16.9229
 ```
 
-## Bonus Excercise: Multi-watershed delineation and metric calculation
+### Bonus Excercise - Multi-watershed delineation and metric calculation
 
 We may not have time to cover this section. However, we thought it would be useful to at least provide the code to delineate multiple watersheds at once and calculate summary metrics. Doing so requires a `for` loop in which we select out each point at a time, submit its coordinates to the online service, and extract the summary metrics for the returned watershed boundary.
 
