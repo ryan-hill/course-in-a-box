@@ -159,5 +159,11 @@ cal_terrain[[c(1:2)]]
 #min values  :  2.309264e-14, -3.930978e+01 
 #max values  :      61.94121,      35.52317 
 ```
+<br>
+We can save **cal_terrain** out either as a raster or as a native R format. This can be useful if you are working with your data in R because they will read and write much faster than converting these files to other formats, such as a GeoTiff. However, if you share your data with others, you will probably want to convert to a format that can be read by a standard GIS.
+
+```r
+saveRDS(cal_terrain, file = './data/cal_terrain.rds')
+```
 
 In the next section we'll learn how to extract summary statistics and other information from rasters. 
