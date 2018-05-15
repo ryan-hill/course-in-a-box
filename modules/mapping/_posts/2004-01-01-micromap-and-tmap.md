@@ -20,7 +20,7 @@ A recent study by [McManus et al. (2016)](https://onlinelibrary.wiley.com/doi/fu
 The dataset was created by summarizing watershed land use from NLCD data and appending the information to a shapefile of waterbody IDs. We've included the shapefile with the workshop data.
 
 ```r
-shp <- readOGR(dsn = '../../../files', layer = "micromap_dat")
+shp <- readOGR(dsn = './data', layer = "micromap_dat")
 ```
 
 ```
