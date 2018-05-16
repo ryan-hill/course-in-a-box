@@ -261,7 +261,7 @@ pts2@data
 
 ---
 
-#### Excercise 2: Place a buffer around each city
+### Excercise 2: Place a buffer around each city
 
 Buffers are a commonly used in GIS analyses. Let's place a buffer around each point using `rgeos::gBuffer`. Remember that the units are in meters. 
 
@@ -278,7 +278,7 @@ In this example, we used `byid = T`. If we had not, the polygons would have been
 
 ---
 
-#### Excercise 3: It all feels like R
+### Excercise 3: It all feels like R
 
 If you are already comfortable working with R, doing GIS in R will feel very familiar. This is a huge benefit. Here are some excercises that should feel familiar
 
