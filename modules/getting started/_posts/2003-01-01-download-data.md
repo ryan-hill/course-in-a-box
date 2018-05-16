@@ -11,9 +11,6 @@ There are two options to download the data - run the R code below or download/un
 Run the R code below to download the zipped file from website.  This will download to your home directory of your project.
 
 ```r
-#Set your working directory
-setwd(your-directory-here)
-
 download.file("https://github.com/ryan-hill/sfs-r-gis-2018/raw/gh-pages/files/data.zip",
               "data.zip",
               method="auto",
