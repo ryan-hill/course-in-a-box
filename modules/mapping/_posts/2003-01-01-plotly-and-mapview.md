@@ -1,9 +1,4 @@
----
-title: "plotly and Mapview"
-output: 
-  html_document:
-    keep_md: true
----
+# plotly and Mapview
 
 # Interactive mapping with plotly and mapview
 
@@ -117,9 +112,9 @@ counties$area <- area
 plot_ly(counties, split = ~ID, color = ~ area, colors = 'PiYG', showlegend = F, alpha = 1)
 ```
 
-Now let's put some of these javascript tools to use.  A really cool feature of plotly is the ability to link plots through interactive brushing, such as highligtings parts of one plot and seeing where they correspond on another plot.  For example, it's clear to see from our chloropleth map of state area which one is the biggest.  But what are the top ten largest states?  Where are the smallest states? Can we setup the plots in a way to help us view this information?  
+Now let's put some of these javascript tools to use.  A really cool feature of plotly is the ability to link plots through interactive brushing, such as highlighting parts of one plot and seeing where they correspond on another plot.  For example, it's clear to see from our chloropleth map of state area which one is the biggest.  But what are the top ten largest states?  Where are the smallest states? Can we setup the plots in a way to help us view this information?  
 
-The crosstalk package lets you link plotly objects.  This package is installed automatically when you install plotly, but you'll have to load it to use its features. There are a couple steps that need to happen to link the plots ater loading crosstalk.  
+The crosstalk package lets you link plotly objects.  This package is installed automatically when you install plotly, but you'll have to load it to use its features. There are a couple steps that need to happen to link the plots after loading crosstalk.  
 
 1. Create a `SharedData` object for the data you're using in both plots
 
@@ -238,19 +233,19 @@ It's also worth mentioning that mapview is built off of the leaflet package. Map
 
 For this exercise we'll download the US EPA's Wadeable Streams Assessment (WSA) data and make some simple plotly and mapview graphics. These are point data that describe different monitoring sites at streams throughout the US. 
 
-1. Make a new code chunk in your R Markdown file and load the `sf`, `plotly`, and `mapview` packages.
+1) Make a new code chunk in your R Markdown file and load the `sf`, `plotly`, and `mapview` packages.
 
-1. Run the following code to download the data: 
+2) Run the following code to download the data: 
 
 ```r
 wsa <- read.csv("https://www.epa.gov/sites/production/files/2014-10/wsa_siteinfo_ts_final.csv")
 ```
 
-1. Convert the wsa data to an `sf` object with the following: `wsa <- st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")`
+3) Convert the wsa data to an `sf` object with the following: `wsa <- st_as_sf(wsa, coords = c("LON_DD", "LAT_DD"), crs = 4269,agr = "constant")`
 
-1. Use `plot_ly` to create a scatterplot of the variables `XELEV` and `WSAREA`.  Remember that we have to use `add_markers()` to create a scatterplot with `sf` objects.  If you're ggplot savvy, try creating a ggplot object first and then using `ggplotly`
+4) Use `plot_ly` to create a scatterplot of the variables `XELEV` and `WSAREA`.  Remember that we have to use `add_markers()` to create a scatterplot with `sf` objects.  If you're ggplot savvy, try creating a ggplot object first and then using `ggplotly`
 
-1. Use `mapview` to create a map of the stream sites.  Try using `XELEV` or `WSAREA` to color the points.  Alternatively, try a categorical variable for color, e.g., `ECOWSA9`.  Try changing the base map on the plot to find one that you like. 
+5) Use `mapview` to create a map of the stream sites.  Try using `XELEV` or `WSAREA` to color the points.  Alternatively, try a categorical variable for color, e.g., `ECOWSA9`.  Try changing the base map on the plot to find one that you like. 
 
 <details> 
   <summary>Click here to cheat!</summary>
