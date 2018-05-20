@@ -1,10 +1,4 @@
----
-title: "Basic Mapping"
-output: 
-  html_document:
-    keep_md: true
-self_contained: yes
----
+# Basic Mapping
 
 <script src="../../../js/hideoutput.js"></script>
 
@@ -27,11 +21,11 @@ By the end of this lesson, you should be able to answer these questions:
 
 Let's first make sure we have an R Markdown file setup and the correct packages loaded.
 
-1. In the project you created for this workshop, open a fresh R Markdown file from the File menu.  Name it "Basic mapping" and save it in your project.
+1) In the project you created for this workshop, open a fresh R Markdown file from the File menu.  Name it "Basic mapping" and save it in your project.
 
-1. Remove all the template content below the YAML header.  Add some descriptive text using Markdown below the YAML header that briefly describes the lesson plan (e.g., "This lessons covers base graphics, ggplot, and other R packages for mapping spatial data.")
+2) Remove all the template content below the YAML header.  Add some descriptive text using Markdown below the YAML header that briefly describes the lesson plan (e.g., "This lessons covers base graphics, ggplot, and other R packages for mapping spatial data.")
 
-1. Below this text, add a code chunk and write some script to load the following packages: `ggplot2`, `maps`, `sf`, `ggmap`, `ggrepel`, `plotly`, `mapview`, `micromap`, `tmap`. It should look like this inside your code chunk:
+3) Below this text, add a code chunk and write some script to load the following packages: `ggplot2`, `maps`, `sf`, `ggmap`, `ggrepel`, `plotly`, `mapview`, `micromap`, `tmap`. It should look like this inside your code chunk:
 
 ```r
 library(maps)
@@ -43,7 +37,7 @@ library(ggrepel)
 library(ggmap)
 ```
 
-1. When you're done, compile the document by pressing the knit button at the top. Did it work?
+4) When you're done, compile the document by pressing the knit button at the top. Did it work?
 
 <details> 
   <summary>Click here to cheat!</summary>

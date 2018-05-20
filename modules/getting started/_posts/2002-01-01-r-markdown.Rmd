@@ -152,16 +152,16 @@ knitr::kable(iris[1:5, ], format = 'markdown')
 
 Now that we have an idea what R Markdown is and how to use it, we're going to create a template that we'll use for rest the workshop. We'll open a template from the file menu, setup some code chunks to import our datasets, run some exploratory code, and compile the document. 
 
-1. In your RStudio project that you created in the last exercise, open a new R Markdown template from the File menu (File > New File > R Markdown).  Give the file a title like "SFS R Spatial workshop", enter your name as the author, and select HTML as the output.
+1) In your RStudio project that you created in the last exercise, open a new R Markdown template from the File menu (File > New File > R Markdown).  Give the file a title like "SFS R Spatial workshop", enter your name as the author, and select HTML as the output.
 
-1. Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learned."
+2) Remove all of the pre-filled code chunks and text below the YAML header.  Add some new text below the header explaining the purpose of this file, e.g., "This R Markdown document was created for the SFS R Spatial workshop.  It includes both text and code to demonstrate all of the cool stuff I learned."
 
-1. Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`. Your chunk should look like this:
+3) Below your new text, create a code chunk using the keyboard shortcut (Ctrl/Cmd + Alt + I). Name the code chunk `setup` within the braces.  Don't forget to include a space between `r` and `setup`.  After the name, include the following code chunk option: `warning = F` and `message = F`. Your chunk should look like this:
 ```{r, results = 'asis', echo = F}
 cat("<pre>```{r setup, warning = F, message = F}\n```</pre>")
 ```
 
-4. Add some lines to the code chunk between the delimiters to add some R code (just press enter a few times). Copy the code below to the code chunk. These are all the libraries we'll be using in our workshop.
+4) Add some lines to the code chunk between the delimiters to add some R code (just press enter a few times). Copy the code below to the code chunk. These are all the libraries we'll be using in our workshop.
 
 ```{r eval = F}
 library(sp)
@@ -184,6 +184,6 @@ library(ggplot2)
 library(plotly)
 ```
 
-5. When you're done, save the new file in the root/home directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
+5) When you're done, save the new file in the root/home directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
 
-6. Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
+6) Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
