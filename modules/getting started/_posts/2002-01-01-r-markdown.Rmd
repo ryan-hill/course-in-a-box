@@ -66,7 +66,7 @@ There are three basic elements in any R Markdown document:
 1. The __code chunks__ for R code
 1. Text __content__ in between the code chunks that can be modified with Markdown
 
-The magic happens when you "knit" the document using the knit button at the top (or alternatively using the function `rmarkdown::knit('myfile.Rmd')`).  This commands accomplishes two separate tasks:
+The magic happens when you "knit" the document using the knit button at the top (or alternatively using the function `rmarkdown::knit('myfile.Rmd')`).  This command accomplishes two separate tasks:
 
 1. Execution of R code in R chunks to create a Markdown File
 1. Conversion of the Markdown file to rendered text, such as an HTML file
@@ -100,7 +100,7 @@ The R Markdown cheat sheet available from the file menu in RStudio (Help > Cheat
 
 Code chunks in an R Markdown document will include code that is executed when the document is compiled.  It's best to think about all of the individual code chunks in a document as a continuous script that broken into pieces.  All code chunks are run in sequence from first to last when the document is compiled.  You can run the code chunks all at once without compiling the document or individually if you want to inspect the output of an individual chunk.  Just remember that a code chunk may not work properly by itself if it depends on information from another code chunk that hasn't already been run.  
 
-The easiest way to include a new code chunk in your R Markdown file is to use the shortcut keys: `Cmd/Ctrl + Alt + I`.  Alternatively, you can manualy type the code chunks or use the insert button at the top of the script window.  Once the code chunk is added, all R code can then be entered between the delimiters. 
+The easiest way to include a new code chunk in your R Markdown file is to use the shortcut keys: `Cmd/Ctrl + Alt + I`.  Alternatively, you can manually type the code chunks or use the insert button at the top of the script window.  Once the code chunk is added, all R code can then be entered between the delimiters. 
 
 How the code is executed and how the output is formatted can be controlled using the options for each code chunk.  There are several options that are all worth considering (see [http://yihui.name/knitr/](http://yihui.name/knitr/)), but there are only a handful that you will use repeatedly (from the cheatsheet):
 
@@ -161,7 +161,7 @@ Now that we have an idea what R Markdown is and how to use it, we're going to cr
 cat("<pre>```{r setup, warning = F, message = F}\n```</pre>")
 ```
 
-1. Add some lines to the code chunk between the delimiters to add some R code (just press enter a few times). Copy the code below to the code chunk. These are all the libraries we'll be using in our workshop.
+4. Add some lines to the code chunk between the delimiters to add some R code (just press enter a few times). Copy the code below to the code chunk. These are all the libraries we'll be using in our workshop.
 
 ```{r eval = F}
 library(sp)
@@ -184,6 +184,6 @@ library(ggplot2)
 library(plotly)
 ```
 
-1. When you're done, save the new file in the root/home directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
+5. When you're done, save the new file in the root/home directory of your project.  This should be the default directory when you select File > Save As from the menu.  Give the file a short name, e.g., `workshop.Rmd`.  
 
-1. Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
+6. Hit the knit button at the top of the script window in RStudio.  This should compile the R Markdown file to HTML. Did it work and does everything look ok?
