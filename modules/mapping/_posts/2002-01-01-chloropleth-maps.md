@@ -1,10 +1,4 @@
----
-title: "Chloropleth Maps"
-output: 
-  html_document:
-    keep_md: true
-self_contained: yes
----
+# Chloropleth Maps
 
 # Chloropleth maps
 
@@ -42,12 +36,12 @@ head(counties)
 ## epsg (SRID):    4326
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
 ##                ID                       geometry
-## 1 alabama,autauga MULTIPOLYGON (((-86.50517 3...
-## 2 alabama,baldwin MULTIPOLYGON (((-87.93757 3...
-## 3 alabama,barbour MULTIPOLYGON (((-85.42801 3...
-## 4    alabama,bibb MULTIPOLYGON (((-87.02083 3...
-## 5  alabama,blount MULTIPOLYGON (((-86.9578 33...
-## 6 alabama,bullock MULTIPOLYGON (((-85.66866 3...
+## 1 alabama,autauga MULTIPOLYGON (((-86.5051651...
+## 2 alabama,baldwin MULTIPOLYGON (((-87.9375686...
+## 3 alabama,barbour MULTIPOLYGON (((-85.4280090...
+## 4    alabama,bibb MULTIPOLYGON (((-87.0208282...
+## 5  alabama,blount MULTIPOLYGON (((-86.9578018...
+## 6 alabama,bullock MULTIPOLYGON (((-85.6686553...
 ```
 
 We can leverage some of the simple functions in `sf` to estimate an area for each county polygon as a derived spatial variable.  The `st_area` function can peform this operation quickly.  You might get a warning saying you need to install the `lwgeom` package, so make sure to install as needed.
@@ -92,12 +86,12 @@ head(counties)
 ## epsg (SRID):    4326
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
 ##                ID     area                       geometry
-## 1 alabama,autauga 1489.348 MULTIPOLYGON (((-86.50517 3...
-## 2 alabama,baldwin 4107.739 MULTIPOLYGON (((-87.93757 3...
-## 3 alabama,barbour 2331.593 MULTIPOLYGON (((-85.42801 3...
-## 4    alabama,bibb 1543.364 MULTIPOLYGON (((-87.02083 3...
-## 5  alabama,blount 1634.238 MULTIPOLYGON (((-86.9578 33...
-## 6 alabama,bullock 1614.622 MULTIPOLYGON (((-85.66866 3...
+## 1 alabama,autauga 1489.348 MULTIPOLYGON (((-86.5051651...
+## 2 alabama,baldwin 4107.739 MULTIPOLYGON (((-87.9375686...
+## 3 alabama,barbour 2331.593 MULTIPOLYGON (((-85.4280090...
+## 4    alabama,bibb 1543.364 MULTIPOLYGON (((-87.0208282...
+## 5  alabama,blount 1634.238 MULTIPOLYGON (((-86.9578018...
+## 6 alabama,bullock 1614.622 MULTIPOLYGON (((-85.6686553...
 ```
 
 Mapping the area to the fill aesthetic is now straight-forward and we have our first chloropleth map.
@@ -127,7 +121,7 @@ These color palettes are all available in R through the `RColorBrewer` package, 
 
 These color palettes are named using the conventions on the [color brewer](http://colorbrewer2.org/) website above and are all available from `RColorBrewer`.  They are also grouped by their larger categories (from top to bottom): __sequential__, __qualitative__, and __divergent__.  
 
-The `scale_fill_distiller` function in `ggplot2` requires the palette type and palette name arguments to create the color ramp.  The type is specified as a character string as `seq`, , `qual`, or `div` for each of the categories and the palette as a number to index the palette within each category.  The palette can also be specified by its name in the image above, e.g., `"Spectral"` or `"GnBu"`.  You don't have to specify the type argument if you use the palette name directly. 
+The `scale_fill_distiller` function in `ggplot2` requires the palette as specified by its name in the image above, e.g., `"Spectral"` or `"GnBu"`.
 
 Let's try adding a divergent palette to see if we can better see the small counties.
 
@@ -139,27 +133,12 @@ ggplot() +
 
 ![](../../../img/cntygm2-1.png)<!-- -->
 
-We could have also used the full specification by type and palette index (the PuOr palette is fourth from the bottom on the divergent scale.
-
-```r
-ggplot() +
-  geom_sf(data = counties, aes(fill = area)) +
-  scale_fill_distiller(type = 'div', palette = 4)
-```
-
-![](../../../img/cntygm3-1.png)<!-- -->
-
 That's better because we can see more of the range of sizes but we still can't see much with the smaller counties.  You could of course go crazy with one of the qualitative categories but there is no logical perception of the gradient with these scales.  That is, the qualitative scales are meant to show categories or nominally different groups, not a continuous change. 
 
 ```r
 ggplot() +
   geom_sf(data = counties, aes(fill = area)) +
-  scale_fill_distiller(type = 'qual', palette = 6)
-```
-
-```
-## Warning: Using a discrete colour palette in a continuous scale.
-##   Consider using type = "seq" or type = "div" instead
+  scale_fill_distiller(palette = 'Set1')
 ```
 
 ![](../../../img/cntygm4-1.png)<!-- -->
@@ -172,7 +151,7 @@ hist(counties$area)
 
 ![](../../../img/areahist-1.png)<!-- -->
 
-These data are heavily skewed to the left so most of the interesting variation in sizes among the smaller counties can't be seen. We can better see the variation if we transform the data.
+These data are heavily skewed to the right so most of the interesting variation in sizes among the smaller counties can't be seen. We can better see the variation if we transform the data.
 
 ```r
 hist(log10(counties$area))
@@ -204,7 +183,7 @@ In this exercise we'll make a chloropleth map of state areas, just as we did abo
 
 1. Plot the `sf` object with area using `ggplot` and `geom_sf()`.  Map area to colour by defining the plot aesthetics (i.e., add `geom_sf(states, aes(colour = area))` to `ggplot()` using `+`).
 
-1. Use `scale_colour_distiller` to change the colour scale.  Pick a divergent palette (`type  = 'div'`) and a palette of your choice (set palette as 1 through 9). 
+1. Use `scale_colour_distiller` to change the colour scale.  Pick a palette of your choice, e.g., `palette = 'Spectral'`. 
 
 <details> 
   <summary>Click here to cheat!</summary>

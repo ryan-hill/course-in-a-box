@@ -82,7 +82,7 @@ These color palettes are all available in R through the `RColorBrewer` package, 
 
 These color palettes are named using the conventions on the [color brewer](http://colorbrewer2.org/) website above and are all available from `RColorBrewer`.  They are also grouped by their larger categories (from top to bottom): __sequential__, __qualitative__, and __divergent__.  
 
-The `scale_fill_distiller` function in `ggplot2` requires the palette type and palette name arguments to create the color ramp.  The type is specified as a character string as `seq`, , `qual`, or `div` for each of the categories and the palette as a number to index the palette within each category.  The palette can also be specified by its name in the image above, e.g., `"Spectral"` or `"GnBu"`.  You don't have to specify the type argument if you use the palette name directly. 
+The `scale_fill_distiller` function in `ggplot2` requires the palette as specified by its name in the image above, e.g., `"Spectral"` or `"GnBu"`.
 
 Let's try adding a divergent palette to see if we can better see the small counties.
 ```{r cntygm2}
@@ -91,18 +91,11 @@ ggplot() +
   scale_fill_distiller(palette = 'PuOr')
 ```
 
-We could have also used the full specification by type and palette index (the PuOr palette is fourth from the bottom on the divergent scale.
-```{r cntygm3}
-ggplot() +
-  geom_sf(data = counties, aes(fill = area)) +
-  scale_fill_distiller(type = 'div', palette = 4)
-```
-
 That's better because we can see more of the range of sizes but we still can't see much with the smaller counties.  You could of course go crazy with one of the qualitative categories but there is no logical perception of the gradient with these scales.  That is, the qualitative scales are meant to show categories or nominally different groups, not a continuous change. 
 ```{r cntygm4}
 ggplot() +
   geom_sf(data = counties, aes(fill = area)) +
-  scale_fill_distiller(type = 'qual', palette = 6)
+  scale_fill_distiller(palette = 'Set1')
 ```
 
 So why can't we see the variation among the smaller counties? Let's take a look at the ranges in the data using a simple histogram.
@@ -110,7 +103,7 @@ So why can't we see the variation among the smaller counties? Let's take a look 
 hist(counties$area)
 ```
 
-These data are heavily skewed to the left so most of the interesting variation in sizes among the smaller counties can't be seen. We can better see the variation if we transform the data.
+These data are heavily skewed to the right so most of the interesting variation in sizes among the smaller counties can't be seen. We can better see the variation if we transform the data.
 ```{r areahist2}
 hist(log10(counties$area))
 ```
@@ -136,7 +129,7 @@ In this exercise we'll make a chloropleth map of state areas, just as we did abo
 
 1. Plot the `sf` object with area using `ggplot` and `geom_sf()`.  Map area to colour by defining the plot aesthetics (i.e., add `geom_sf(states, aes(colour = area))` to `ggplot()` using `+`).
 
-1. Use `scale_colour_distiller` to change the colour scale.  Pick a divergent palette (`type  = 'div'`) and a palette of your choice (set palette as 1 through 9). 
+1. Use `scale_colour_distiller` to change the colour scale.  Pick a palette of your choice, e.g., `palette = 'Spectral'`. 
 
 <details> 
   <summary>Click here to cheat!</summary>

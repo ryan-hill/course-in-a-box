@@ -131,7 +131,7 @@ First, we have to have all of our map objects in the correct format for `sf`.  O
 state <- st_as_sf(map('county', region = 'oregon', plot = F, fill = T))
 ```
 
- __Before we proceed, we need to make sure we have the develoment version of ggplot2.__ This version includes the `geom_sf` function, which is included with the stable release on CRAN.  Run the following code if you haven't done this already.  The devtools package is needed to install development packages from GitHub.
+ __Before we proceed, we need to make sure we have the develoment version of ggplot2.__ This version includes the `geom_sf` function, which is not included with the stable release on CRAN.  Run the following code if you haven't done this already.  The devtools package is needed to install development packages from GitHub.
 
 
 ```r
@@ -197,7 +197,7 @@ p + geom_text_repel(aes(x = longitude, y = latitude, label = cities), point.padd
 
 ### ggmap
 
-As an alternative basemap, we can leverage the `ggmap` package to download a static image of our plot region.  This often works well for plotting points where the mapping unit of interest is relatively simple (i.e., not a line or polygon).  It's also useful for arbitrary areas of interest that aren't easily captured by the geopolitical boundaries. 
+As an alternative basemap, we can leverage the `ggmap` package to download a static image of our plot region.  This often works well for plotting points where the mapping unit of interest is relatively simple (i.e., not a line or polygon).  It's also useful for arbitrary areas of interest that aren't easily captured by geopolitical boundaries. 
 
 To use `ggmap`, you have to first download the image with the `get_map` function based on the extent of the plotting area.  This requires pulling the extent from our existing data object that we want to plot.  Then, we can choose from different basemaps, such as Google basemaps, terrain maps, and satellite images.  For this example we'll download a satellite image of our area.  One thing to keep in mind is the zoom option.  This is used to specify the level of detail in your downloaded image and can take quite some to download depending on the area and level of specificity.  We'll follow these steps to download the basemap:
 
@@ -262,7 +262,7 @@ In this exercise we'll recreate the steps we learned in this module but on a dif
 
 1. What is the structure of the data (Hint: `class(meuse)` or `str(meuse)`)? Which columns contain the sample coordinates?  
 
-1. Convert the meuse data frame to an `sf` object using the `st_as_sf` function. The help file tells you what required arguments are needed for converting a data frame with `st_as_sf` (run `?st_as_sf` to open).  Specifically, you'll need to specify the `coords` and `crs` argument (hint: `coords = c("x, y"), crs = "+init=epsg:28992")`.  Don't worry about which coordinate system to use, this info in the help file for meuse (`?meuse`). The conservsion should look something like this: `dat <- st_as_sf(meuse, coords = c('x', 'y'), crs = "+init=epsg:28992")`.
+1. Convert the meuse data frame to an `sf` object using the `st_as_sf` function. The help file tells you what required arguments are needed for converting a data frame with `st_as_sf` (run `?st_as_sf` to open).  Specifically, you'll need to specify the `coords` and `crs` argument (hint: `coords = c("x, y"), crs = "+init=epsg:28992")`.  Don't worry about which coordinate system to use, this info in the help file for meuse (`?meuse`). The complete code should look something like this: `dat <- st_as_sf(meuse, coords = c('x', 'y'), crs = "+init=epsg:28992")`.
 
 1. The native coordinate system for meuse is projected.  We'll want to convert the `sf` object to a geographic coordinate system as a requirement for `ggmap`.  You can use the `st_transform` and the argument `crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"`.  Don't forget to assign the transformed object to a new variable in your environment (e.g., `newdat <- st_transform(...)`).
 
