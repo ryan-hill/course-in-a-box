@@ -1,10 +1,4 @@
----
-title: "micromap and tmap"
-output: 
-  html_document:
-    keep_md: true
-self_contained: yes
----
+# micromap and tmap
 
 
 In this final module we'll cover some useful packages for exploratory spatial data analysis, as well as general mapping.  There are other packages available for R that can accomplish these tasks but we don't have time to cover them all.  We'll focus specifically on the micromap and tmap packages because of their unique functionality relative to more generic mapping packages.
@@ -20,6 +14,7 @@ A recent study by [McManus et al. (2016)](https://onlinelibrary.wiley.com/doi/fu
 The dataset was created by summarizing watershed land use from NLCD data and appending the information to a shapefile of waterbody IDs. We've included the shapefile with the workshop data, which should be in your data folder.  Since micromap does not work with `sf` objects, we'll import it as a `SpatialPolygonsDataFrame` object using the `readOGR` function from the rgdal package.
 
 ```r
+library(rgdal)
 shp <- readOGR(dsn = './data', layer = "micromap_dat")
 ```
 
@@ -74,7 +69,7 @@ The minimal requirements to create a micromap are defined using these arguments 
 * `panel.types` The types of panels to include in the micromap.
 * `panel.data` The data (columns) in `map.data` to use for each panel type.
 
-The rest of the arugments below are optional.  These define which variable the plot is sorted by (`ord.by`), if the axes are flipped (`rev.ord`), how many observations are in each perceptual group (`grouping`), and whether or not to include a median row (`median.row`).
+The rest of the arguments below are optional.  These define which variable the plot is sorted by (`ord.by`), if the axes are flipped (`rev.ord`), how many observations are in each perceptual group (`grouping`), and whether or not to include a median row (`median.row`).
 
 ```r
 mmplot(map.data = shp,
